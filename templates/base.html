@@ -10,18 +10,34 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="{{ url_for('index') }}">
-        <img class="brand-icon" src="{{ url_for('static', filename='images/icon.png') }}" alt="آینده من">
-        <span>آینده من</span>
-      </a>
-      <nav class="main-nav" aria-label="ناوبری اصلی">
-        <a href="/test">تست شخصیت</a>
-        <a href="/majors">رشته‌ها</a>
-        <a href="/compare">مقایسه</a>
-        <a href="/guide">راهنما</a>
-        <a class="nav-cta" href="/test">شروع تست</a>
-      </nav>
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="{{ url_for('index') }}">
+          <img class="brand-icon" src="{{ url_for('static', filename='images/icon.png') }}" alt="آینده من">
+          <span>آینده من</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <a class="nav-link" href="/test">تست شخصیت</a>
+          <a class="nav-link" href="/majors">رشته‌ها</a>
+          <a class="nav-link" href="/compare">مقایسه</a>
+          <a class="nav-link" href="/articles">مقالات</a>
+          <a class="nav-link" href="/guide">راهنما</a>
+          <a class="nav-cta" href="/test">شروع تست</a>
+        </nav>
+      </div>
+      <div class="nav-sheet" id="nav-sheet">
+        <nav class="sheet-nav" aria-label="منوی موبایل">
+          <a href="/test">تست شخصیت</a>
+          <a href="/majors">رشته‌ها</a>
+          <a href="/compare">مقایسه</a>
+          <a href="/articles">مقالات</a>
+          <a href="/guide">راهنما</a>
+          <a class="sheet-cta" href="/test">شروع تست</a>
+        </nav>
+      </div>
     </div>
   </header>
   <main class="site-main">
@@ -41,9 +57,64 @@
         <a href="/test">تست شخصیت</a>
         <a href="/majors">رشته‌ها</a>
         <a href="/compare">مقایسه</a>
+        <a href="/articles">مقالات</a>
         <a href="/guide">راهنما</a>
       </nav>
     </div>
   </footer>
+  <script>
+  (function () {
+    var toggle = document.getElementById("menu-toggle");
+    var sheet = document.getElementById("nav-sheet");
+    if (toggle && sheet) {
+      function closeMenu() {
+        document.body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+      toggle.addEventListener("click", function () {
+        var open = document.body.classList.toggle("menu-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      sheet.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+    }
+    var current = window.location.pathname;
+    document.querySelectorAll(".main-nav a, .sheet-nav a").forEach(function (link) {
+      var href = link.getAttribute("href");
+      var match = href === "/" ? current === "/" : current.indexOf(href) === 0;
+      if (match) {
+        link.classList.add("active");
+      }
+    });
+    var revealEls = Array.from(document.querySelectorAll(".reveal"));
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+      revealEls.forEach(function (el) { el.classList.add("in"); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        var parent = entry.target.parentElement;
+        var siblings = parent
+          ? Array.from(parent.children).filter(function (c) { return c.classList.contains("reveal"); })
+          : [];
+        var idx = siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay = Math.max(idx, 0) * 80 + "ms";
+        entry.target.classList.add("in");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  })();
+  </script>
 </body>
 </html>
