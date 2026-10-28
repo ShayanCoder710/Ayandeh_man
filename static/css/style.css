@@ -6,6 +6,11 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "JB";
+  src: url("../fonts/JetBrainsMono-Bold.ttf") format("truetype");
+}
+
 :root {
   --bg: #f5f8ff;
   --surface: #ffffff;
@@ -42,6 +47,11 @@ body {
 
 img {
   max-width: 100%;
+}
+
+#share-url {
+  text-align: left;
+  font-family: "JB";
 }
 
 a {
@@ -831,6 +841,9 @@ textarea:focus {
   align-items: center;
   gap: 8px;
   margin: 18px 0 4px;
+  justify-content: center;
+  margin-top: 5px !important;
+  margin-bottom: 20px !important;
 }
 
 .trait-label {
@@ -1197,14 +1210,14 @@ textarea:focus {
 .site-footer {
   background: var(--surface);
   border-top: 1px solid var(--line);
-  padding: 22px 0;
-  margin-top: 40px;
+  padding: 26px 0;
+  margin-top: 48px;
 }
 
 .footer-inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
   justify-content: space-between;
   color: var(--muted);
@@ -1214,7 +1227,7 @@ textarea:focus {
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px 18px;
 }
 
 .footer-nav a {
@@ -1336,6 +1349,27 @@ textarea:focus {
 @media (max-width: 600px) {
   .header-inner {
     padding-inline: 12px;
+  }
+
+  .site-footer {
+    padding: 24px 0;
+    margin-top: 40px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer-nav {
+    justify-content: center;
+    gap: 10px 14px;
+  }
+
+  .footer-nav a {
+    font-size: 0.85rem;
   }
 
   .hero-actions {

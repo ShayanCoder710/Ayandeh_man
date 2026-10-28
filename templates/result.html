@@ -6,7 +6,7 @@
     {% if rec %}
     <div class="result-hero reveal">
       <span class="hero-badge">نتیجه‌ی تست شخصیت و علاقه</span>
-      <h1>خوشه‌ی غالب شما: <em>{{ cluster_name(rec.cluster) }}</em></h1>
+      <h1>خوشه‌ی غالب شما: <p>{{ cluster_name(rec.cluster) }}</p></h1>
       <p>{{ CLUSTER_BLURBS.get(rec.cluster, "") }}</p>
       {% if rec.traits %}
       <div class="trait-row">
