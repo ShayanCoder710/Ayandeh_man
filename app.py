@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request
+from flask import Flask, flash, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 
@@ -91,7 +91,22 @@ def test_submit():
         "result.html",
         rec=rec,
         token=token,
+        share_url=url_for("result_page", token=token, _external=True),
         entries=entries_for_majors(rec["majors"]) if rec else [],
         title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
         description="خوشه‌ی غالب و رشته‌های پیشنهادی تست شخصیت و علاقه.",
+    )
+
+
+@app.route("/result/<token>")
+def result_page(token):
+    rec = load_result(token)
+    return render_template(
+        "result.html",
+        rec=rec,
+        token=token,
+        share_url=request.url,
+        entries=entries_for_majors(rec["majors"]) if rec else [],
+        title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
+        description="نتیجه‌ی ذخیره‌شده‌ی تست شخصیت و علاقه؛ خوشه‌ی غالب و رشته‌های پیشنهادی.",
     )
