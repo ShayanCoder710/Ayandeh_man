@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "_major_card.html" import major_card with context %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    {% if rec %}
+    <div class="result-hero">
+      <span class="hero-badge">نتیجه‌ی تست شخصیت و علاقه</span>
+      <h1>خوشه‌ی غالب شما: <em>{{ cluster_name(rec.cluster) }}</em></h1>
+      <p>{{ CLUSTER_BLURBS.get(rec.cluster, "") }}</p>
+      <div class="hero-actions center-flex">
+        <a class="btn btn-primary" href="#recommended">رشته‌های پیشنهادی‌ام</a>
+        <a class="btn btn-outline" href="/majors">همه رشته‌ها</a>
+      </div>
+    </div>
+
+    <div class="section" id="recommended">
+      <h2 class="section-title">رشته‌های پیشنهادی برای شما</h2>
+      <p class="section-sub">بر اساس خوشه‌ی غالب، برترین رشته‌های این خوشه را برای شما انتخاب کرده‌ایم.</p>
+      {% if entries %}
+      <div class="recommended-grid">
+        {% for e in entries %}
+        {{ major_card(e) }}
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">هنوز رشته‌ای در این خوشه تعریف نشده است.</div>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="empty-state">نتیجه‌ای با این نشانی پیدا نشد. شاید تست را دوباره شروع کنی بهتر باشد.</div>
+    <div class="section-actions">
+      <a class="btn btn-outline" href="/test">انجام دوباره‌ی تست</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

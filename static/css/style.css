@@ -804,6 +804,10 @@ textarea:focus {
   margin: 0 auto 20px;
 }
 
+.hero-actions.center-flex {
+  justify-content: center;
+}
+
 .section-actions {
   margin-top: 18px;
 }

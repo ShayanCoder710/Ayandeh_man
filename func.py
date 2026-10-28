@@ -170,6 +170,22 @@ def top_majors(limit=5):
     return search_majors(sort="popular")[:limit]
 
 
+def entries_for_majors(majors):
+    try:
+        ids = [m.id for m in majors]
+        ratings = _rating_map(ids) if ids else {}
+        return [
+            {
+                "major": m,
+                "avg": (ratings.get(m.id) or {}).get("avg"),
+                "count": (ratings.get(m.id) or {}).get("count", 0),
+            }
+            for m in majors
+        ]
+    except Exception:
+        return []
+
+
 def compare_majors(slug_a, slug_b):
     def entry(slug):
         if not slug:

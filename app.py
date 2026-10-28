@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, flash, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 
@@ -18,8 +18,11 @@ from func import (
     CLUSTER_BLURBS,
     cluster_name,
     difficulty_dots,
+    entries_for_majors,
     fa_num,
     load_questions,
+    load_result,
+    save_result,
     seed_data,
     stars_html,
     top_majors,
@@ -58,4 +61,37 @@ def test_page():
         questions=load_questions(),
         title="تست شخصیت و علاقه | آینده من",
         description="دوازده سؤال کوتاه؛ در پایان خوشه‌ی غالب و رشته‌های پیشنهادی‌ات را ببین.",
+    )
+
+
+@app.route("/test", methods=["POST"])
+def test_submit():
+    questions = load_questions()
+    if not questions:
+        flash("هنوز سؤالی برای تست تعریف نشده است.")
+        return redirect("/test")
+    answers = {}
+    valid_ids = set()
+    for q in questions:
+        option_ids = {str(o["id"]) for o in q["options"]}
+        valid_ids.update(option_ids)
+        answers[str(q["id"])] = request.form.get(f"q{q['id']}", "")
+    if not all(answers.values()):
+        flash("لطفاً به همه‌ی سؤالات پاسخ بده تا نتیجه‌ات محاسبه شود.")
+        return redirect("/test")
+    if any(v not in valid_ids for v in answers.values()):
+        flash("برخی پاسخ‌ها معتبر نبود؛ لطفاً دوباره امتحان کن.")
+        return redirect("/test")
+    token = save_result(answers)
+    if not token:
+        flash("امکان ذخیره‌ی نتیجه نبود؛ دوباره تلاش کن.")
+        return redirect("/test")
+    rec = load_result(token)
+    return render_template(
+        "result.html",
+        rec=rec,
+        token=token,
+        entries=entries_for_majors(rec["majors"]) if rec else [],
+        title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
+        description="خوشه‌ی غالب و رشته‌های پیشنهادی تست شخصیت و علاقه.",
     )
