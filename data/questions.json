@@ -106,5 +106,41 @@
       {"text": "اثر تصمیم بر دیگران و جامعه", "weights": {"math": 0, "sciences": 0, "humanities": 1, "social": 3, "arts": 0}},
       {"text": "ذوق شخصی و آزادی خلاقیت", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
     ]
+  },
+  {
+    "text": "اگر یک ماه بود تنها یک نوع کار را می‌شد انجام دادن، کدام را انتخاب می‌کردی؟",
+    "options": [
+      {"text": "حل کردن مسائل ریاضی و اثبات نظریه‌ها", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "خواندن و فهمیدن دنیای سلول‌ها و مولکول‌ها", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "مذاکره درباره‌ی مسائل روز جامعه و جهان", "weights": {"math": 0, "sciences": 0, "humanities": 2, "social": 2, "arts": 0}},
+      {"text": "طراحی و ساختن یک پروژه‌ی دیجیتال و تعاملی", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "کدام یکی از این حرف‌ها بیشتر از همه با تو می‌نشیند؟",
+    "options": [
+      {"text": "دوست دارم حساب همه‌چیز برایم درست در بیاید", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "از فهمیدن اینکه هر چیزی چرا این‌طور است، انرژی می‌گیرم", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "درک آدم‌ها و وقایع برام از ماشین‌ها مهم‌تر است", "weights": {"math": 0, "sciences": 0, "humanities": 1, "social": 3, "arts": 0}},
+      {"text": "نمی‌توانم با فضاها و طرح‌های نامنظم کنار بیایم", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "پای هر ترم، از کدام دستاورد بیشتر افتخار می‌کنی؟",
+    "options": [
+      {"text": "اینکه سخت‌ترین مسائل درس را از پیش تحویل داده‌ام", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "اینکه یک آزمایش را خودم از ابتدا تا انتها اجرا کرده‌ام", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "اینکه یک نوشته‌ی منسجم و با فکر آماده کرده‌ام", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 0, "arts": 0}},
+      {"text": "اینکه یک اثر عینی ساخته‌ام که دیگران می‌بینند و لمس می‌کنند", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "اگر معلم بودی، کدام درس را با علاقه‌ی بیشتر تدریس می‌کردی؟",
+    "options": [
+      {"text": "ریاضی و منطق؛ چون پایه‌ی همه‌چیز است", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "فیزیک و شیمی؛ چون دنیا را از ریشه توضیح می‌دهند", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "ادبیات و تاریخ؛ چون آدم‌ها و وقایع را معنا می‌کنند", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 0, "arts": 0}},
+      {"text": "هنر و طراحی؛ چون نگاه تازه‌ای می‌سازد", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
   }
 ]
