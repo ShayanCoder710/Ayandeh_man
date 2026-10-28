@@ -18,17 +18,17 @@
 <section class="section">
   <div class="container">
     <div class="card-grid">
-      <article class="feature-card">
+      <article class="feature-card reveal">
         <span class="feature-num">۱</span>
         <h3>تست شخصیت و علاقه</h3>
-        <p>دوازده سؤال کوتاه، یک نتیجه‌ی شخصی: خوشه‌ی غالب و تا شش رشته‌ی پیشنهادی از همان خوشه.</p>
+        <p>شانزده سؤال کوتاه، یک نتیجه‌ی شخصی: خوشه‌ی غالب و تا شش رشته‌ی پیشنهادی از همان خوشه.</p>
       </article>
-      <article class="feature-card">
+      <article class="feature-card reveal">
         <span class="feature-num">۲</span>
         <h3>آشنایی با رشته‌ها</h3>
         <p>توضیح، دروس اصلی، بازار کار، مزایا و معایب هر رشته را در یک صفحه ببین و با جستجو و فیلتر بین‌شان بگرد.</p>
       </article>
-      <article class="feature-card">
+      <article class="feature-card reveal">
         <span class="feature-num">۳</span>
         <h3>مقایسه و رأی</h3>
         <p>دو رشته را کنار هم مقایسه کن، امتیاز بده و ببین سایر کاربران چه رشته‌هایی را محبوب‌تر دیده‌اند.</p>
@@ -61,28 +61,28 @@
     <h2 class="section-title">نکات سریع انتخاب رشته</h2>
     <p class="section-sub">چند اصل ساده که قبل از هر تصمیمی بهت کمک می‌کند.</p>
     <div class="guide-list guide-list-2">
-      <article class="guide-item">
+      <article class="guide-item reveal">
         <span class="tip-num"></span>
         <div>
           <h3>با علاقه شروع کن، با واقعیت تمام کن</h3>
           <p>علاقه موتور محرک است؛ بعد آن را با بازار کار و امکان تحصیل در شهرت بررسی کن.</p>
         </div>
       </article>
-      <article class="guide-item">
+      <article class="guide-item reveal">
         <span class="tip-num"></span>
         <div>
           <h3>دروس را قبل از انتخاب ببین</h3>
           <p>لیست دروس کارشناسی، تصویر دقیقی از چیزی است که چهار سال با آن زندگی می‌کنی.</p>
         </div>
       </article>
-      <article class="guide-item">
+      <article class="guide-item reveal">
         <span class="tip-num"></span>
         <div>
           <h3>خوشه‌ات را با تست مشخص کن</h3>
-          <p>پاسخ به دوازده سؤال کوتاه، خوشه‌ی غالب ذهنی‌ات را نشان می‌دهد؛ بعد از همان‌جا رشته‌ها را انتخاب کن.</p>
+          <p>پاسخ به شانزده سؤال کوتاه، خوشه‌ی غالب ذهنی‌ات را نشان می‌دهد؛ بعد از همان‌جا رشته‌ها را انتخاب کن.</p>
         </div>
       </article>
-      <article class="guide-item">
+      <article class="guide-item reveal">
         <span class="tip-num"></span>
         <div>
           <h3>دو رشته را کنار هم بگذار</h3>
@@ -98,7 +98,27 @@
 
 <section class="section">
   <div class="container">
-    <div class="hero-card center">
+    <h2 class="section-title">مقالات انتخاب رشته</h2>
+    <p class="section-sub">مطالعات کوتاه و عملی که سؤالات رایج انتخاب رشته را پاسخ می‌دهند.</p>
+    <div class="card-grid">
+      {% for a in articles_preview %}
+      <article class="article-card reveal">
+        <span class="article-minutes">{{ fa_num(a.minutes) }} دقیقه مطالعه</span>
+        <h3><a href="/articles/{{ a.slug }}">{{ a.title }}</a></h3>
+        <p>{{ a.summary }}</p>
+        <a class="article-link" href="/articles/{{ a.slug }}">خواندن مقاله ←</a>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="section-actions">
+      <a class="btn btn-outline btn-sm" href="/articles">همه‌ی مقالات ←</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="hero-card center reveal">
       <h2>هنوز مطمئن نیستی کدام خوشه با تو جور است؟</h2>
       <p>تست کوتاه ما در سه دقیقه، نقشه‌ی ذهنی‌ات را بهت برمی‌گرداند.</p>
       <a class="btn btn-primary" href="/test">شروع تست رایگان</a>

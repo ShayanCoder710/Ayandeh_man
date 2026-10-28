@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <h1>مقالات انتخاب رشته</h1>
+    <p>مقالات کوتاه و عملی که سؤالات اصلی انتخاب رشته را با زبان ساده پاسخ می‌دهند؛ همراه با تست، مقایسه و فهرست رشته‌ها.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card-grid">
+      {% for a in articles %}
+      <article class="article-card reveal">
+        <span class="article-minutes">{{ fa_num(a.minutes) }} دقیقه مطالعه</span>
+        <h3><a href="/articles/{{ a.slug }}">{{ a.title }}</a></h3>
+        <p>{{ a.summary }}</p>
+        <a class="article-link" href="/articles/{{ a.slug }}">خواندن مقاله ←</a>
+      </article>
+      {% endfor %}
+    </div>
+    {% if not articles %}
+    <div class="empty-state">هنوز مقاله‌ای منتشر نشده است.</div>
+    {% endif %}
+    <div class="section-actions">
+      <a class="btn btn-primary" href="/test">حالا تست را شروع کن</a>
+      <a class="btn btn-outline" href="/majors">مشاهده رشته‌ها</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

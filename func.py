@@ -363,6 +363,22 @@ def load_result(token):
         return None
 
 
+def load_articles():
+    try:
+        return json.loads(
+            (BASE_DIR / "data" / "articles.json").read_text(encoding="utf-8")
+        )
+    except Exception:
+        return []
+
+
+def get_article(slug):
+    for article in load_articles():
+        if article.get("slug") == slug:
+            return article
+    return None
+
+
 def seed_data():
     try:
         if Question.query.count() == 0:

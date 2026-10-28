@@ -25,9 +25,11 @@ from func import (
     difficulty_dots,
     entries_for_majors,
     fa_num,
+    get_article,
     get_major,
     get_my_rating,
     get_rating,
+    load_articles,
     load_majors,
     load_questions,
     load_result,
@@ -64,7 +66,8 @@ def inject_helpers():
 def index():
     return render_template(
         "index.html",
-        top=top_majors(5),
+        top=top_majors(6),
+        articles_preview=load_articles()[:3],
         title="آینده من | راهنمای انتخاب رشته",
         description="با تست شخصیت و علاقه، خوشه و رشته تحصیلی مناسب خودت را پیدا کن.",
     )
@@ -76,7 +79,7 @@ def test_page():
         "test.html",
         questions=load_questions(),
         title="تست شخصیت و علاقه | آینده من",
-        description="دوازده سؤال کوتاه؛ در پایان خوشه‌ی غالب و رشته‌های پیشنهادی‌ات را ببین.",
+        description="شانزده سؤال کوتاه؛ در پایان خوشه‌ی غالب و رشته‌های پیشنهادی‌ات را ببین.",
     )
 
 
@@ -229,4 +232,29 @@ def guide_page():
         "guide.html",
         title="راهنمای انتخاب رشته | آینده من",
         description="چند نکته‌ی عملی برای انتخاب رشته؛ از شناخت خودت تا مقایسه‌ی کاندیداها.",
+    )
+
+
+@app.route("/articles")
+def articles_page():
+    return render_template(
+        "articles.html",
+        articles=load_articles(),
+        title="مقالات انتخاب رشته | آینده من",
+        description="مقالات کوتاه درباره‌ی انتخاب رشته: علاقه در برابر بازار کار، خطاهای رایج و مسیرهای تکمیلی.",
+    )
+
+
+@app.route("/articles/<slug>")
+def article_page(slug):
+    article = get_article(slug)
+    if article is None:
+        abort(404)
+    others = [a for a in load_articles() if a["slug"] != slug][:3]
+    return render_template(
+        "article.html",
+        article=article,
+        others=others,
+        title=f"{article['title']} | آینده من",
+        description=article["summary"],
     )

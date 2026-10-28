@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <span class="article-minutes">{{ fa_num(article.minutes) }} دقیقه مطالعه</span>
+    <h1>{{ article.title }}</h1>
+    <p class="article-lede">{{ article.summary }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container article-body">
+    {% for para in article.body.split("\n") %}
+    <p>{{ para }}</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% if others %}
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">مقالات دیگر</h2>
+    <div class="card-grid">
+      {% for a in others %}
+      <article class="article-card reveal">
+        <span class="article-minutes">{{ fa_num(a.minutes) }} دقیقه مطالعه</span>
+        <h3><a href="/articles/{{ a.slug }}">{{ a.title }}</a></h3>
+        <p>{{ a.summary }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section">
+  <div class="container">
+    <div class="section-actions center-actions">
+      <a class="btn btn-primary" href="/test">تست شخصیت و علاقه</a>
+      <a class="btn btn-outline" href="/articles">همه‌ی مقالات</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
