@@ -8,6 +8,14 @@
       <span class="hero-badge">نتیجه‌ی تست شخصیت و علاقه</span>
       <h1>خوشه‌ی غالب شما: <em>{{ cluster_name(rec.cluster) }}</em></h1>
       <p>{{ CLUSTER_BLURBS.get(rec.cluster, "") }}</p>
+      {% if rec.traits %}
+      <div class="trait-row">
+        <span class="trait-label">ویژگی‌های بارز:</span>
+        {% for t in rec.traits %}
+        <span class="trait-chip">{{ t }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
       <div class="hero-actions center-flex">
         <a class="btn btn-primary" href="#recommended">رشته‌های پیشنهادی‌ام</a>
         <a class="btn btn-outline" href="/majors">همه رشته‌ها</a>

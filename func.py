@@ -27,6 +27,23 @@ CLUSTER_BLURBS = {
 
 _FA_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
+TRAIT_DIMS = {
+    "team": "کار تیمی",
+    "solo": "کار مستقل",
+    "applied": "کار عملی",
+    "income": "درآمدمحوری",
+    "impact": "اثرگذاری اجتماعی",
+    "field": "کار میدانی",
+    "media": "رسانه و محتوا",
+    "care": "مراقبت و خدمت",
+    "leader": "رهبری",
+    "logical": "تصمیم‌گیری منطقی",
+    "competitive": "رقابت‌طلب",
+    "stable": "ثبات شغلی",
+    "calm": "محیط آرام",
+    "office": "کار اداری",
+}
+
 _FA_ALPHABET = "ابپتثجحخدذرزصضطسظعغػفقکگلمنوهی"
 _FA_RANK = {ch: i for i, ch in enumerate(_FA_ALPHABET)}
 
@@ -279,9 +296,21 @@ def make_token():
 
 def compute_result(answers):
     scores = {c: 0 for c in CLUSTERS}
+    traits = {t: 0 for t in TRAIT_DIMS}
+
+    def to_int(value):
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
     weights_by_option = {}
     try:
-        option_ids = [oid for oid in (answers or {}).values() if oid]
+        option_ids = [
+            parsed
+            for parsed in (to_int(oid) for oid in (answers or {}).values())
+            if parsed is not None
+        ]
         if option_ids:
             options = QuestionOption.query.filter(
                 QuestionOption.id.in_(option_ids)
@@ -290,21 +319,29 @@ def compute_result(answers):
     except Exception:
         weights_by_option = {}
     for _qid, oid in (answers or {}).items():
-        try:
-            oid = int(oid)
-        except (TypeError, ValueError):
-            continue
-        weights = weights_by_option.get(oid)
+        weights = weights_by_option.get(to_int(oid))
         if not weights:
             continue
-        for cluster, value in weights.items():
-            if cluster in scores:
+        for key, value in weights.items():
+            if key in scores:
                 try:
-                    scores[cluster] += int(value)
+                    scores[key] += int(value)
+                except (TypeError, ValueError):
+                    pass
+            elif key in traits:
+                try:
+                    traits[key] += int(value)
                 except (TypeError, ValueError):
                     pass
     ordered = list(CLUSTERS)
     cluster = max(ordered, key=lambda c: (scores[c], -ordered.index(c)))
+    trait_labels = [
+        TRAIT_DIMS[k]
+        for k, _ in sorted(
+            traits.items(), key=lambda kv: (-kv[1], list(TRAIT_DIMS).index(kv[0]))
+        )[:3]
+        if traits[k] > 0
+    ]
     major_ids = []
     try:
         cluster_majors = Major.query.filter_by(cluster=cluster).order_by(
@@ -321,17 +358,24 @@ def compute_result(answers):
         major_ids = [m.id for m in cluster_majors[:6]]
     except Exception:
         major_ids = []
-    return {"cluster": cluster, "scores": scores, "major_ids": major_ids}
+    return {
+        "cluster": cluster,
+        "scores": scores,
+        "major_ids": major_ids,
+        "traits": trait_labels,
+    }
 
 
 def save_result(answers):
     try:
         payload = compute_result(answers)
+        stored = {str(k): str(v) for k, v in (answers or {}).items()}
+        stored["traits"] = payload.get("traits", [])
         record = TestResult(
             token=make_token(),
             cluster=payload["cluster"] or "",
             recommended_major_ids=payload["major_ids"],
-            answers={str(k): str(v) for k, v in (answers or {}).items()},
+            answers=stored,
         )
         db.session.add(record)
         db.session.commit()
@@ -353,11 +397,16 @@ def load_result(token):
         majors = (
             Major.query.filter(Major.id.in_(major_ids)).all() if major_ids else []
         )
+        stored_answers = record.answers or {}
+        traits = stored_answers.get("traits") or []
+        if not isinstance(traits, list):
+            traits = []
         return {
             "token": record.token,
             "cluster": record.cluster,
             "created_at": record.created_at,
             "majors": majors,
+            "traits": [str(t) for t in traits],
         }
     except Exception:
         return None
