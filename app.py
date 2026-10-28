@@ -12,6 +12,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 csrf = CSRFProtect(app)
 
+import models
+
+with app.app_context():
+    db.create_all()
+
 
 @app.route("/")
 def index():

@@ -1,0 +1,110 @@
+[
+  {
+    "text": "در یک روز آزاد، کدام کار بیشتر از همه برایت لذت‌بخش است؟",
+    "options": [
+      {"text": "روی یک پروژه برنامه‌نویسی یا حل یک مشکل فنی کار کردن", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "یک آزمایش انجام دادن یا پدیده‌ی جدیدی را مشاهده کردن", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "خواندن یک کتاب یا بحث درباره یک ایده‌ی تازه", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 1, "arts": 0}},
+      {"text": "نقاشی، طراحی یا ساختن چیزی خلاقانه", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "کدام یک از این کارها برای تو جذاب‌تر است؟",
+    "options": [
+      {"text": "حل یک مسئله‌ی ریاضی پیچیده", "weights": {"math": 3, "sciences": 1, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "یادگیری درباره بدن انسان یا زیست‌کره", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "تحلیل یک مسئله‌ی اجتماعی یا حقوقی", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 1, "arts": 0}},
+      {"text": "ساختن چیزی که از نظر بصری زیبا باشد", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "در یک پروژه‌ی گروهی، چه نقشی را بدون هیچ برنامه‌ای از خودت پیدا می‌کنی؟",
+    "options": [
+      {"text": "طراحی سیستم و حل مسائل فنی", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "بررسی دقیق داده‌ها و استناد به شواهد", "weights": {"math": 1, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "چیدن تیم، تقسیم کار و پیشبرد گروه", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 3, "arts": 0}},
+      {"text": "طراحی ظاهر، لوگو و ارائه‌ی بصری", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "کدام درس مدرسه را بیشتر از همه دوست داری یا در آن انرژی داری؟",
+    "options": [
+      {"text": "ریاضی و فیزیک", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "شیمی و زیست‌شناسی", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "ادبیات، تاریخ و جغرافیا", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 0, "arts": 0}},
+      {"text": "هنر، نقاشی و طراحی", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "اگر بخواهی از همین امروز درآمد داشته باشی، کدام مسیر را انتخاب می‌کنی؟",
+    "options": [
+      {"text": "برنامه‌نویسی و ساخت اپلیکیشن", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "کار در آزمایشگاه و تحقیق و توسعه", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "کاری در رسانه، خبر یا محتوای متنی", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 0, "arts": 0}},
+      {"text": "تولید و طراحی بصری", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "کدام یک از این جملات بیشتر شبیه خودت است؟",
+    "options": [
+      {"text": "دوست دارم راه‌حل‌های دقیق و قطعی پیدا کنم", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "دنیای طبیعی و بدن انسان از همه چیزها برام کنجکاوی‌انگیزتر است", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "فکر کردن درباره علل رخدادها و نوشتن درباره‌شان لذت می‌دهم", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 1, "arts": 0}},
+      {"text": "مدام در حال خیال‌پردازی درباره ایده‌ها و فرم‌های تازه‌ام", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "وقتی یک مشکل پیچیده پیش می‌آید، اولین واکنش تو چیست؟",
+    "options": [
+      {"text": "تقسیم کردن آن به بخش‌های کوچک و حل منطقی", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "جست‌وجوی اطلاعات و آزمایش کردن فرض‌ها", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "مشورت با دیگران و نگاه به تصویر کلان", "weights": {"math": 0, "sciences": 0, "humanities": 1, "social": 3, "arts": 0}},
+      {"text": "پیدا کردن یک راه‌حل خلاقانه و متفاوت", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "کدام یک از این شغل‌ها بیشتر نظرت را جلب می‌کند؟",
+    "options": [
+      {"text": "مهندس نرم‌افزار یا داده", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "پژوهشگر بالینی یا آزمایشگاهی", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "وکیل، تحلیلگر اقتصادی یا خبرنگار", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 0, "arts": 0}},
+      {"text": "طراح صنعتی یا هنرمند بصری", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "در آینده، ترجیح می‌دهی در چه محیطی کار کنی؟",
+    "options": [
+      {"text": "شرکت فناوری با کدنویسی مداوم", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "آزمایشگاه، بیمارستان یا مرکز تحقیقات", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "مکانی پُرمشغله با ارتباط زیاد با افراد", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 3, "arts": 0}},
+      {"text": "اتاقی آرام و خلاقانه برای کار با ایده‌ها", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "وقتی خبری درباره یک اختراع علمی می‌خوانی، اولین افکارت درباره چیست؟",
+    "options": [
+      {"text": "نحوه ساخت آن و جزئیات فنی", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "مکانیزم علمی پشت سر آن", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "پیامدهای اجتماعی و اقتصادی‌اش برای مردم", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 1, "arts": 0}},
+      {"text": "اینکه چگونه می‌شود چیزهای زیباتری را ممکن کرد", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "کدام یک از این عبارت‌ها با تو بهتر جور است؟",
+    "options": [
+      {"text": "دوست دارم قواعد روشن و اعداد دقیق داشته باشم", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "مشاهده دقیق و سنجش منظم برایم مهم است", "weights": {"math": 0, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "بحث آزاد و فکر کردن بدون قید و قانون", "weights": {"math": 0, "sciences": 0, "humanities": 3, "social": 0, "arts": 0}},
+      {"text": "رنگ‌ها، فرم‌ها و شکل‌های تازه چشمانم را خسته نمی‌کند", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  },
+  {
+    "text": "وقتی تصمیم مهمی می‌گیری، کدام معیار برایت اولویت دارد؟",
+    "options": [
+      {"text": "منطق محکم و نتیجه‌ی مشخص", "weights": {"math": 3, "sciences": 0, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "شواهد و داده‌های قابل استناد", "weights": {"math": 1, "sciences": 3, "humanities": 0, "social": 0, "arts": 0}},
+      {"text": "اثر تصمیم بر دیگران و جامعه", "weights": {"math": 0, "sciences": 0, "humanities": 1, "social": 3, "arts": 0}},
+      {"text": "ذوق شخصی و آزادی خلاقیت", "weights": {"math": 0, "sciences": 0, "humanities": 0, "social": 0, "arts": 3}}
+    ]
+  }
+]
