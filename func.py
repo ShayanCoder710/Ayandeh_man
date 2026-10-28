@@ -167,10 +167,7 @@ def search_majors(query="", cluster="", difficulty="", sort="popular"):
 
 
 def top_majors(limit=5):
-    entries = [e for e in search_majors(sort="popular") if e["count"] > 0]
-    if not entries:
-        entries = search_majors(sort="name")
-    return entries[:limit]
+    return search_majors(sort="popular")[:limit]
 
 
 def compare_majors(slug_a, slug_b):
