@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <h1>مقایسه دو رشته</h1>
+    <p>دو رشته‌ی کاندیدات را کنار هم بگذار؛ بخش‌های کلیدی‌شان را یک نگاه مقایسه کن و تردیدت را راحت کن.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="compare-pick" method="get" action="/compare">
+      <select name="a" id="pick-a">
+        <option value="">رشته‌ی اول را انتخاب کن...</option>
+        {% for o in options %}
+        <option value="{{ o.slug }}" {% if a == o.slug %}selected{% endif %}>{{ o.name }}</option>
+        {% endfor %}
+      </select>
+      <select name="b" id="pick-b">
+        <option value="">رشته‌ی دوم را انتخاب کن...</option>
+        {% for o in options %}
+        <option value="{{ o.slug }}" {% if b == o.slug %}selected{% endif %}>{{ o.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary">مقایسه کن</button>
+      <a class="btn btn-outline btn-sm" href="/compare">پاک کردن</a>
+    </form>
+
+    {% if data.a and data.b %}
+      {% if data.a.major.slug == data.b.major.slug %}
+      <div class="empty-state">دو رشته‌ی یکسان را انتخاب کرده‌ای؛ یکی را عوض کن تا مقایسه معنا داشته باشد.</div>
+      {% else %}
+      <div class="compare-layout">
+        <div class="compare-item">
+          <div class="badge-row">
+            <span class="badge">{{ cluster_name(data.a.major.cluster) }}</span>
+          </div>
+          <h2><a href="/majors/{{ data.a.major.slug }}">{{ data.a.major.name }}</a></h2>
+          <div class="card-meta">
+            {% if data.a.avg %}
+              {{ stars_html(data.a.avg) | safe }}
+              <span>{{ fa_num(data.a.avg) }}</span>
+              <span class="rating-count">({{ fa_num(data.a.count) }} رأی)</span>
+            {% else %}
+              <span>هنوز رأی ندارد</span>
+            {% endif %}
+            <span>·</span>
+            {{ difficulty_dots(data.a.major.difficulty) | safe }}
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="badge-row">
+            <span class="badge">{{ cluster_name(data.b.major.cluster) }}</span>
+          </div>
+          <h2><a href="/majors/{{ data.b.major.slug }}">{{ data.b.major.name }}</a></h2>
+          <div class="card-meta">
+            {% if data.b.avg %}
+              {{ stars_html(data.b.avg) | safe }}
+              <span>{{ fa_num(data.b.avg) }}</span>
+              <span class="rating-count">({{ fa_num(data.b.count) }} رأی)</span>
+            {% else %}
+              <span>هنوز رأی ندارد</span>
+            {% endif %}
+            <span>·</span>
+            {{ difficulty_dots(data.b.major.difficulty) | safe }}
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        {% for row in rows %}
+        <div class="compare-row">
+          <div class="row-label">{{ row.label }}</div>
+          <div class="row-value">{{ row.a }}</div>
+          <div class="row-value">{{ row.b }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% else %}
+      <div class="empty-state">
+        {% if a or b %}
+        یکی از رشته‌های انتخابی پیدا نشد؛ فهرست را دوباره بررسی کن.
+        {% else %}
+        دو رشته انتخاب کن تا مقایسه شروع شود.
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

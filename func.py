@@ -227,6 +227,22 @@ def compare_majors(slug_a, slug_b):
     return {"a": entry(slug_a), "b": entry(slug_b)}
 
 
+def compare_rows(a, b):
+    def rating_cell(e):
+        if e is None or e["avg"] is None:
+            return "هنوز رأی ندارد"
+        return f"{fa_num(e['avg'])} از {fa_num(5)} ({fa_num(e['count'])} رأی)"
+
+    return [
+        {"label": "توضیح", "a": a["major"].description, "b": b["major"].description},
+        {"label": "دروس اصلی", "a": a["major"].courses, "b": b["major"].courses},
+        {"label": "بازار کار", "a": a["major"].job_market, "b": b["major"].job_market},
+        {"label": "مزایا", "a": a["major"].pros, "b": b["major"].pros},
+        {"label": "معایب", "a": a["major"].cons, "b": b["major"].cons},
+        {"label": "امتیاز کاربران", "a": rating_cell(a), "b": rating_cell(b)},
+    ]
+
+
 def rate_major(slug, score, voter_key):
     try:
         major = Major.query.filter_by(slug=slug).first()

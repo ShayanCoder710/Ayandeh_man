@@ -709,7 +709,7 @@ textarea:focus {
 
 .compare-row {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 140px 1fr 1fr;
   gap: 12px;
   padding: 12px 0;
   border-bottom: 1px dashed var(--line);
@@ -905,13 +905,9 @@ textarea:focus {
   .compare-layout,
   .info-grid,
   .options,
-  .guide-list-2 {
-    grid-template-columns: 1fr;
-  }
-
+  .guide-list-2,
   .compare-row {
     grid-template-columns: 1fr;
-    gap: 4px;
   }
 
   .site-main {

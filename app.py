@@ -20,12 +20,15 @@ from func import (
     CLUSTERS,
     CLUSTER_BLURBS,
     cluster_name,
+    compare_majors,
+    compare_rows,
     difficulty_dots,
     entries_for_majors,
     fa_num,
     get_major,
     get_my_rating,
     get_rating,
+    load_majors,
     load_questions,
     load_result,
     rate_major,
@@ -191,3 +194,30 @@ def rate_page(slug):
     else:
         flash("امتیازت ذخیره نشد؛ دوباره تلاش کن.")
     return redirect(f"/majors/{slug}")
+
+
+@app.route("/compare")
+def compare_page():
+    a = request.args.get("a", "").strip()
+    b = request.args.get("b", "").strip()
+    majors = load_majors()
+    options = [
+        {"slug": m.slug, "name": m.name} for m in majors
+    ]
+    data = compare_majors(a, b) if a and b else {"a": None, "b": None}
+    rows = (
+        compare_rows(data["a"], data["b"])
+        if data["a"] and data["b"]
+        and data["a"]["major"].slug != data["b"]["major"].slug
+        else []
+    )
+    return render_template(
+        "compare.html",
+        data=data,
+        rows=rows,
+        options=options,
+        a=a,
+        b=b,
+        title="مقایسه رشته‌ها | آینده من",
+        description="دو رشته تحصیلی را انتخاب کن و جنبه‌های کلیدی‌شان را کنار هم ببین.",
+    )
