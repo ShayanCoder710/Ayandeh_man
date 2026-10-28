@@ -19,27 +19,27 @@
   <div class="container">
     <div class="major-layout">
       <div class="major-main">
-        <div class="info-card">
+        <div class="info-card reveal">
           <h2>دروس اصلی</h2>
           <p class="lead">{{ major.courses }}</p>
         </div>
-        <div class="info-card">
+        <div class="info-card reveal">
           <h2>بازار کار</h2>
           <p>{{ major.job_market }}</p>
         </div>
         <div class="info-grid">
-          <div class="info-card">
+          <div class="info-card reveal">
             <h2>مزایا</h2>
             <p>{{ major.pros }}</p>
           </div>
-          <div class="info-card">
+          <div class="info-card reveal">
             <h2>معایب</h2>
             <p>{{ major.cons }}</p>
           </div>
         </div>
       </div>
 
-      <aside class="info-card rating-box">
+      <aside class="info-card rating-box reveal">
         <h2>امتیاز کاربران</h2>
         {% if rating.avg %}
         <div class="rating-big">{{ fa_num(rating.avg) }}</div>

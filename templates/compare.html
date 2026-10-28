@@ -31,7 +31,7 @@
       <div class="empty-state">دو رشته‌ی یکسان را انتخاب کرده‌ای؛ یکی را عوض کن تا مقایسه معنا داشته باشد.</div>
       {% else %}
       <div class="compare-layout">
-        <div class="compare-item">
+        <div class="compare-item reveal">
           <div class="badge-row">
             <span class="badge">{{ cluster_name(data.a.major.cluster) }}</span>
           </div>
@@ -48,7 +48,7 @@
             {{ difficulty_dots(data.a.major.difficulty) | safe }}
           </div>
         </div>
-        <div class="compare-item">
+        <div class="compare-item reveal">
           <div class="badge-row">
             <span class="badge">{{ cluster_name(data.b.major.cluster) }}</span>
           </div>
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="info-card">
+      <div class="info-card reveal">
         {% for row in rows %}
         <div class="compare-row">
           <div class="row-label">{{ row.label }}</div>
