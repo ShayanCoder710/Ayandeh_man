@@ -221,3 +221,12 @@ def compare_page():
         title="مقایسه رشته‌ها | آینده من",
         description="دو رشته تحصیلی را انتخاب کن و جنبه‌های کلیدی‌شان را کنار هم ببین.",
     )
+
+
+@app.route("/guide")
+def guide_page():
+    return render_template(
+        "guide.html",
+        title="راهنمای انتخاب رشته | آینده من",
+        description="چند نکته‌ی عملی برای انتخاب رشته؛ از شناخت خودت تا مقایسه‌ی کاندیداها.",
+    )
