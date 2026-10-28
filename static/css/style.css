@@ -1311,6 +1311,72 @@ textarea:focus {
     padding-inline: 12px;
   }
 
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .section-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .section-actions .btn {
+    width: 100%;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar .btn {
+    width: 100%;
+  }
+
+  .filter-row select {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 0;
+  }
+
+  .filter-row .btn {
+    flex: 1 1 calc(50% - 5px);
+  }
+
+  .compare-pick select {
+    flex: 1 1 100%;
+  }
+
+  .compare-pick .btn {
+    flex: 1 1 auto;
+  }
+
+  .share-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .share-box .btn {
+    width: 100%;
+  }
+
+  .rate-options {
+    width: 100%;
+  }
+
+  .rate-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 10px 0;
+    text-align: center;
+  }
+
   .card-grid,
   .recommended-grid,
   .compare-layout,
