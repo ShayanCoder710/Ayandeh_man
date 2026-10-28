@@ -1,0 +1,19 @@
+{% macro major_card(e) %}
+<article class="major-card">
+  <div class="badge-row">
+    <span class="badge">{{ cluster_name(e.major.cluster) }}</span>
+  </div>
+  <h3><a href="/majors/{{ e.major.slug }}">{{ e.major.name }}</a></h3>
+  <div class="card-meta">
+    {% if e.avg %}
+      {{ stars_html(e.avg) | safe }}
+      <span>{{ fa_num(e.avg) }}</span>
+      <span class="rating-count">({{ fa_num(e.count) }} رأی)</span>
+    {% else %}
+      <span>هنوز رأی ندارد</span>
+    {% endif %}
+    <span>·</span>
+    {{ difficulty_dots(e.major.difficulty) | safe }}
+  </div>
+</article>
+{% endmacro %}
