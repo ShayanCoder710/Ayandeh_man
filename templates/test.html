@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <h1>تست شخصیت و علاقه</h1>
+    <p>دوازده سؤال کوتاه ازت می‌پرسیم چه‌طور فکر می‌کنی و چه چیزهایی برایت لذت‌بخش است. بدون «درست» و «نادرست»؛ فقط صادقانه جواب بده.</p>
+  </div>
+</section>
+
+{% if questions %}
+<form id="test-form" class="test-form" action="/test" method="post" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="container">
+    <div class="form-error" hidden></div>
+    {% for q in questions %}
+    <article class="question-card">
+      <h3><span class="q-num">{{ fa_num(loop.index) }}</span> {{ q.text }}</h3>
+      <div class="options">
+        {% for o in q.options %}
+        <label class="option">
+          <input type="radio" name="q{{ q.id }}" value="{{ o.id }}" required>
+          <span>{{ o.text }}</span>
+        </label>
+        {% endfor %}
+      </div>
+    </article>
+    {% endfor %}
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">محاسبه‌ی نتیجه‌ام</button>
+    </div>
+  </div>
+</form>
+{% else %}
+<section class="section">
+  <div class="container">
+    <div class="empty-state">هنوز سؤالی برای تست تعریف نشده است. لطفاً بعداً برگردید.</div>
+  </div>
+</section>
+{% endif %}
+
+<script>
+(function () {
+  var form = document.getElementById("test-form");
+  if (!form) return;
+  var toFa = function (n) {
+    return String(n).replace(/\d/g, function (d) {
+      return "۰۱۲۳۴۵۶۷۸۹".charAt(+d);
+    });
+  };
+  var errorBox = form.querySelector(".form-error");
+  form.querySelectorAll(".option input").forEach(function (input) {
+    input.addEventListener("change", function () {
+      var card = input.closest(".question-card");
+      card.querySelectorAll(".option").forEach(function (o) {
+        o.classList.remove("selected");
+      });
+      input.closest(".option").classList.add("selected");
+      errorBox.hidden = true;
+    });
+  });
+  form.addEventListener("submit", function (e) {
+    var missing = Array.prototype.filter.call(
+      form.querySelectorAll(".question-card"),
+      function (q) {
+        return !q.querySelector("input:checked");
+      }
+    );
+    if (missing.length) {
+      e.preventDefault();
+      errorBox.textContent = "هنوز " + toFa(missing.length) + " پاسخ باقی مانده است؛ همه‌ی سؤالات را جواب بده.";
+      errorBox.hidden = false;
+      missing[0].scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      errorBox.hidden = true;
+    }
+  });
+})();
+</script>
+{% endblock %}

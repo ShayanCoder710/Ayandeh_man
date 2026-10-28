@@ -19,6 +19,7 @@ from func import (
     cluster_name,
     difficulty_dots,
     fa_num,
+    load_questions,
     seed_data,
     stars_html,
     top_majors,
@@ -47,4 +48,14 @@ def index():
         top=top_majors(5),
         title="آینده من | راهنمای انتخاب رشته",
         description="با تست شخصیت و علاقه، خوشه و رشته تحصیلی مناسب خودت را پیدا کن.",
+    )
+
+
+@app.route("/test", methods=["GET"])
+def test_page():
+    return render_template(
+        "test.html",
+        questions=load_questions(),
+        title="تست شخصیت و علاقه | آینده من",
+        description="دوازده سؤال کوتاه؛ در پایان خوشه‌ی غالب و رشته‌های پیشنهادی‌ات را ببین.",
     )
