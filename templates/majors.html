@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% from "_major_card.html" import major_card with context %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <h1>مشاهده رشته‌ها</h1>
+    <p>بین رشته‌های تعریف‌شده بگرد، با فیلتر خوشه و سختی محدود کن و ببین کدام‌ها را کاربران بیشتر خوششان آمده.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="majors-filter" method="get" action="/majors">
+      <div class="search-bar">
+        <input type="search" name="q" placeholder="جستجوی رشته (مثلاً مهندسی)..." value="{{ query }}">
+        <button type="submit" class="btn btn-primary">جستجو</button>
+      </div>
+      <div class="filter-row">
+        <select name="cluster" id="f-cluster">
+          <option value="">همه خوشه‌ها</option>
+          {% for slug, name in clusters.items() %}
+          <option value="{{ slug }}" {% if cluster == slug %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+        <select name="difficulty" id="f-difficulty">
+          <option value="">همه سختی‌ها</option>
+          {% for n in [1, 2, 3, 4, 5] %}
+          <option value="{{ n }}" {% if difficulty == (n|string) %}selected{% endif %}>سختی {{ fa_num(n) }}</option>
+          {% endfor %}
+        </select>
+        <select name="sort" id="f-sort">
+          <option value="popular" {% if sort == "popular" %}selected{% endif %}>محبوب‌ترین</option>
+          <option value="name" {% if sort == "name" %}selected{% endif %}>الفبا (نام)</option>
+        </select>
+        <a class="btn btn-outline btn-sm" href="/majors">پاک کردن فیلترها</a>
+      </div>
+    </form>
+
+    {% if entries %}
+    <p class="result-info">{{ fa_num(entries|length) }} رشته یافت شد.</p>
+    <div class="card-grid">
+      {% for e in entries %}
+        {{ major_card(e) }}
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">رشته‌ای با این مشخصات پیدا نشد؛ فیلترها را تغییر بده.</div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.querySelector(".majors-filter");
+  if (!form) return;
+  var selects = form.querySelectorAll("select");
+  selects.forEach(function (s) {
+    s.addEventListener("change", function () {
+      form.submit();
+    });
+  });
+})();
+</script>
+{% endblock %}

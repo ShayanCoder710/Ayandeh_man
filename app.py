@@ -15,6 +15,7 @@ csrf = CSRFProtect(app)
 import models
 
 from func import (
+    CLUSTERS,
     CLUSTER_BLURBS,
     cluster_name,
     difficulty_dots,
@@ -23,6 +24,7 @@ from func import (
     load_questions,
     load_result,
     save_result,
+    search_majors,
     seed_data,
     stars_html,
     top_majors,
@@ -109,4 +111,25 @@ def result_page(token):
         entries=entries_for_majors(rec["majors"]) if rec else [],
         title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
         description="نتیجه‌ی ذخیره‌شده‌ی تست شخصیت و علاقه؛ خوشه‌ی غالب و رشته‌های پیشنهادی.",
+    )
+
+
+@app.route("/majors")
+def majors_page():
+    query = request.args.get("q", "").strip()
+    cluster = request.args.get("cluster", "").strip()
+    difficulty = request.args.get("difficulty", "").strip()
+    sort = request.args.get("sort", "popular")
+    if sort not in ("popular", "name"):
+        sort = "popular"
+    return render_template(
+        "majors.html",
+        entries=search_majors(query, cluster, difficulty, sort),
+        query=query,
+        cluster=cluster,
+        difficulty=difficulty,
+        sort=sort,
+        clusters=CLUSTERS,
+        title="مشاهده رشته‌ها | آینده من",
+        description="جستجو و فیلتر رشته‌های تحصیلی بر اساس خوشه، سختی و محبوبیت.",
     )
