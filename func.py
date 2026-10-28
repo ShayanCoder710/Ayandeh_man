@@ -27,6 +27,18 @@ CLUSTER_BLURBS = {
 
 _FA_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
+_FA_ALPHABET = "ابپتثجحخدذرزصضطسظعغػفقکگلمنوهی"
+_FA_RANK = {ch: i for i, ch in enumerate(_FA_ALPHABET)}
+
+
+def fa_sort_key(text):
+    key = []
+    for ch in text or "":
+        if ch in " ":
+            continue
+        key.append(_FA_RANK.get(ch, 256))
+    return key
+
 
 def fa_num(value):
     return str(value).replace(".", "٫").translate(_FA_DIGITS)
@@ -152,15 +164,15 @@ def search_majors(query="", cluster="", difficulty="", sort="popular"):
                 }
             )
         if sort == "name":
-            entries.sort(key=lambda e: e["major"].name)
-        else:
-            entries.sort(
-                key=lambda e: (
-                    e["avg"] is None,
-                    -(e["avg"] or 0),
-                    e["major"].name,
-                )
+            entries.sort(key=lambda e: fa_sort_key(e["major"].name))
+            return entries
+        entries.sort(
+            key=lambda e: (
+                e["avg"] is None,
+                -(e["avg"] or 0),
+                fa_sort_key(e["major"].name),
             )
+        )
         return entries
     except Exception:
         return []
@@ -266,13 +278,15 @@ def compute_result(answers):
     cluster = max(ordered, key=lambda c: (scores[c], -ordered.index(c)))
     major_ids = []
     try:
-        cluster_majors = Major.query.filter_by(cluster=cluster).all()
+        cluster_majors = Major.query.filter_by(cluster=cluster).order_by(
+            Major.name
+        ).all()
         if cluster_majors:
             ratings = _rating_map([m.id for m in cluster_majors])
             cluster_majors.sort(
                 key=lambda m: (
                     -((ratings.get(m.id) or {}).get("avg") or 0),
-                    m.name,
+                    fa_sort_key(m.name),
                 )
             )
         major_ids = [m.id for m in cluster_majors[:6]]
