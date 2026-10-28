@@ -762,20 +762,20 @@ textarea:focus {
 }
 
 .test-progress {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 16px 18px;
-  margin-bottom: 22px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 26px;
 }
 
 .progress-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  padding: 8px 18px;
 }
 
 .progress-chip {
@@ -795,13 +795,16 @@ textarea:focus {
 }
 
 .progress-track {
-  height: 10px;
+  width: clamp(70px, 22vw, 170px);
+  height: 8px;
   border-radius: 999px;
   background: #e8effc;
   overflow: hidden;
+  display: inline-block;
 }
 
 .progress-fill {
+  display: block;
   height: 100%;
   width: 0;
   border-radius: 999px;
@@ -820,6 +823,30 @@ textarea:focus {
 
 .test-progress.complete .progress-percent {
   color: #15803d;
+}
+
+.trait-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 4px;
+}
+
+.trait-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.trait-chip {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  border: 1px solid rgba(63, 134, 240, 0.25);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .btn-lg {

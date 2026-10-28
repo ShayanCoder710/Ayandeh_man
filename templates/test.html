@@ -3,20 +3,16 @@
 <section class="page-head">
   <div class="container">
     <h1>تست شخصیت و علاقه</h1>
-    <p>شانزده سؤال کوتاه ازت می‌پرسیم چه‌طور فکر می‌کنی و چه چیزهایی برایت لذت‌بخش است. بدون «درست» و «نادرست»؛ فقط صادقانه جواب بده.</p>
+    <p>بیست و چهار سؤال کوتاه ازت می‌پرسیم چه‌طور فکر می‌کنی و چه چیزهایی برایت لذت‌بخش است. بدون «درست» و «نادرست»؛ فقط صادقانه جواب بده.</p>
   </div>
 </section>
 
 {% if questions %}
-<div class="test-progress" data-total="{{ questions|length }}">
-  <div class="container">
-    <div class="progress-row">
-      <span class="progress-chip">پاسخ داده‌شده: <strong id="progress-count">۰</strong> از <strong id="progress-total">{{ fa_num(questions|length) }}</strong></span>
-      <span class="progress-percent" id="progress-percent">۰٪</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
+<div class="test-progress">
+  <div class="progress-row">
+    <span class="progress-chip" id="progress-chip">پاسخ داده‌شده: <strong id="progress-count">۰</strong> از <strong id="progress-total">{{ fa_num(questions|length) }}</strong></span>
+    <span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span>
+    <span class="progress-percent" id="progress-percent">۰٪</span>
   </div>
 </div>
 <form id="test-form" class="test-form" action="/test" method="post" novalidate>
@@ -61,21 +57,29 @@
   };
   var errorBox = form.querySelector(".form-error");
   var progress = document.querySelector(".test-progress");
-  var countEl = document.getElementById("progress-count");
+  var chipEl = document.getElementById("progress-chip");
   var percentEl = document.getElementById("progress-percent");
   var fillEl = document.getElementById("progress-fill");
   var cards = Array.prototype.slice.call(form.querySelectorAll(".question-card"));
   var total = cards.length;
   function refreshProgress() {
-    if (!progress) return;
+    if (!progress || !fillEl) return;
     var answered = cards.filter(function (card) {
       return card.querySelector("input:checked");
     }).length;
-    countEl.textContent = toFa(answered);
     var pct = total ? Math.round(answered / total * 100) : 0;
-    percentEl.textContent = toFa(pct) + "٪";
     fillEl.style.width = pct + "%";
     progress.classList.toggle("complete", answered === total);
+    if (answered === total) {
+      chipEl.textContent = "تمام شد؛ حالا نتیجه‌ات را بگیر ✓";
+      percentEl.style.display = "none";
+    } else {
+      chipEl.innerHTML =
+        'پاسخ داده‌شده: <strong>' + toFa(answered) + "</strong> از <strong>" +
+        toFa(total) + "</strong>";
+      percentEl.style.display = "";
+      percentEl.textContent = toFa(pct) + "٪";
+    }
   }
   form.querySelectorAll(".option input").forEach(function (input) {
     input.addEventListener("change", function () {
