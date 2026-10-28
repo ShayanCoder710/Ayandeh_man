@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}آینده من{% endblock %}</title>
+  <meta name="description" content="{% block description %}با تست شخصیت و علاقه، خوشه و رشته تحصیلی مناسب خودت را پیدا کن.{% endblock %}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{{ url_for('index') }}">
+        <img class="brand-icon" src="{{ url_for('static', filename='images/icon.png') }}" alt="آینده من">
+        <span>آینده من</span>
+      </a>
+      <nav class="main-nav" aria-label="ناوبری اصلی">
+        <a href="/test">تست شخصیت</a>
+        <a href="/majors">رشته‌ها</a>
+        <a href="/compare">مقایسه</a>
+        <a href="/guide">راهنما</a>
+        <a class="nav-cta" href="/test">شروع تست</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    {% with messages = get_flashed_messages() %}
+      {% for message in messages %}
+        <div class="container">
+          <div class="flash">{{ message }}</div>
+        </div>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>آینده من — همراهِ انتخاب رشته</span>
+      <nav class="footer-nav" aria-label="فوتر">
+        <a href="/test">تست شخصیت</a>
+        <a href="/majors">رشته‌ها</a>
+        <a href="/compare">مقایسه</a>
+        <a href="/guide">راهنما</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
