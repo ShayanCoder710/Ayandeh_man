@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}آینده من{% endblock %}</title>
-  <meta name="description" content="{% block description %}با تست شخصیت و علاقه، خوشه و رشته تحصیلی مناسب خودت را پیدا کن.{% endblock %}">
+  <title>{% block title %}{{ title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ description }}{% endblock %}">
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
