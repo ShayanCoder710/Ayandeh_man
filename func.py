@@ -97,6 +97,19 @@ def get_major(slug):
         return None
 
 
+def get_my_rating(slug, voter_key):
+    try:
+        major = Major.query.filter_by(slug=slug).first()
+        if major is None:
+            return None
+        row = MajorRating.query.filter_by(
+            major_id=major.id, voter_key=voter_key
+        ).first()
+        return row.score if row else None
+    except Exception:
+        return None
+
+
 def _rating_map(major_ids):
     try:
         rows = (

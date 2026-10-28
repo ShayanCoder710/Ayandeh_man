@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <div class="badge-row">
+      <span class="badge">{{ cluster_name(major.cluster) }}</span>
+      <span class="badge badge-soft">{{ difficulty_dots(major.difficulty) | safe }}</span>
+    </div>
+    <h1>{{ major.name }}</h1>
+    <p>{{ major.description }}</p>
+    <div class="section-actions">
+      <a class="btn btn-outline btn-sm" href="/majors">بازگشت به فهرست</a>
+      <a class="btn btn-ghost btn-sm" href="/compare?a={{ major.slug }}">مقایسه با رشته‌ی دیگر</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="major-layout">
+      <div class="major-main">
+        <div class="info-card">
+          <h2>دروس اصلی</h2>
+          <p class="lead">{{ major.courses }}</p>
+        </div>
+        <div class="info-card">
+          <h2>بازار کار</h2>
+          <p>{{ major.job_market }}</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <h2>مزایا</h2>
+            <p>{{ major.pros }}</p>
+          </div>
+          <div class="info-card">
+            <h2>معایب</h2>
+            <p>{{ major.cons }}</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="info-card rating-box">
+        <h2>امتیاز کاربران</h2>
+        {% if rating.avg %}
+        <div class="rating-big">{{ fa_num(rating.avg) }}</div>
+        {{ stars_html(rating.avg) | safe }}
+        <p class="rating-count">{{ fa_num(rating.count) }} رأی</p>
+        {% else %}
+        <p class="rating-count">هنوز کسی امتیازی نداده است؛ تو اولین نفر باش.</p>
+        {% endif %}
+
+        <form class="rate-form" method="post" action="/rate/{{ major.slug }}" id="rate-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <p class="rating-count">
+            {% if my_rating %}تو به این رشته {{ fa_num(my_rating) }} داده‌ای؛ اگر دوباره امتیاز بدهی، جایگزین می‌شود.{% else %}تو چه امتیازی می‌دهی؟{% endif %}
+          </p>
+          <div class="rate-options">
+            {% for n in [5, 4, 3, 2, 1] %}
+            <button type="button" class="rate-btn" data-score="{{ n }}" {% if my_rating == n %}selected{% endif %}>{{ fa_num(n) }}</button>
+            {% endfor %}
+          </div>
+          <input type="hidden" name="score" id="rate-score" value="">
+          <div class="section-actions">
+            <button type="submit" class="btn btn-primary btn-sm" id="rate-submit">ثبت امتیاز</button>
+          </div>
+        </form>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById("rate-form");
+  if (!form) return;
+  var buttons = form.querySelectorAll(".rate-btn");
+  var scoreInput = document.getElementById("rate-score");
+  var submit = document.getElementById("rate-submit");
+  submit.disabled = true;
+  submit.style.opacity = "0.5";
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      buttons.forEach(function (x) {
+        x.classList.remove("selected");
+      });
+      b.classList.add("selected");
+      scoreInput.value = b.dataset.score;
+      submit.disabled = false;
+      submit.style.opacity = "1";
+    });
+  });
+  form.addEventListener("submit", function (e) {
+    if (!scoreInput.value) {
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+{% endblock %}

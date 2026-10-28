@@ -1,4 +1,6 @@
-from flask import Flask, flash, redirect, render_template, request, url_for
+import secrets
+
+from flask import Flask, abort, flash, redirect, render_template, request, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 
@@ -21,8 +23,12 @@ from func import (
     difficulty_dots,
     entries_for_majors,
     fa_num,
+    get_major,
+    get_my_rating,
+    get_rating,
     load_questions,
     load_result,
+    rate_major,
     save_result,
     search_majors,
     seed_data,
@@ -33,6 +39,11 @@ from func import (
 with app.app_context():
     db.create_all()
     seed_data()
+
+
+@app.errorhandler(404)
+def not_found(_error):
+    return render_template("404.html"), 404
 
 
 @app.context_processor
@@ -133,3 +144,50 @@ def majors_page():
         title="مشاهده رشته‌ها | آینده من",
         description="جستجو و فیلتر رشته‌های تحصیلی بر اساس خوشه، سختی و محبوبیت.",
     )
+
+
+def _voter_key():
+    key = session.get("voter_key")
+    if not key:
+        key = secrets.token_hex(16)
+        session["voter_key"] = key
+    return key
+
+
+@app.route("/majors/<slug>")
+def major_page(slug):
+    major = get_major(slug)
+    if major is None:
+        abort(404)
+    rating = get_rating(slug)
+    my_rating = get_my_rating(slug, _voter_key())
+    return render_template(
+        "major.html",
+        major=major,
+        rating=rating,
+        my_rating=my_rating,
+        title=f"{major.name} | آینده من",
+        description=f"توضیحات، دروس، بازار کار و امتیازات رشته‌ی {major.name}.",
+    )
+
+
+@app.route("/rate/<slug>", methods=["POST"])
+def rate_page(slug):
+    major = get_major(slug)
+    if major is None:
+        flash("رشته‌ای با این نشانی پیدا نشد.")
+        return redirect("/majors")
+    try:
+        score = int(request.form.get("score", ""))
+    except ValueError:
+        score = 0
+    status = rate_major(slug, score, _voter_key())
+    if status in ("ok", "updated"):
+        flash(f"امتیازت برای {major.name} ثبت شد. ممنون از مشارکت‌ات!")
+    elif status == "invalid":
+        flash("امتیاز معتبر نیست؛ عددی بین ۱ تا ۵ انتخاب کن.")
+    elif status == "missing":
+        flash("رشته‌ای با این نشانی پیدا نشد.")
+    else:
+        flash("امتیازت ذخیره نشد؛ دوباره تلاش کن.")
+    return redirect(f"/majors/{slug}")
