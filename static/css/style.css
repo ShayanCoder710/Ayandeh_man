@@ -299,21 +299,21 @@ body.menu-open .menu-toggle span:nth-child(3) {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #3f86f0 0%, var(--primary) 60%, var(--primary-dark) 100%);
+  background: linear-gradient(135deg, #5b9bff 0%, var(--primary) 55%, var(--primary-dark) 100%);
   color: #fff;
-  box-shadow: 0 6px 16px rgba(30, 111, 217, 0.35);
+  box-shadow: 0 6px 18px rgba(30, 111, 217, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .btn-primary:hover {
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(30, 111, 217, 0.45);
+  box-shadow: 0 10px 26px rgba(30, 111, 217, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.28);
   filter: brightness(1.04);
 }
 
 .btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(30, 111, 217, 0.35);
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 3px 10px rgba(30, 111, 217, 0.4), inset 0 2px 5px rgba(0, 0, 0, 0.14);
 }
 
 .btn-outline {
@@ -805,7 +805,7 @@ textarea:focus {
 }
 
 .progress-track {
-  width: clamp(70px, 22vw, 170px);
+  width: 170px;
   height: 8px;
   border-radius: 999px;
   background: #e8effc;
@@ -835,15 +835,18 @@ textarea:focus {
   color: #15803d;
 }
 
+.test-progress.complete .progress-track,
+.test-progress.complete .progress-percent {
+  display: none;
+}
+
 .trait-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  margin: 18px 0 4px;
   justify-content: center;
-  margin-top: 5px !important;
-  margin-bottom: 20px !important;
+  gap: 8px;
+  margin: 5px 0 20px;
 }
 
 .trait-label {
@@ -1193,6 +1196,11 @@ textarea:focus {
   justify-content: center;
 }
 
+.form-actions .btn-lg {
+  width: 100%;
+  max-width: 460px;
+}
+
 .q-num {
   display: inline-flex;
   align-items: center;
@@ -1351,6 +1359,28 @@ textarea:focus {
     padding-inline: 12px;
   }
 
+  .progress-row {
+    gap: 8px;
+    padding: 6px 14px;
+  }
+
+  .progress-track {
+    width: 90px;
+  }
+
+  .progress-chip {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+
+  .progress-percent {
+    display: none;
+  }
+
+  .form-actions .btn-lg {
+    width: 100%;
+  }
+
   .site-footer {
     padding: 24px 0;
     margin-top: 40px;
@@ -1397,6 +1427,11 @@ textarea:focus {
     align-items: stretch;
   }
 
+  .search-bar input[type="search"] {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
   .search-bar .btn {
     width: 100%;
   }
@@ -1421,6 +1456,11 @@ textarea:focus {
   .share-box {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .share-box input {
+    flex: 0 0 auto;
+    width: 100%;
   }
 
   .share-box .btn {
