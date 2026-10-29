@@ -41,9 +41,12 @@ from func import (
     top_majors,
 )
 
-with app.app_context():
-    db.create_all()
-    seed_data()
+try:
+    with app.app_context():
+        db.create_all()
+        seed_data()
+except Exception:
+    print("database unavailable; starting in degraded mode")
 
 
 @app.errorhandler(404)
