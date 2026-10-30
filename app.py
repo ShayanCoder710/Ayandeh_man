@@ -42,6 +42,7 @@ from func import (
     search_majors,
     seed_data,
     stars_html,
+    sub_tracks_list,
     top_majors,
 )
 
@@ -179,6 +180,7 @@ def major_page(slug):
         major=major,
         rating=rating,
         my_rating=my_rating,
+        subs=sub_tracks_list(major),
         title=f"{major.name} | آینده من",
         description=f"توضیح، دروس، مسیرِ بعد از دیپلم و امتیازاتِ رشته‌ی {major.name}.",
     )

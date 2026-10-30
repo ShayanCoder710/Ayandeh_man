@@ -15,5 +15,8 @@
     <span>·</span>
     {{ difficulty_dots(e.major.difficulty) | safe }}
   </div>
+  {% if e.sub_preview %}
+  <p class="card-sub">{{ e.sub_preview }}</p>
+  {% endif %}
 </article>
 {% endmacro %}

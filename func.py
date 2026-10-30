@@ -112,6 +112,14 @@ def get_major(slug):
         return None
 
 
+def sub_tracks_list(major):
+    try:
+        items = json.loads(major.sub_tracks)
+        return [str(x) for x in items] if isinstance(items, list) else []
+    except Exception:
+        return []
+
+
 def get_my_rating(slug, voter_key):
     try:
         major = Major.query.filter_by(slug=slug).first()
@@ -184,11 +192,17 @@ def search_majors(query="", cluster="", difficulty="", sort="popular"):
                 except ValueError:
                     pass
             rating = ratings.get(major.id) or {"avg": None, "count": 0}
+            subs = sub_tracks_list(major)
+            sub_preview = "، ".join(subs[:3])
+            if len(subs) > 3:
+                sub_preview += f" و {fa_num(len(subs) - 3)} زیررشته‌ی دیگر"
             entries.append(
                 {
                     "major": major,
                     "avg": rating.get("avg"),
                     "count": rating.get("count", 0),
+                    "sub_count": len(subs),
+                    "sub_preview": sub_preview,
                 }
             )
         if sort == "name":
@@ -214,14 +228,22 @@ def entries_for_majors(majors):
     try:
         ids = [m.id for m in majors]
         ratings = _rating_map(ids) if ids else {}
-        return [
-            {
-                "major": m,
-                "avg": (ratings.get(m.id) or {}).get("avg"),
-                "count": (ratings.get(m.id) or {}).get("count", 0),
-            }
-            for m in majors
-        ]
+        result = []
+        for m in majors:
+            subs = sub_tracks_list(m)
+            preview = "، ".join(subs[:3])
+            if len(subs) > 3:
+                preview += f" و {fa_num(len(subs) - 3)} زیررشته‌ی دیگر"
+            result.append(
+                {
+                    "major": m,
+                    "avg": (ratings.get(m.id) or {}).get("avg"),
+                    "count": (ratings.get(m.id) or {}).get("count", 0),
+                    "sub_count": len(subs),
+                    "sub_preview": preview,
+                }
+            )
+        return result
     except Exception:
         return []
 
@@ -252,6 +274,11 @@ def compare_rows(a, b):
         {"label": "توضیح", "a": a["major"].description, "b": b["major"].description},
         {"label": "دروسِ رشته", "a": a["major"].courses, "b": b["major"].courses},
         {"label": "مسیر بعد از دیپلم", "a": a["major"].job_market, "b": b["major"].job_market},
+        {
+            "label": "زیررسته‌ها",
+            "a": "\n".join(sub_tracks_list(a["major"])) or "—",
+            "b": "\n".join(sub_tracks_list(b["major"])) or "—",
+        },
         {"label": "مزایا", "a": a["major"].pros, "b": b["major"].pros},
         {"label": "معایب", "a": a["major"].cons, "b": b["major"].cons},
         {"label": "امتیاز کاربران", "a": rating_cell(a), "b": rating_cell(b)},
@@ -459,7 +486,11 @@ def seed_data():
                 "difficulty",
             )
             for item in majors:
-                db.session.add(Major(**{k: item[k] for k in fields if k in item}))
+                data = {k: item[k] for k in fields if k in item}
+                data["sub_tracks"] = json.dumps(
+                    item.get("sub_tracks", []), ensure_ascii=False
+                )
+                db.session.add(Major(**data))
             db.session.commit()
         return True
     except Exception:

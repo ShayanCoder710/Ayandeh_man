@@ -27,6 +27,17 @@
           <h2>مسیر بعد از دیپلم</h2>
           <p>{{ major.job_market }}</p>
         </div>
+        {% if subs %}
+        <div class="info-card reveal">
+          <h2>زیررسته‌های این رشته</h2>
+          <p class="sub-intro">از {{ fa_num(subs|length) }} زیررشته و مسیری که می‌توانی دنبالشان کنی:</p>
+          <div class="sub-track-list">
+            {% for s in subs %}
+            <span class="sub-chip">{{ s }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
         <div class="info-grid">
           <div class="info-card reveal">
             <h2>مزایا</h2>

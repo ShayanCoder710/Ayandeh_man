@@ -992,6 +992,32 @@ textarea:focus {
   color: var(--ink);
 }
 
+.sub-intro {
+  color: var(--ink);
+}
+
+.sub-track-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sub-chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.card-sub {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1104,6 +1130,7 @@ textarea:focus {
   font-size: 0.95rem;
   line-height: 1.9;
   border-inline-start: 1px solid var(--line);
+  white-space: pre-line;
 }
 
 .head-name {

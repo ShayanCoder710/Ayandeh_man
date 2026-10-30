@@ -15,6 +15,7 @@ class Major(db.Model):
     job_market = db.Column(db.Text, nullable=False, default="")
     pros = db.Column(db.Text, nullable=False, default="")
     cons = db.Column(db.Text, nullable=False, default="")
+    sub_tracks = db.Column(db.Text, nullable=False, default="")
     difficulty = db.Column(db.Integer, nullable=False, default=3)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
