@@ -1,3 +1,4 @@
+import functools
 import secrets
 
 from flask import Flask, abort, flash, redirect, render_template, request, session, url_for
@@ -19,6 +20,8 @@ import models
 from func import (
     CLUSTERS,
     CLUSTER_BLURBS,
+    admin_delete_result,
+    admin_stats,
     cluster_name,
     compare_majors,
     compare_rows,
@@ -34,6 +37,7 @@ from func import (
     load_questions,
     load_result,
     rate_major,
+    recent_results,
     save_result,
     search_majors,
     seed_data,
@@ -82,7 +86,7 @@ def test_page():
         "test.html",
         questions=load_questions(),
         title="تست شخصیت و علاقه | آینده من",
-        description="بیست و چهار سؤال کوتاه؛ در پایان خوشه‌ی غالب و رشته‌های پیشنهادی‌ات را ببین.",
+        description="سؤالات کوتاهی از تو؛ در پایان خوشه‌ی غالب و رشته‌های پیشنهادی‌ات را ببین.",
     )
 
 
@@ -234,7 +238,7 @@ def guide_page():
     return render_template(
         "guide.html",
         title="راهنمای انتخاب رشته | آینده من",
-        description="چند نکته‌ی عملی برای انتخاب رشته؛ از شناخت خودت تا مقایسه‌ی کاندیداها.",
+        description="چند نکته‌ی عملی برای انتخاب رشته؛ از شناخت خودت تا مقایسه‌ی دو رشته.",
     )
 
 
@@ -261,3 +265,66 @@ def article_page(slug):
         title=f"{article['title']} | آینده من",
         description=article["summary"],
     )
+
+
+def require_admin(view):
+    @functools.wraps(view)
+    def wrapper(*args, **kwargs):
+        if not session.get("admin"):
+            return redirect(url_for("admin_login"))
+        return view(*args, **kwargs)
+
+    return wrapper
+
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    if session.get("admin"):
+        return redirect(url_for("admin_dashboard"))
+    if request.method == "POST":
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
+        if secrets.compare_digest(username, config.ADMIN_USERNAME) and secrets.compare_digest(
+            password, config.ADMIN_PASSWORD
+        ):
+            session["admin"] = True
+            return redirect(url_for("admin_dashboard"))
+        flash("نام کاربری یا رمز عبور نادرست است.")
+    return render_template(
+        "admin/login.html",
+        title="ورود ادمین | آینده من",
+        description="ورود به پنل مدیریت آینده من.",
+    )
+
+
+@app.route("/admin/logout")
+def admin_logout():
+    session.pop("admin", None)
+    flash("از پنل ادمین خارج شدی.")
+    return redirect(url_for("index"))
+
+
+@app.route("/admin")
+@require_admin
+def admin_dashboard():
+    stats = admin_stats()
+    results = recent_results(30)
+    return render_template(
+        "admin/dashboard.html",
+        stats=stats,
+        results=results,
+        clusters=CLUSTERS,
+        title="پنل ادمین | آینده من",
+        description="پایش نتایج تست شخصیت و علاقه.",
+    )
+
+
+@app.route("/admin/results/<token>/delete", methods=["POST"])
+@require_admin
+def admin_delete(token):
+    removed = admin_delete_result(token)
+    if removed:
+        flash("نتیجه حذف شد.")
+    else:
+        flash("نتیجه پیدا نشد یا حذف نشد.")
+    return redirect(url_for("admin_dashboard"))

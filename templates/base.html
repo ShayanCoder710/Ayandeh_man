@@ -51,15 +51,35 @@
     {% block content %}{% endblock %}
   </main>
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>آینده من — همراهِ انتخاب رشته</span>
-      <nav class="footer-nav" aria-label="فوتر">
-        <a href="/test">تست شخصیت</a>
-        <a href="/majors">رشته‌ها</a>
-        <a href="/compare">مقایسه</a>
-        <a href="/articles">مقالات</a>
-        <a href="/guide">راهنما</a>
-      </nav>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="{{ url_for('index') }}">
+            <img class="brand-icon" src="{{ url_for('static', filename='images/icon.png') }}" alt="آینده من">
+            <span>آینده من</span>
+          </a>
+          <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
+        </div>
+        <nav class="footer-col" aria-label="پیوندهای سریع">
+          <span class="footer-col-title">پیوندها</span>
+          <a href="/test">تست شخصیت و علاقه</a>
+          <a href="/majors">رشته‌های تحصیلی</a>
+          <a href="/compare">مقایسه رشته‌ها</a>
+        </nav>
+        <nav class="footer-col" aria-label="محتوا">
+          <span class="footer-col-title">محتوا</span>
+          <a href="/articles">مقالات</a>
+          <a href="/guide">راهنمای انتخاب رشته</a>
+        </nav>
+        <div class="footer-col footer-about">
+          <span class="footer-col-title">درباره</span>
+          <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footer-year">© ۱۴۰۵ آینده من</span>
+        <span>ساخته‌شده برای انتخابِ رشته‌ی نهم به دهم</span>
+      </div>
     </div>
   </footer>
   <script>
@@ -85,6 +105,15 @@
       });
     }
     var current = window.location.pathname;
+    var yearEl = document.getElementById("footer-year");
+    if (yearEl) {
+      try {
+        var year = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+          year: "numeric",
+        }).format(new Date());
+        yearEl.textContent = "© " + year + " آینده من";
+      } catch (e) {}
+    }
     document.querySelectorAll(".main-nav a, .sheet-nav a").forEach(function (link) {
       var href = link.getAttribute("href");
       var match = href === "/" ? current === "/" : current.indexOf(href) === 0;

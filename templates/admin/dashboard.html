@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="admin-head reveal">
+      <div>
+        <h1 class="section-title">پنل ادمین</h1>
+        <p class="section-sub">پایش نتایج تست شخصیت و علاقه.</p>
+      </div>
+      <a class="btn btn-ghost" href="{{ url_for('admin_logout') }}">خروج از پنل</a>
+    </div>
+
+    <div class="stat-cards reveal">
+      <div class="stat-card">
+        <span class="stat-num">{{ fa_num(stats.total) }}</span>
+        <span class="stat-label">کل نتایج</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ cluster_name(stats.top_cluster) if stats.top_cluster else "—" }}</span>
+        <span class="stat-label">پرتقاضاترین خوشه</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ stats.top_trait or "—" }}</span>
+        <span class="stat-label">پرکاربردترین ویژگی</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ stats.top_majors[0].name if stats.top_majors else "—" }}</span>
+        <span class="stat-label">پیشنهادشده‌ی برتر</span>
+      </div>
+    </div>
+
+    <div class="admin-panels">
+      <div class="admin-panel reveal">
+        <h2 class="admin-panel-title">توزیع بر اساس خوشه</h2>
+        {% if stats.total %}
+        <div class="dist-list">
+          {% for slug, label in clusters.items() %}
+          <div class="dist-row">
+            <span class="dist-name">{{ label }}</span>
+            <span class="dist-track"><span class="dist-fill" style="width: {{ (stats.cluster_counts.get(slug, 0) / stats.total * 100) | round(0) }}%"></span></span>
+            <span class="dist-count">{{ fa_num(stats.cluster_counts.get(slug, 0)) }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="admin-empty">هنوز نتیجه‌ای ثبت نشده است.</p>
+        {% endif %}
+      </div>
+
+      <div class="admin-panel reveal">
+        <h2 class="admin-panel-title">ویژگی‌های پرکاربرد</h2>
+        {% if stats.top_traits %}
+        <ul class="trait-badges">
+          {% for label, count in stats.top_traits %}
+          <li><span>{{ label }}</span><b>{{ fa_num(count) }}</b></li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="admin-empty">داده‌ای برای نمایش وجود ندارد.</p>
+        {% endif %}
+      </div>
+
+      <div class="admin-panel reveal">
+        <h2 class="admin-panel-title">رشته‌های پیشنهادشده</h2>
+        {% if stats.top_majors %}
+        <ul class="major-rank">
+          {% for item in stats.top_majors[:5] %}
+          <li><span>{{ item.name }}</span><b>{{ fa_num(item.count) }}</b></li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="admin-empty">داده‌ای برای نمایش وجود ندارد.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="admin-panel admin-panel-wide reveal">
+      <h2 class="admin-panel-title">جدیدترین نتایج</h2>
+      {% if results %}
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>شماره</th>
+              <th>تاریخ</th>
+              <th>خوشه</th>
+              <th>ویژگی‌ها</th>
+              <th>برترین رشته‌ها</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in results %}
+            <tr>
+              <td>{{ fa_num(row.id) }}</td>
+              <td class="cell-muted">{{ row.created_at.strftime("%Y/%m/%d %H:%M") }}</td>
+              <td><span class="tag">{{ clusters.get(row.cluster, row.cluster or "—") }}</span></td>
+              <td class="cell-muted">{% if row.traits %}{{ row.traits | join("، ") }}{% else %}—{% endif %}</td>
+              <td class="cell-muted">{% if row.majors %}{{ row.majors | join("، ") }}{% else %}—{% endif %}</td>
+              <td class="row-actions">
+                <a class="btn btn-sm btn-ghost" href="/result/{{ row.token }}" target="_blank">نمایش</a>
+                <form class="inline-form" method="post" action="{{ url_for('admin_delete', token=row.token) }}">
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                  <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('این نتیجه حذف شود؟')">حذف</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="admin-empty">هنوز نتیجه‌ای ثبت نشده است. پس از انجام تست توسط کاربران، نتایج اینجا نمایش داده می‌شود.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

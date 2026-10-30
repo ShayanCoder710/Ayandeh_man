@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="admin-login-card reveal">
+      <h1 class="section-title">ورود به پنل ادمین</h1>
+      <p class="section-sub">دسترسی به نتایج فقط برای مدیر سایت باز است.</p>
+      <form class="admin-form" method="post" action="{{ url_for('admin_login') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label class="admin-field">نام کاربری
+          <input type="text" name="username" autocomplete="username" required>
+        </label>
+        <label class="admin-field">رمز عبور
+          <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="btn btn-primary btn-lg">ورود</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

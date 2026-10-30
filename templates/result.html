@@ -6,7 +6,7 @@
     {% if rec %}
     <div class="result-hero reveal">
       <span class="hero-badge">نتیجه‌ی تست شخصیت و علاقه</span>
-      <h1>خوشه‌ی غالب شما: <p>{{ cluster_name(rec.cluster) }}</p></h1>
+      <h1>خوشه‌ی غالب تو: <span class="cluster-name">{{ cluster_name(rec.cluster) }}</span></h1>
       <p>{{ CLUSTER_BLURBS.get(rec.cluster, "") }}</p>
       {% if rec.traits %}
       <div class="trait-row">
@@ -23,8 +23,8 @@
     </div>
 
     <div class="section" id="recommended">
-      <h2 class="section-title">رشته‌های پیشنهادی برای شما</h2>
-      <p class="section-sub">بر اساس خوشه‌ی غالب، برترین رشته‌های این خوشه را برای شما انتخاب کرده‌ایم.</p>
+      <h2 class="section-title">رشته‌های پیشنهادی برای تو</h2>
+      <p class="section-sub">بر اساس خوشه‌ی غالب، برترین رشته‌های این خوشه را برایت انتخاب کرده‌ایم.</p>
       {% if entries %}
       <div class="recommended-grid">
         {% for e in entries %}

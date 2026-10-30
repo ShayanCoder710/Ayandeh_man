@@ -18,11 +18,11 @@ CLUSTERS = {
 }
 
 CLUSTER_BLURBS = {
-    "math": "شما بیشتر با مسائل منطقی، تحلیل و حل‌مسئله‌ی فنی راحت هستید. خوشه‌ی ریاضی و فیزیک با دروس دقیق و کاربردی‌اش دقیقا‌ً برای همین سبک ذهن طراحی شده است.",
-    "sciences": "کنجکاوی شما درباره‌ی طبیعت، بدن انسان و آزمایش‌های علمی بالاست. رشته‌های علوم پایه فضای مناسبی برای این کنجکاوی و کار آزمایشگاهی هستند.",
-    "humanities": "شما با تحلیل متون، بحث، استدلال و قانون‌مندی بهتر کار می‌کنید. رشته‌های علوم انسانی بر درک عمیق از جامعه و رویدادها تمرکز دارند.",
-    "social": "درک رفتار انسان‌ها، کار تیمی و ارتباط با مردم برایتان جذاب است. رشته‌های علوم اجتماعی همین حوزه‌ها را عمیق‌تر می‌آموزند.",
-    "arts": "ذهن خلاق و بصری شما فعال است. خوشه‌ی هنر و طراحی فرصت می‌دهد ایده‌های تازه‌تان را به کارهای ملموس و زیبا تبدیل کنید.",
+    "math": "ذهن تو با منطق، تحلیل و حل مسائل فنی راحت‌تر است. خوشه‌ی ریاضی و فیزیک با دروس دقیق و کاربردی‌اش، دقیقاً برای همین سبک ذهن ساخته شده.",
+    "sciences": "کنجکاوی‌ات درباره‌ی طبیعت، بدن انسان و آزمایش‌های علمی بالاست. رشته‌های علوم پایه جای مناسبی برای همین کنجکاوی و کار آزمایشگاهی‌اند.",
+    "humanities": "با تحلیل متن، بحث و استدلال راحت‌تری. رشته‌های علوم انسانی روی درک عمیق جامعه و رویدادها تمرکز دارند.",
+    "social": "درک رفتار آدم‌ها، کار تیمی و ارتباط با مردم برایت جذاب است. رشته‌های علوم اجتماعی همین حوزه‌ها را عمیق‌تر می‌آموزند.",
+    "arts": "ذهن خلاق و بصری‌ات فعال است. خوشه‌ی هنر و طراحی فرصت می‌دهد ایده‌های تازه‌ات را به کارهای واقعی و دیدنی تبدیل کنی.",
 }
 
 _FA_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
@@ -463,6 +463,100 @@ def seed_data():
             for item in majors:
                 db.session.add(Major(**{k: item[k] for k in fields if k in item}))
             db.session.commit()
+        return True
+    except Exception:
+        try:
+            db.session.rollback()
+        except Exception:
+            pass
+        return False
+
+
+def _result_traits(record):
+    stored = record.answers or {}
+    traits = stored.get("traits") or []
+    if not isinstance(traits, list):
+        traits = []
+    return [str(t) for t in traits]
+
+
+def admin_stats():
+    empty = {"total": 0, "cluster_counts": {}, "trait_counts": {}, "top_majors": []}
+    try:
+        records = TestResult.query.all()
+        total = len(records)
+        cluster_counts = {}
+        trait_counts = {}
+        major_counts = {}
+        for record in records:
+            key = record.cluster or "unknown"
+            cluster_counts[key] = cluster_counts.get(key, 0) + 1
+            for trait in _result_traits(record):
+                trait_counts[trait] = trait_counts.get(trait, 0) + 1
+            for major_id in (record.recommended_major_ids or []):
+                major_counts[major_id] = major_counts.get(major_id, 0) + 1
+        top_majors = []
+        if major_counts:
+            majors = Major.query.filter(Major.id.in_(list(major_counts))).all()
+            names = {m.id: m.name for m in majors}
+            top_majors = [
+                {"id": mid, "name": names.get(mid, "—"), "count": count}
+                for mid, count in sorted(major_counts.items(), key=lambda kv: -kv[1])
+            ]
+        top_cluster = max(cluster_counts.items(), key=lambda kv: kv[1])[0] if cluster_counts else ""
+        top_trait = max(trait_counts.items(), key=lambda kv: kv[1])[0] if trait_counts else ""
+        top_traits = [
+            [label, count]
+            for label, count in sorted(trait_counts.items(), key=lambda kv: -kv[1])[:6]
+        ]
+        return {
+            "total": total,
+            "cluster_counts": cluster_counts,
+            "trait_counts": trait_counts,
+            "top_majors": top_majors,
+            "top_cluster": top_cluster,
+            "top_trait": top_trait,
+            "top_traits": top_traits,
+        }
+    except Exception:
+        return empty
+
+
+def recent_results(limit=30):
+    try:
+        records = (
+            TestResult.query.order_by(TestResult.created_at.desc()).limit(limit).all()
+        )
+        out = []
+        for record in records:
+            major_names = []
+            if record.recommended_major_ids:
+                majors = Major.query.filter(
+                    Major.id.in_(record.recommended_major_ids)
+                ).all()
+                major_names = [m.name for m in majors]
+            out.append(
+                {
+                    "id": record.id,
+                    "token": record.token,
+                    "cluster": record.cluster,
+                    "traits": _result_traits(record)[:3],
+                    "majors": major_names[:3],
+                    "created_at": record.created_at,
+                }
+            )
+        return out
+    except Exception:
+        return []
+
+
+def admin_delete_result(token):
+    try:
+        record = TestResult.query.filter_by(token=token).first()
+        if record is None:
+            return False
+        db.session.delete(record)
+        db.session.commit()
         return True
     except Exception:
         try:

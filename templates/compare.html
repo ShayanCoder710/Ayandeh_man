@@ -3,7 +3,7 @@
 <section class="page-head">
   <div class="container">
     <h1>مقایسه دو رشته</h1>
-    <p>دو رشته‌ی کاندیدات را کنار هم بگذار؛ بخش‌های کلیدی‌شان را یک نگاه مقایسه کن و تردیدت را راحت کن.</p>
+    <p>دو رشته‌ی موردنظرت را کنار هم بگذار؛ بخش‌های کلیدی‌شان را در یک نگاه مقایسه کن و تردیدت را حل کن.</p>
   </div>
 </section>
 
@@ -30,49 +30,55 @@
       {% if data.a.major.slug == data.b.major.slug %}
       <div class="empty-state">دو رشته‌ی یکسان را انتخاب کرده‌ای؛ یکی را عوض کن تا مقایسه معنا داشته باشد.</div>
       {% else %}
-      <div class="compare-layout">
-        <div class="compare-item reveal">
-          <div class="badge-row">
-            <span class="badge">{{ cluster_name(data.a.major.cluster) }}</span>
-          </div>
-          <h2><a href="/majors/{{ data.a.major.slug }}">{{ data.a.major.name }}</a></h2>
-          <div class="card-meta">
-            {% if data.a.avg %}
+      <div class="compare-table reveal">
+        <div class="compare-row compare-row-head">
+          <div class="row-label"></div>
+          <div class="row-value">
+            <div class="head-major">
+              <span class="badge">{{ cluster_name(data.a.major.cluster) }}</span>
+              <a class="head-name" href="/majors/{{ data.a.major.slug }}">{{ data.a.major.name }}</a>
+            </div>
+            <div class="head-meta">
+              {% if data.a.avg %}
               {{ stars_html(data.a.avg) | safe }}
               <span>{{ fa_num(data.a.avg) }}</span>
               <span class="rating-count">({{ fa_num(data.a.count) }} رأی)</span>
-            {% else %}
+              {% else %}
               <span>هنوز رأی ندارد</span>
-            {% endif %}
-            <span>·</span>
-            {{ difficulty_dots(data.a.major.difficulty) | safe }}
+              {% endif %}
+              <span>·</span>
+              {{ difficulty_dots(data.a.major.difficulty) | safe }}
+            </div>
           </div>
-        </div>
-        <div class="compare-item reveal">
-          <div class="badge-row">
-            <span class="badge">{{ cluster_name(data.b.major.cluster) }}</span>
-          </div>
-          <h2><a href="/majors/{{ data.b.major.slug }}">{{ data.b.major.name }}</a></h2>
-          <div class="card-meta">
-            {% if data.b.avg %}
+          <div class="row-value">
+            <div class="head-major">
+              <span class="badge">{{ cluster_name(data.b.major.cluster) }}</span>
+              <a class="head-name" href="/majors/{{ data.b.major.slug }}">{{ data.b.major.name }}</a>
+            </div>
+            <div class="head-meta">
+              {% if data.b.avg %}
               {{ stars_html(data.b.avg) | safe }}
               <span>{{ fa_num(data.b.avg) }}</span>
               <span class="rating-count">({{ fa_num(data.b.count) }} رأی)</span>
-            {% else %}
+              {% else %}
               <span>هنوز رأی ندارد</span>
-            {% endif %}
-            <span>·</span>
-            {{ difficulty_dots(data.b.major.difficulty) | safe }}
+              {% endif %}
+              <span>·</span>
+              {{ difficulty_dots(data.b.major.difficulty) | safe }}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="info-card reveal">
         {% for row in rows %}
         <div class="compare-row">
           <div class="row-label">{{ row.label }}</div>
-          <div class="row-value">{{ row.a }}</div>
-          <div class="row-value">{{ row.b }}</div>
+          <div class="row-value">
+            <span class="row-major-name">{{ data.a.major.name }}</span>
+            {{ row.a }}
+          </div>
+          <div class="row-value">
+            <span class="row-major-name">{{ data.b.major.name }}</span>
+            {{ row.b }}
+          </div>
         </div>
         {% endfor %}
       </div>
