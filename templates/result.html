@@ -41,7 +41,11 @@
         <p class="section-sub">بعد از انتخاب رشته، روزی به انتخاب زیررشته‌ات برمی‌شویی؛ همین الان این مسیرها را بشناس و ببین کدام‌شان ذهنت را درگیر می‌کند.</p>
         <div class="sub-track-list">
           {% for s in top_subs %}
-          <span class="sub-chip">{{ s }}</span>
+          {% if s.slug %}
+          <a class="sub-chip" href="/articles/{{ s.slug }}">{{ s.name }}</a>
+          {% else %}
+          <span class="sub-chip">{{ s.name }}</span>
+          {% endif %}
           {% endfor %}
         </div>
         <p class="section-sub sub-more">

@@ -69,11 +69,11 @@
           <div class="row-label">{{ row.label }}</div>
           <div class="row-value">
             <span class="row-major-name">{{ data.a.major.name }}</span>
-            {{ row.a }}
+            {{ row.a | safe }}
           </div>
           <div class="row-value">
             <span class="row-major-name">{{ data.b.major.name }}</span>
-            {{ row.b }}
+            {{ row.b | safe }}
           </div>
         </div>
         {% endfor %}

@@ -276,8 +276,8 @@ def compare_rows(a, b):
         {"label": "مسیر بعد از دیپلم", "a": a["major"].job_market, "b": b["major"].job_market},
         {
             "label": "زیررسته‌ها",
-            "a": "\n".join(sub_tracks_list(a["major"])) or "—",
-            "b": "\n".join(sub_tracks_list(b["major"])) or "—",
+            "a": subtrack_links_html(a["major"]),
+            "b": subtrack_links_html(b["major"]),
         },
         {"label": "مزایا", "a": a["major"].pros, "b": b["major"].pros},
         {"label": "معایب", "a": a["major"].cons, "b": b["major"].cons},
@@ -438,12 +438,48 @@ def load_result(token):
 
 
 def load_articles():
+    articles = []
+    for filename in ("articles.json", "subtracks_articles.json"):
+        try:
+            articles.extend(
+                json.loads(
+                    (BASE_DIR / "data" / filename).read_text(encoding="utf-8")
+                )
+            )
+        except Exception:
+            continue
+    return articles
+
+
+def load_subtrack_slug_map():
     try:
         return json.loads(
-            (BASE_DIR / "data" / "articles.json").read_text(encoding="utf-8")
+            (BASE_DIR / "data" / "subtrack_slug_map.json").read_text(encoding="utf-8")
         )
     except Exception:
-        return []
+        return {}
+
+
+def subtrack_links(major):
+    slug_map = load_subtrack_slug_map()
+    return [
+        {"name": name, "slug": slug_map.get(name)}
+        for name in sub_tracks_list(major)
+    ]
+
+
+def subtrack_links_html(major):
+    slug_map = load_subtrack_slug_map()
+    parts = []
+    for name in sub_tracks_list(major):
+        slug = slug_map.get(name)
+        if slug:
+            parts.append(
+                f'<a class="sub-chip" href="/articles/{slug}">{name}</a>'
+            )
+        else:
+            parts.append(f'<span class="sub-chip">{name}</span>')
+    return '<div class="sub-track-list">' + "".join(parts) + "</div>" if parts else "—"
 
 
 def get_article(slug):

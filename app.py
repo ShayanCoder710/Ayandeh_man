@@ -42,6 +42,7 @@ from func import (
     search_majors,
     seed_data,
     stars_html,
+    subtrack_links,
     sub_tracks_list,
     top_majors,
 )
@@ -114,7 +115,7 @@ def test_submit():
         flash("امکان ذخیره‌ی نتیجه نبود؛ دوباره تلاش کن.")
         return redirect("/test")
     rec = load_result(token)
-    subs = sub_tracks_list(rec["majors"][0]) if rec and rec.get("majors") else []
+    subs = subtrack_links(rec["majors"][0]) if rec and rec.get("majors") else []
     return render_template(
         "result.html",
         rec=rec,
@@ -130,7 +131,7 @@ def test_submit():
 @app.route("/result/<token>")
 def result_page(token):
     rec = load_result(token)
-    subs = sub_tracks_list(rec["majors"][0]) if rec and rec.get("majors") else []
+    subs = subtrack_links(rec["majors"][0]) if rec and rec.get("majors") else []
     return render_template(
         "result.html",
         rec=rec,
@@ -184,7 +185,7 @@ def major_page(slug):
         major=major,
         rating=rating,
         my_rating=my_rating,
-        subs=sub_tracks_list(major),
+        subs=subtrack_links(major),
         title=f"{major.name} | آینده من",
         description=f"توضیح، دروس، مسیرِ بعد از دیپلم و امتیازاتِ رشته‌ی {major.name}.",
     )

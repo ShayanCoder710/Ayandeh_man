@@ -13,6 +13,7 @@
       {% for a in articles %}
       <article class="article-card reveal">
         <span class="article-minutes">{{ fa_num(a.minutes) }} دقیقه مطالعه</span>
+        {% if a.subtrack_parent %}<span class="article-subtrack">مقاله‌ی زیررشته</span>{% endif %}
         <h3><a href="/articles/{{ a.slug }}">{{ a.title }}</a></h3>
         <p>{{ a.summary }}</p>
         <a class="article-link" href="/articles/{{ a.slug }}">خواندن مقاله ←</a>

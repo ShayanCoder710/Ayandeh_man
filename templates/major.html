@@ -30,10 +30,14 @@
         {% if subs %}
         <div class="info-card reveal">
           <h2>زیررسته‌های این رشته</h2>
-          <p class="sub-intro">از {{ fa_num(subs|length) }} زیررشته و مسیری که می‌توانی دنبالشان کنی:</p>
+          <p class="sub-intro">از {{ fa_num(subs|length) }} زیررشته و مسیری که می‌توانی دنبالشان کنی؛ روی هر کدام بزن و درباره‌اش بخوان:</p>
           <div class="sub-track-list">
             {% for s in subs %}
-            <span class="sub-chip">{{ s }}</span>
+            {% if s.slug %}
+            <a class="sub-chip" href="/articles/{{ s.slug }}">{{ s.name }}</a>
+            {% else %}
+            <span class="sub-chip">{{ s.name }}</span>
+            {% endif %}
             {% endfor %}
           </div>
         </div>
