@@ -73,10 +73,10 @@ def inject_helpers():
 def index():
     return render_template(
         "index.html",
-        top=top_majors(6),
+        top=top_majors(4),
         articles_preview=load_articles()[:3],
         title="آینده من | راهنمای انتخاب رشته",
-        description="با تست شخصیت و علاقه، خوشه و رشته تحصیلی مناسب خودت را پیدا کن.",
+        description="با یک تستِ کوتاهِ شخصیت و علاقه، رشته‌ی دهمِ مناسبِ خودت را پیدا کن.",
     )
 
 
@@ -86,7 +86,7 @@ def test_page():
         "test.html",
         questions=load_questions(),
         title="تست شخصیت و علاقه | آینده من",
-        description="سؤالات کوتاهی از تو؛ در پایان خوشه‌ی غالب و رشته‌های پیشنهادی‌ات را ببین.",
+        description="سؤالات کوتاهی از تو؛ در پایان رشته‌ای که بهت می‌آید و ویژگی‌های بارزِ ذهنت را ببین.",
     )
 
 
@@ -120,7 +120,7 @@ def test_submit():
         share_url=url_for("result_page", token=token, _external=True),
         entries=entries_for_majors(rec["majors"]) if rec else [],
         title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
-        description="خوشه‌ی غالب و رشته‌های پیشنهادی تست شخصیت و علاقه.",
+        description="رشته‌ای که بهت می‌آید و ویژگی‌های بارزِ ذهنت.",
     )
 
 
@@ -134,7 +134,7 @@ def result_page(token):
         share_url=request.url,
         entries=entries_for_majors(rec["majors"]) if rec else [],
         title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
-        description="نتیجه‌ی ذخیره‌شده‌ی تست شخصیت و علاقه؛ خوشه‌ی غالب و رشته‌های پیشنهادی.",
+        description="نتیجه‌ی ذخیره‌شده‌ی تست؛ رشته‌ای که بهت می‌آید و ویژگی‌های ذهنت.",
     )
 
 
@@ -155,7 +155,7 @@ def majors_page():
         sort=sort,
         clusters=CLUSTERS,
         title="مشاهده رشته‌ها | آینده من",
-        description="جستجو و فیلتر رشته‌های تحصیلی بر اساس خوشه، سختی و محبوبیت.",
+        description="چهار رشته‌ی دبیرستانی از نهم به دهم: دروس، سختی و مسیرِ بعد از دیپلم.",
     )
 
 
@@ -180,7 +180,7 @@ def major_page(slug):
         rating=rating,
         my_rating=my_rating,
         title=f"{major.name} | آینده من",
-        description=f"توضیحات، دروس، بازار کار و امتیازات رشته‌ی {major.name}.",
+        description=f"توضیح، دروس، مسیرِ بعد از دیپلم و امتیازاتِ رشته‌ی {major.name}.",
     )
 
 

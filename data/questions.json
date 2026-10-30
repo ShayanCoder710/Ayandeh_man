@@ -5,49 +5,51 @@
       {
         "text": "روی یک پروژه برنامه‌نویسی یا حل یک مشکل فنی کار کردن",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "یک آزمایش انجام دادن یا پدیده‌ی جدیدی را مشاهده کردن",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "خواندن یک کتاب یا بحث درباره‌ی یک ایده‌ی تازه",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 1,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "نقاشی، طراحی یا ساختن چیزی خلاقانه",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "داستان‌گویی، تولید محتوا یا نوشتن برای دیگران",
         "weights": {
-          "humanities": 2,
-          "social": 1,
+          "ensani": 2,
           "media": 1
+        }
+      },
+      {
+        "text": "گفت‌وگو با دوستان یا کمک به کسی که به آن نیاز دارد",
+        "weights": {
+          "ensani": 3,
+          "care": 1
         }
       }
     ]
@@ -58,48 +60,50 @@
       {
         "text": "حل یک مسئله‌ی ریاضی پیچیده",
         "weights": {
-          "math": 3,
-          "sciences": 1,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 1,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "یادگیری درباره‌ی بدن انسان یا زیست‌کره",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "تحلیل یک مسئله‌ی اجتماعی یا حقوقی",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 1,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "ساختن چیزی که از نظر بصری زیبا باشد",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "گفت‌وگو با آدم‌ها و درک دنیای آن‌ها",
         "weights": {
-          "social": 3,
-          "humanities": 1
+          "ensani": 3
+        }
+      },
+      {
+        "text": "کار کردن با ابزار و ساختن چیزی به‌صورت عملی",
+        "weights": {
+          "applied": 3,
+          "fanni": 1
         }
       }
     ]
@@ -110,48 +114,52 @@
       {
         "text": "طراحی سیستم و حل مسائل فنی",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "بررسی دقیق داده‌ها و استناد به شواهد",
         "weights": {
-          "math": 1,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 1,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "چیدن تیم، تقسیم کار و پیشبرد گروه",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 3,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "طراحی ظاهر، لوگو و ارائه‌ی بصری",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "مستندات و گزارش؛ هیچ جزئیاتی از من رد نمی‌شود",
         "weights": {
-          "humanities": 2,
-          "math": 1
+          "ensani": 2,
+          "riyazi": 1
+        }
+      },
+      {
+        "text": "حل تنش‌ها و اختلاف‌های بین اعضای تیم",
+        "weights": {
+          "ensani": 2,
+          "care": 2,
+          "team": 1
         }
       }
     ]
@@ -162,47 +170,49 @@
       {
         "text": "ریاضی و فیزیک",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "شیمی و زیست‌شناسی",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "ادبیات، تاریخ و جغرافیا",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "هنر، نقاشی و طراحی",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "زیست و سلامت؛ درک کارکرد بدن آدم‌ها",
         "weights": {
-          "sciences": 3
+          "tajrobi": 3
+        }
+      },
+      {
+        "text": "مطالعات اجتماعی، اقتصاد یا روان‌شناسی",
+        "weights": {
+          "ensani": 3
         }
       }
     ]
@@ -213,48 +223,51 @@
       {
         "text": "برنامه‌نویسی و ساخت اپلیکیشن",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "کار در آزمایشگاه و تحقیق و توسعه",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "کاری در رسانه، خبر یا محتوای متنی",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "تولید و طراحی بصری",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "راه‌اندازی یک کسب‌وکار یا خدمتی که خودم آن را می‌سازم",
         "weights": {
-          "social": 2,
+          "ensani": 2,
           "income": 3
+        }
+      },
+      {
+        "text": "یک مهارت فنی و دستی؛ مثل تعمیرات، برق یا ساخت‌وساز",
+        "weights": {
+          "applied": 3,
+          "riyazi": 1
         }
       }
     ]
@@ -265,48 +278,51 @@
       {
         "text": "دوست دارم راه‌حل‌های دقیق و قطعی پیدا کنم",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "دنیای طبیعی و بدن انسان از همه‌چیز برایم کنجکاوی‌انگیزتر است",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "فکر کردن درباره‌ی علل رخدادها و نوشتن درباره‌ی آن‌ها برایم لذت‌بخش است",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 1,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "مدام در حال خیال‌پردازی درباره‌ی ایده‌ها و فرم‌های تازه‌ام",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "دوست دارم آرام و با تمرکزی عمیق کار کنم؛ محیط خلوت‌تر بهتر است",
         "weights": {
-          "math": 1,
+          "riyazi": 1,
           "solo": 3
+        }
+      },
+      {
+        "text": "دوست دارم آدم‌ها را بشناسم و با آن‌ها ارتباط بگیرم",
+        "weights": {
+          "ensani": 3,
+          "team": 1
         }
       }
     ]
@@ -317,48 +333,51 @@
       {
         "text": "تقسیم کردن آن به بخش‌های کوچک و حل منطقی",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "جست‌وجوی اطلاعات و آزمایش کردن فرض‌ها",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "مشورت با دیگران و نگاه به تصویر کلان",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 1,
-          "social": 3,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "پیدا کردن یک راه‌حل خلاقانه و متفاوت",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "دنبال تجربه‌ی واقعی آدم‌هایی می‌شوم که قبلاً با همین مشکل روبه‌رو شده‌اند",
         "weights": {
-          "social": 2,
-          "humanities": 1
+          "ensani": 2
+        }
+      },
+      {
+        "text": "به شهود و تجربه‌ی خودم تکیه می‌کنم و یک راه تازه امتحان می‌کنم",
+        "weights": {
+          "solo": 2,
+          "fanni": 1,
+          "applied": 1
         }
       }
     ]
@@ -369,48 +388,52 @@
       {
         "text": "مهندس نرم‌افزار یا داده",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "پژوهشگر بالینی یا آزمایشگاهی",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "وکیل، تحلیلگر اقتصادی یا خبرنگار",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "طراح صنعتی یا هنرمند بصری",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "پزشک، داروساز یا کسی که در خط‌نخست سلامت با آدم‌ها سروکار دارد",
         "weights": {
-          "sciences": 3,
+          "tajrobi": 3,
           "care": 2
+        }
+      },
+      {
+        "text": "مددکار اجتماعی، مشاور یا معلم",
+        "weights": {
+          "ensani": 3,
+          "care": 2,
+          "team": 1
         }
       }
     ]
@@ -421,49 +444,52 @@
       {
         "text": "شرکت فناوری با کدنویسی مداوم",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "آزمایشگاه، بیمارستان یا مرکز تحقیقات",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "مکانی پُرمشغله با ارتباط زیاد با افراد",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 3,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "اتاقی آرام و خلاقانه برای کار با ایده‌ها",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "فضای باز، سفر زیاد و کار میدانی",
         "weights": {
-          "sciences": 1,
-          "social": 2,
+          "tajrobi": 1,
+          "ensani": 2,
           "field": 3
+        }
+      },
+      {
+        "text": "دفتری برای نوشتن، تحلیل و پژوهش",
+        "weights": {
+          "ensani": 3,
+          "office": 2
         }
       }
     ]
@@ -474,49 +500,52 @@
       {
         "text": "نحوه ساخت آن و جزئیات فنی",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "مکانیسم علمی پشت آن",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "پیامدهای اجتماعی و اقتصادی‌اش برای مردم",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 1,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "اینکه چگونه می‌شود چیزهای زیباتری را ممکن کرد",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "چگونه می‌تواند به‌صورت اقتصادی و به‌مقیاس تولید شود",
         "weights": {
-          "math": 1,
-          "social": 1,
+          "riyazi": 1,
+          "ensani": 1,
           "income": 2
+        }
+      },
+      {
+        "text": "آیا با ارزش‌ها و اخلاقیات من سازگار است؟",
+        "weights": {
+          "ensani": 2,
+          "impact": 2
         }
       }
     ]
@@ -527,48 +556,50 @@
       {
         "text": "دوست دارم قواعد روشن و اعداد دقیق داشته باشم",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "مشاهده دقیق و سنجش منظم برایم مهم است",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "بحث آزاد و فکر کردن بدون قید و قانون",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "رنگ‌ها، فرم‌ها و شکل‌های تازه چشمانم را خسته نمی‌کند",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "قابل‌اعتماد بودن و پایبندِ قول ماندن برایم از همه‌چیز مهم‌تر است",
         "weights": {
-          "humanities": 2,
-          "social": 1
+          "ensani": 2
+        }
+      },
+      {
+        "text": "رسیدن به نتیجه با همکاری و همفکری دیگران",
+        "weights": {
+          "team": 3,
+          "ensani": 2
         }
       }
     ]
@@ -579,48 +610,51 @@
       {
         "text": "منطق محکم و نتیجه‌ی مشخص",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "شواهد و داده‌های قابل استناد",
         "weights": {
-          "math": 1,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 1,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "اثر تصمیم بر دیگران و جامعه",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 1,
-          "social": 3,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "ذوق شخصی و آزادی خلاقیت",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "درآمد و وضع اقتصادیِ کار",
         "weights": {
-          "social": 1,
+          "ensani": 1,
           "income": 3
+        }
+      },
+      {
+        "text": "درست و منطبق با قواعد و قانون بودن",
+        "weights": {
+          "ensani": 3,
+          "logical": 1
         }
       }
     ]
@@ -631,49 +665,52 @@
       {
         "text": "حل کردن مسائل ریاضی و اثبات نظریه‌ها",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "خواندن و فهمیدن دنیای سلول‌ها و مولکول‌ها",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "بحث درباره‌ی مسائل روز جامعه و جهان",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 2,
-          "social": 2,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 2,
+          "fanni": 0
         }
       },
       {
         "text": "طراحی و ساختن یک پروژه‌ی دیجیتال و تعاملی",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "مراقبت از بیمار، کودک یا سالمندی که نیاز به توجه کامل دارد",
         "weights": {
-          "sciences": 1,
-          "social": 1,
+          "tajrobi": 1,
+          "ensani": 1,
           "care": 3
+        }
+      },
+      {
+        "text": "نوشتن و بازنویسی متن؛ ساختن یک روایت",
+        "weights": {
+          "ensani": 3,
+          "media": 2
         }
       }
     ]
@@ -684,48 +721,51 @@
       {
         "text": "دوست دارم حساب همه‌چیز برایم درست در بیاید",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "از فهمیدن اینکه هر چیزی چرا این‌طور است، انرژی می‌گیرم",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "درک آدم‌ها و وقایع برایم از ماشین‌ها مهم‌تر است",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 1,
-          "social": 3,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "نمی‌توانم با فضاها و طرح‌های نامنظم کنار بیایم",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "دوست دارم مسئول باشم؛ تصمیم بگیرم و بقیه را به سمت هدف ببرم",
         "weights": {
-          "social": 3,
+          "ensani": 3,
           "leader": 3
+        }
+      },
+      {
+        "text": "دوست دارم با دست‌هایم چیزی بسازم یا تعمیر کنم",
+        "weights": {
+          "applied": 3,
+          "tajrobi": 1
         }
       }
     ]
@@ -736,48 +776,52 @@
       {
         "text": "اینکه سخت‌ترین مسائل درس را از پیش تحویل داده‌ام",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "اینکه یک آزمایش را خودم از ابتدا تا انتها اجرا کرده‌ام",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "اینکه یک نوشته‌ی منسجم و با فکر آماده کرده‌ام",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "اینکه یک اثر عینی ساخته‌ام که دیگران می‌بینند و لمس می‌کنند",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "کاری که اثر واقعی‌اش را روی زندگی آدم‌ها دیدم",
         "weights": {
-          "social": 3,
+          "ensani": 3,
           "impact": 3
+        }
+      },
+      {
+        "text": "اینکه با یک تیم خوب کاری را به سرانجام رسانده‌ام",
+        "weights": {
+          "team": 3,
+          "leader": 1,
+          "ensani": 1
         }
       }
     ]
@@ -788,49 +832,51 @@
       {
         "text": "ریاضی و منطق؛ چون پایه‌ی همه‌چیز است",
         "weights": {
-          "math": 3,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 3,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "فیزیک و شیمی؛ چون دنیا را از ریشه توضیح می‌دهند",
         "weights": {
-          "math": 0,
-          "sciences": 3,
-          "humanities": 0,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 3,
+          "ensani": 0,
+          "fanni": 0
         }
       },
       {
         "text": "ادبیات و تاریخ؛ چون آدم‌ها و وقایع را معنا می‌کنند",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 3,
-          "social": 0,
-          "arts": 0
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 3,
+          "fanni": 0
         }
       },
       {
         "text": "هنر و طراحی؛ چون نگاه تازه‌ای می‌سازد",
         "weights": {
-          "math": 0,
-          "sciences": 0,
-          "humanities": 0,
-          "social": 0,
-          "arts": 3
+          "riyazi": 0,
+          "tajrobi": 0,
+          "ensani": 0,
+          "fanni": 3
         }
       },
       {
         "text": "ورزش یا یک کارگاه عملی؛ چیزی که با دست و عمل بسازم",
         "weights": {
-          "sciences": 1,
-          "arts": 1,
+          "tajrobi": 1,
+          "fanni": 1,
           "applied": 3
+        }
+      },
+      {
+        "text": "مطالعات اجتماعی یا روان‌شناسی؛ چون به فهم آدم‌ها و جامعه کمک می‌کند",
+        "weights": {
+          "ensani": 3
         }
       }
     ]
@@ -841,45 +887,45 @@
       {
         "text": "دفتر مدرن یا یک تیم استارتاپی",
         "weights": {
-          "math": 1,
-          "social": 2,
+          "riyazi": 1,
+          "ensani": 2,
           "office": 3
         }
       },
       {
         "text": "بیمارستان، آزمایشگاه یا اتاق معاینه",
         "weights": {
-          "sciences": 3,
+          "tajrobi": 3,
           "care": 2
         }
       },
       {
         "text": "میز مذاکره یا تالار؛ جایی که با کلمه کار می‌کنی",
         "weights": {
-          "humanities": 3,
+          "ensani": 3,
           "media": 1
         }
       },
       {
         "text": "استودیو یا فضایی خلاق که کار کردن در آن لذت‌بخش است",
         "weights": {
-          "arts": 3,
+          "fanni": 3,
           "solo": 1
         }
       },
       {
         "text": "میدان، دریا یا طبیعت؛ همراه با سفر و حضور زیاد",
         "weights": {
-          "sciences": 1,
-          "social": 1,
+          "tajrobi": 1,
+          "ensani": 1,
           "field": 3
         }
       },
       {
         "text": "جلوی دوربین، استیج یا پلتفرم‌های دیجیتال",
         "weights": {
-          "humanities": 1,
-          "arts": 2,
+          "ensani": 1,
+          "fanni": 2,
           "media": 3
         }
       }
@@ -891,35 +937,35 @@
       {
         "text": "درآمد بالا و قابل‌پیش‌بینی",
         "weights": {
-          "social": 1,
+          "ensani": 1,
           "income": 3
         }
       },
       {
         "text": "پتانسیل رشدِ بلندمدت حتی اگر کندتر شروع شود",
         "weights": {
-          "math": 1,
+          "riyazi": 1,
           "income": 1
         }
       },
       {
         "text": "معنای کار؛ مبلغ کمتر اما اثرگذار",
         "weights": {
-          "humanities": 2,
+          "ensani": 2,
           "impact": 3
         }
       },
       {
         "text": "آزادی انتخاب ساعت و نوع کار",
         "weights": {
-          "arts": 1,
+          "fanni": 1,
           "solo": 3
         }
       },
       {
         "text": "سازمان بزرگ و مسیر شغلی مشخص",
         "weights": {
-          "social": 2,
+          "ensani": 2,
           "stable": 3
         }
       }
@@ -931,36 +977,35 @@
       {
         "text": "جدول مزایا و معایب، محاسبه و مقایسه",
         "weights": {
-          "math": 3,
+          "riyazi": 3,
           "logical": 3
         }
       },
       {
         "text": "مشورت با یک آدم باتجربه",
         "weights": {
-          "social": 3,
+          "ensani": 3,
           "stable": 1
         }
       },
       {
         "text": "اینکه با خودم و حسم خوب کار می‌کنم",
         "weights": {
-          "arts": 2,
-          "humanities": 1
+          "fanni": 2,
+          "ensani": 1
         }
       },
       {
         "text": "آزمون و خطا؛ امتحان می‌کنم و می‌بینم چه می‌شود",
         "weights": {
-          "sciences": 2,
+          "tajrobi": 2,
           "applied": 2
         }
       },
       {
         "text": "گفت‌وگو با آدم‌های اطرافم و استفاده از تجربه‌شان",
         "weights": {
-          "social": 2,
-          "humanities": 1,
+          "ensani": 2,
           "team": 1
         }
       }
@@ -972,36 +1017,36 @@
       {
         "text": "رهبر؛ هدف و نقشه را من می‌چینم",
         "weights": {
-          "math": 1,
-          "social": 2,
+          "riyazi": 1,
+          "ensani": 2,
           "leader": 3
         }
       },
       {
         "text": "اجرا؛ جزئیات فنی با من است",
         "weights": {
-          "math": 3,
+          "riyazi": 3,
           "applied": 2
         }
       },
       {
         "text": "اتصال‌دهنده؛ اختلاف‌ها را حل می‌کنم و تیم را یک‌پارچه نگه می‌دارم",
         "weights": {
-          "social": 3,
+          "ensani": 3,
           "team": 2
         }
       },
       {
         "text": "طراحی چهره و پیامِ کار",
         "weights": {
-          "arts": 3
+          "fanni": 3
         }
       },
       {
         "text": "مستندسازی و گزارش؛ هیچ چیز از من رد نمی‌شود",
         "weights": {
-          "humanities": 2,
-          "math": 1
+          "ensani": 2,
+          "riyazi": 1
         }
       }
     ]
@@ -1012,21 +1057,21 @@
       {
         "text": "هدف قطعی؛ از الان برایش برنامه دارم",
         "weights": {
-          "math": 1,
+          "riyazi": 1,
           "stable": 1
         }
       },
       {
         "text": "گزینه‌ای که اگر رشته‌ام آنجا قوی‌تر باشد دنبال می‌کنم",
         "weights": {
-          "sciences": 1,
-          "math": 1
+          "tajrobi": 1,
+          "riyazi": 1
         }
       },
       {
         "text": "نه؛ می‌خواهم همین‌جا بمانم و رشد کنم",
         "weights": {
-          "humanities": 2
+          "ensani": 2
         }
       },
       {
@@ -1036,7 +1081,7 @@
       {
         "text": "بستگی به وضعیت رشته‌ام در آن کشور دارد",
         "weights": {
-          "social": 1,
+          "ensani": 1,
           "stable": 1
         }
       }
@@ -1048,35 +1093,35 @@
       {
         "text": "فشار و رقابت را دوست دارم؛ با آن‌ها خوب کار می‌کنم",
         "weights": {
-          "math": 2,
+          "riyazi": 2,
           "competitive": 3
         }
       },
       {
         "text": "با برنامه‌ریزی درست، قابل مدیریت است",
         "weights": {
-          "math": 1,
+          "riyazi": 1,
           "logical": 1
         }
       },
       {
         "text": "فشار زیاد به من آسیب می‌زند؛ محیط آرام‌تر را ترجیح می‌دهم",
         "weights": {
-          "humanities": 1,
+          "ensani": 1,
           "calm": 3
         }
       },
       {
         "text": "رقابت سالم، نه رقابتِ کورکورانه",
         "weights": {
-          "social": 2,
+          "ensani": 2,
           "team": 1
         }
       },
       {
         "text": "ترجیح می‌دهم کارم مستقل و بدون مقایسه باشد",
         "weights": {
-          "arts": 1,
+          "fanni": 1,
           "solo": 2
         }
       }
@@ -1088,42 +1133,41 @@
       {
         "text": "برنامه‌نویسی و الگوریتم",
         "weights": {
-          "math": 3,
+          "riyazi": 3,
           "applied": 1
         }
       },
       {
         "text": "ارتباط مؤثر و سخنوری",
         "weights": {
-          "social": 3,
-          "humanities": 1,
+          "ensani": 3,
           "media": 2
         }
       },
       {
         "text": "بیماری‌شناسی و کمک‌های درمانی",
         "weights": {
-          "sciences": 3,
+          "tajrobi": 3,
           "care": 3
         }
       },
       {
         "text": "طراحی و زبان بصری",
         "weights": {
-          "arts": 3
+          "fanni": 3
         }
       },
       {
         "text": "آمار و تحلیل داده",
         "weights": {
-          "math": 3
+          "riyazi": 3
         }
       },
       {
         "text": "پخت‌وپز، کشاورزی یا یک صنعت دستی",
         "weights": {
-          "sciences": 1,
-          "arts": 2,
+          "tajrobi": 1,
+          "fanni": 2,
           "applied": 3
         }
       }
@@ -1135,35 +1179,35 @@
       {
         "text": "رفعِ یک اشکال نرم‌افزار",
         "weights": {
-          "math": 3,
+          "riyazi": 3,
           "applied": 1
         }
       },
       {
         "text": "معاینه‌ی یک بیمار یا اجرای یک آزمایش",
         "weights": {
-          "sciences": 3,
+          "tajrobi": 3,
           "care": 2
         }
       },
       {
         "text": "نوشتن یا روایت کردن",
         "weights": {
-          "humanities": 3,
+          "ensani": 3,
           "media": 1
         }
       },
       {
         "text": "سازمان‌دهی یک رویداد یا پروژه",
         "weights": {
-          "social": 3,
+          "ensani": 3,
           "leader": 2
         }
       },
       {
         "text": "ساختن چیزی که اثرش را ببینم",
         "weights": {
-          "arts": 3
+          "fanni": 3
         }
       }
     ]
@@ -1174,7 +1218,7 @@
       {
         "text": "دوره‌ی آنلاین یا مستند بلند درباره‌ی موضوعی که برایم کنجکاوی‌برانگیز است",
         "weights": {
-          "sciences": 1,
+          "tajrobi": 1,
           "media": 1
         }
       },
@@ -1183,7 +1227,7 @@
         "weights": {
           "field": 2,
           "solo": 1,
-          "arts": 1
+          "fanni": 1
         }
       },
       {
@@ -1197,13 +1241,13 @@
         "text": "ساختن یک پروژه‌ی شخصی یا رفعِ ایراد یک وسیله",
         "weights": {
           "applied": 2,
-          "math": 1
+          "riyazi": 1
         }
       },
       {
         "text": "نوشتن یک داستان، مقاله یا خاطره‌نویسی",
         "weights": {
-          "humanities": 2,
+          "ensani": 2,
           "media": 1
         }
       },
@@ -1212,7 +1256,7 @@
         "weights": {
           "calm": 2,
           "solo": 1,
-          "humanities": 1
+          "ensani": 1
         }
       }
     ]
@@ -1224,7 +1268,7 @@
         "text": "چیننده؛ نقشه را مشخص می‌کنم و گروه را به جلو می‌رسانم",
         "weights": {
           "leader": 3,
-          "social": 1
+          "ensani": 1
         }
       },
       {
@@ -1239,20 +1283,20 @@
         "weights": {
           "logical": 2,
           "competitive": 1,
-          "math": 1
+          "riyazi": 1
         }
       },
       {
         "text": "پشت‌صحنه‌ای؛ آرام ایده می‌سازم و چیز تازه‌ای خلق می‌کنم",
         "weights": {
           "solo": 2,
-          "arts": 2
+          "fanni": 2
         }
       },
       {
         "text": "شنونده؛ دغدغه‌ی همه را درک می‌کنم و راهنمایی‌شان می‌کنم",
         "weights": {
-          "social": 3,
+          "ensani": 3,
           "care": 1
         }
       }
@@ -1272,7 +1316,7 @@
       {
         "text": "دستیابی به یک یافته‌ی علمی یا حل یک مسئله‌ی تحقیقاتی",
         "weights": {
-          "sciences": 2,
+          "tajrobi": 2,
           "logical": 2
         }
       },
@@ -1280,7 +1324,7 @@
         "text": "تولید محتوایی که هزاران نفر آن را ببینند",
         "weights": {
           "media": 3,
-          "arts": 1
+          "fanni": 1
         }
       },
       {
@@ -1288,19 +1332,19 @@
         "weights": {
           "care": 2,
           "impact": 2,
-          "social": 1
+          "ensani": 1
         }
       },
       {
         "text": "طراحی فضایی یا محصولی که مردم آن را دوست داشته باشند",
         "weights": {
-          "arts": 3
+          "fanni": 3
         }
       },
       {
         "text": "یک نقش عمومی که قواعد اجتماعی را تغییر می‌دهد",
         "weights": {
-          "social": 2,
+          "ensani": 2,
           "leader": 1,
           "impact": 1
         }
@@ -1329,7 +1373,7 @@
         "weights": {
           "competitive": 1,
           "solo": 1,
-          "arts": 1
+          "fanni": 1
         }
       },
       {
@@ -1343,7 +1387,7 @@
         "text": "درآمدِ ثابت و مسیر شغلی روشن، مثلاً در یک سازمان بزرگ",
         "weights": {
           "stable": 3,
-          "social": 1
+          "ensani": 1
         }
       }
     ]
@@ -1354,34 +1398,34 @@
       {
         "text": "برنامه‌نویسی و داده؛ ساختن سیستم‌های هوشمند",
         "weights": {
-          "math": 3,
+          "riyazi": 3,
           "applied": 1
         }
       },
       {
         "text": "پزشکی یا پژوهش؛ درک، درمان و کمک به انسان",
         "weights": {
-          "sciences": 2,
+          "tajrobi": 2,
           "care": 2
         }
       },
       {
         "text": "نویسندگی و روزنامه‌نگاری؛ روایت‌گری و جست‌وجو",
         "weights": {
-          "humanities": 2,
+          "ensani": 2,
           "media": 2
         }
       },
       {
         "text": "طراحی و زبان بصری؛ زیبا و کاربردی ساختن",
         "weights": {
-          "arts": 3
+          "fanni": 3
         }
       },
       {
         "text": "سخنرانی و کارآفرینی؛ بیدار کردن آدم‌ها به یک هدف",
         "weights": {
-          "social": 2,
+          "ensani": 2,
           "leader": 2,
           "income": 1
         }
@@ -1411,7 +1455,7 @@
         "weights": {
           "applied": 1,
           "calm": 1,
-          "arts": 1
+          "fanni": 1
         }
       },
       {

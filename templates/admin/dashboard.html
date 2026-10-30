@@ -17,7 +17,7 @@
       </div>
       <div class="stat-card">
         <span class="stat-num">{{ cluster_name(stats.top_cluster) if stats.top_cluster else "—" }}</span>
-        <span class="stat-label">پرتقاضاترین خوشه</span>
+        <span class="stat-label">پرتکرارترین رشته‌ی پیشنهادی</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">{{ stats.top_trait or "—" }}</span>
@@ -31,7 +31,7 @@
 
     <div class="admin-panels">
       <div class="admin-panel reveal">
-        <h2 class="admin-panel-title">توزیع بر اساس خوشه</h2>
+        <h2 class="admin-panel-title">توزیع بر اساس رشته</h2>
         {% if stats.total %}
         <div class="dist-list">
           {% for slug, label in clusters.items() %}
@@ -83,7 +83,7 @@
             <tr>
               <th>شماره</th>
               <th>تاریخ</th>
-              <th>خوشه</th>
+              <th>رشته</th>
               <th>ویژگی‌ها</th>
               <th>برترین رشته‌ها</th>
               <th>عملیات</th>

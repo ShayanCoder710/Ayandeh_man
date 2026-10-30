@@ -6,7 +6,7 @@
     {% if rec %}
     <div class="result-hero reveal">
       <span class="hero-badge">نتیجه‌ی تست شخصیت و علاقه</span>
-      <h1>خوشه‌ی غالب تو: <span class="cluster-name">{{ cluster_name(rec.cluster) }}</span></h1>
+      <h1>رشته‌ای که بهت می‌آید: <span class="cluster-name">{{ cluster_name(rec.cluster) }}</span></h1>
       <p>{{ CLUSTER_BLURBS.get(rec.cluster, "") }}</p>
       {% if rec.traits %}
       <div class="trait-row">
@@ -17,14 +17,14 @@
       </div>
       {% endif %}
       <div class="hero-actions center-flex">
-        <a class="btn btn-primary" href="#recommended">رشته‌های پیشنهادی‌ام</a>
-        <a class="btn btn-outline" href="/majors">همه رشته‌ها</a>
+        <a class="btn btn-primary" href="#recommended">رشته‌ی پیشنهادی‌ام</a>
+        <a class="btn btn-outline" href="/majors">همه‌ی رشته‌ها</a>
       </div>
     </div>
 
     <div class="section" id="recommended">
-      <h2 class="section-title">رشته‌های پیشنهادی برای تو</h2>
-      <p class="section-sub">بر اساس خوشه‌ی غالب، برترین رشته‌های این خوشه را برایت انتخاب کرده‌ایم.</p>
+      <h2 class="section-title">رشته‌ی پیشنهادی برای تو</h2>
+      <p class="section-sub">بر اساس پاسخ‌هات، این رشته‌ی دبیرستانی بیشترین سازگاری را با تو دارد؛ اگر بین دو رشته مردد هستی، آن‌ها را در صفحه‌ی مقایسه کنار هم بگذار.</p>
       {% if entries %}
       <div class="recommended-grid">
         {% for e in entries %}
@@ -32,7 +32,7 @@
         {% endfor %}
       </div>
       {% else %}
-      <div class="empty-state">هنوز رشته‌ای در این خوشه تعریف نشده است.</div>
+      <div class="empty-state">هنوز رشته‌ای تعریف نشده است.</div>
       {% endif %}
 
       <div class="section">

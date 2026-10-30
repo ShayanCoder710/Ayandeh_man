@@ -1,23 +1,22 @@
 # Ayandeh-man (آینده من)
 
-A small web app that helps Iranian students finishing 9th grade pick their high-school track
-(math, experimental sciences, humanities, or vocational) for 10th grade. Instead of a long
-questionnaire, it runs a short personality-and-interest test, scores the answers against several
-academic clusters (math & physics, natural sciences, humanities, social sciences, arts & design) plus
-a set of work-style traits (teamwork, income focus, leadership, media, care, field work, ...), and
-recommends target majors that fit the person.
+A small web app that helps Iranian students finishing 9th grade pick their 10th-grade high-school
+track (ریاضی, تجربی, انسانی, or فنی‌وحرفه‌ای). Instead of a long
+questionnaire, it runs a short personality-and-interest test, scores the answers against the four
+high-school tracks plus a set of work-style traits (teamwork, income focus, leadership, media,
+care, field work, ...), and recommends the track that fits the person.
 
 ## What it does
 
 - Personality and interest test: 30 questions, 5-6 options each. No right or wrong answers.
-- Result page: dominant academic cluster, top work-style traits, up to six recommended majors, and a
-  shareable link that anyone can open to see the same result.
-- Admin panel at `/admin` (login credentials live in `config.py`): total results, cluster
-  distribution, most-used traits and recommended majors, plus a table of recent results that an admin
-  can open or delete.
-- Major catalog: 35 target majors (to pursue after high school) with description, key courses, job
-  market, pros and cons, and a 1-5 user rating per visitor (stored per browser).
-- Side-by-side comparison of any two majors.
+- Result page: the recommended high-school track, top work-style traits, and a shareable link that
+  anyone can open to see the same result.
+- Admin panel at `/admin` (login credentials live in `config.py`): total results, track
+  distribution, most-used traits and recommended tracks, plus a table of recent results that an
+  admin can open or delete.
+- Track catalog: the four 10th-grade tracks with description, subjects, path after the diploma,
+  pros and cons, and a 1-5 user rating per visitor (stored per browser).
+- Side-by-side comparison of any two tracks.
 - A step-by-step guide and a set of short reading articles on choosing a high-school track.
 
 ## Stack
