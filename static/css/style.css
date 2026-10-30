@@ -996,6 +996,10 @@ textarea:focus {
   color: var(--ink);
 }
 
+.sub-more {
+  margin-top: 12px;
+}
+
 .sub-track-list {
   display: flex;
   flex-wrap: wrap;

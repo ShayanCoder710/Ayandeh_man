@@ -114,12 +114,14 @@ def test_submit():
         flash("امکان ذخیره‌ی نتیجه نبود؛ دوباره تلاش کن.")
         return redirect("/test")
     rec = load_result(token)
+    subs = sub_tracks_list(rec["majors"][0]) if rec and rec.get("majors") else []
     return render_template(
         "result.html",
         rec=rec,
         token=token,
         share_url=url_for("result_page", token=token, _external=True),
         entries=entries_for_majors(rec["majors"]) if rec else [],
+        top_subs=subs,
         title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
         description="رشته‌ای که بهت می‌آید و ویژگی‌های بارزِ ذهنت.",
     )
@@ -128,12 +130,14 @@ def test_submit():
 @app.route("/result/<token>")
 def result_page(token):
     rec = load_result(token)
+    subs = sub_tracks_list(rec["majors"][0]) if rec and rec.get("majors") else []
     return render_template(
         "result.html",
         rec=rec,
         token=token,
         share_url=request.url,
         entries=entries_for_majors(rec["majors"]) if rec else [],
+        top_subs=subs,
         title="نتیجه‌ی تست شخصیت و علاقه | آینده من",
         description="نتیجه‌ی ذخیره‌شده‌ی تست؛ رشته‌ای که بهت می‌آید و ویژگی‌های ذهنت.",
     )
