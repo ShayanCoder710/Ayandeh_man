@@ -1,4 +1,5 @@
 import functools
+import os
 import secrets
 
 from flask import Flask, abort, flash, redirect, render_template, request, session, url_for
@@ -62,12 +63,18 @@ def not_found(_error):
 
 @app.context_processor
 def inject_helpers():
+    css_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "css", "style.css")
+    try:
+        asset_version = str(int(os.path.getmtime(css_path)))
+    except OSError:
+        asset_version = "0"
     return {
         "cluster_name": cluster_name,
         "stars_html": stars_html,
         "difficulty_dots": difficulty_dots,
         "fa_num": fa_num,
         "CLUSTER_BLURBS": CLUSTER_BLURBS,
+        "asset_version": asset_version,
     }
 
 

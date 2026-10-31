@@ -1155,7 +1155,6 @@ a.sub-chip:hover {
   font-size: 0.95rem;
   line-height: 1.9;
   border-inline-start: 1px solid var(--line);
-  white-space: pre-line;
 }
 
 .head-name {
