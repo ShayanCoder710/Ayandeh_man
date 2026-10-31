@@ -335,3 +335,9 @@ def admin_delete(token):
     else:
         flash("نتیجه پیدا نشد یا حذف نشد.")
     return redirect(url_for("admin_dashboard"))
+
+
+@app.route("/socket.io/", methods=["GET", "POST"])
+@app.route("/socket.io/<path:_sub>", methods=["GET", "POST"])
+def socketio_unavailable():
+    return "این اپلیکیشن سرویس real-time ندارد.", 404
