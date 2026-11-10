@@ -2138,3 +2138,103 @@ a.sub-chip:hover {
 .search-hint .sub-track-list {
   justify-content: center;
 }
+
+.faceoff-pick {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.faceoff-result {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+}
+
+.faceoff-winner {
+  color: var(--primary);
+}
+
+.faceoff-sub {
+  color: var(--muted);
+}
+
+.faceoff-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  margin: 22px 0;
+}
+
+.faceoff-bar-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  min-width: 88px;
+}
+
+.faceoff-bar-name strong {
+  font-size: 1.3rem;
+  color: var(--primary-dark);
+}
+
+.faceoff-bar-track {
+  display: flex;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--primary-soft);
+}
+
+.faceoff-fill-a {
+  background: linear-gradient(135deg, #3f86f0, var(--primary));
+}
+
+.faceoff-fill-b {
+  background: var(--primary);
+}
+
+.faceoff-reasons {
+  margin: 18px 0;
+}
+
+.section-title-sm {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.faceoff-reason {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 6px 0;
+}
+
+.faceoff-subs {
+  margin: 18px 0;
+}
+
+.faceoff-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.faceoff-cta {
+  margin-top: 24px;
+  padding: 18px 22px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+}

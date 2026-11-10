@@ -29,6 +29,9 @@ from func import (
     difficulty_dots,
     entries_for_majors,
     fa_num,
+    faceoff_pair,
+    faceoff_questions,
+    faceoff_score,
     get_article,
     get_major,
     get_my_rating,
@@ -260,6 +263,53 @@ def search_page():
         total=total,
         title="جستجو در آینده من",
         description="جستجو در رشته‌ها، زیررشته‌ها و مقالات آینده من.",
+    )
+
+
+@app.route("/faceoff", methods=["GET", "POST"])
+def faceoff_page():
+    a = request.args.get("a", "").strip()
+    b = request.args.get("b", "").strip()
+    if request.method == "POST":
+        a = request.form.get("a", "").strip()
+        b = request.form.get("b", "").strip()
+    pair = faceoff_pair(a, b)
+    questions = faceoff_questions(a, b) if pair else []
+    result = None
+    if request.method == "POST" and pair and questions:
+        answers = {}
+        valid_ids = set()
+        for q in questions:
+            option_ids = [str(o["id"]) for o in q["options"]]
+            valid_ids.update(option_ids)
+            answers[str(q["id"])] = request.form.get(f"f{q['id']}", "")
+        if all(answers.values()) and all(v in valid_ids for v in answers.values()):
+            result = faceoff_score(answers, a, b)
+        else:
+            flash("لطفاً به همه‌ی ۱۲ سؤال پاسخ بده تا نتایج را ببینی.")
+    major_a, major_b = pair if pair else (None, None)
+    majors = load_majors()
+    options = [{"slug": m.slug, "name": m.name} for m in majors]
+    winner_slug = None
+    winner = None
+    if result and not result["tie"]:
+        winner_slug = a if result["pct_a"] > result["pct_b"] else b
+        winner = major_a if winner_slug == a else major_b
+    return render_template(
+        "faceoff.html",
+        major_a=major_a,
+        major_b=major_b,
+        a=a,
+        b=b,
+        pair=pair,
+        questions=questions,
+        result=result,
+        winner=winner,
+        winner_slug=winner_slug,
+        winner_subs=subtrack_links(winner) if winner else [],
+        options=options,
+        title="مسابقه‌ی دو رشته | آینده من",
+        description="دو رشته‌ی موردنظرت را انتخاب کن و با ۱۲ سؤال ببین کدام برای تو مناسب‌تر است.",
     )
 
 

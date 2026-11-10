@@ -88,7 +88,11 @@ def load_questions():
                 "id": q.id,
                 "text": q.text,
                 "options": [
-                    {"id": o.id, "text": o.text}
+                    {
+                        "id": o.id,
+                        "text": o.text,
+                        "weights": o.weights or {},
+                    }
                     for o in sorted(q.options, key=lambda o: o.id)
                 ],
             }
@@ -491,6 +495,93 @@ def get_article(slug):
 
 def normalize_fa(text):
     return (text or "").replace("\u200c", "").lower()
+
+
+def faceoff_pair(slug_a, slug_b):
+    if not slug_a or not slug_b or slug_a == slug_b:
+        return None
+    major_a = get_major(slug_a)
+    major_b = get_major(slug_b)
+    if major_a is None or major_b is None:
+        return None
+    return major_a, major_b
+
+
+def faceoff_questions(slug_a, slug_b, count=12):
+    pair = faceoff_pair(slug_a, slug_b)
+    if pair is None:
+        return []
+    questions = load_questions()
+    if not questions:
+        return []
+    ranked = sorted(
+        questions,
+        key=lambda q: -sum(
+            min(
+                (o.get("weights") or {}).get(slug_a, 0)
+                + (o.get("weights") or {}).get(slug_b, 0),
+                4,
+            )
+            for o in q["options"]
+        ),
+    )
+    return ranked[:count]
+
+
+def faceoff_score(answers, slug_a, slug_b):
+    def to_int(value):
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    score_a = 0
+    score_b = 0
+    reasons = []
+    try:
+        option_ids = [
+            parsed
+            for parsed in (to_int(oid) for oid in (answers or {}).values())
+            if parsed is not None
+        ]
+        weights_by_option = {}
+        if option_ids:
+            options = QuestionOption.query.filter(
+                QuestionOption.id.in_(option_ids)
+            ).all()
+            weights_by_option = {o.id: (o.weights or {}) for o in options}
+        questions = {q["id"]: q for q in load_questions()}
+        for qid, oid in (answers or {}).items():
+            oid_int = to_int(oid)
+            question = questions.get(to_int(qid))
+            weights = weights_by_option.get(oid_int)
+            if not question or not weights:
+                continue
+            w_a = int(weights.get(slug_a, 0) or 0)
+            w_b = int(weights.get(slug_b, 0) or 0)
+            score_a += w_a
+            score_b += w_b
+            diff = w_a - w_b
+            if diff != 0:
+                reasons.append(
+                    {
+                        "question": question["text"],
+                        "winner": slug_a if diff > 0 else slug_b,
+                        "strength": abs(diff),
+                    }
+                )
+    except Exception:
+        pass
+    reasons.sort(key=lambda r: -r["strength"])
+    total = score_a + score_b
+    if total == 0:
+        return {"pct_a": 50, "pct_b": 50, "tie": True, "reasons": []}
+    return {
+        "pct_a": round(score_a * 100 / total),
+        "pct_b": round(score_b * 100 / total),
+        "tie": score_a == score_b,
+        "reasons": reasons[:3],
+    }
 
 
 def search_site(query):

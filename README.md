@@ -17,7 +17,12 @@ care, field work, ...), and recommends the track that fits the person.
 - Track catalog: the four 10th-grade tracks with description, subjects, path after the diploma,
   pros and cons, and a 1-5 user rating per visitor (stored per browser).
 - Side-by-side comparison of any two tracks.
+- Face-off of two tracks (`/faceoff`): pick the two tracks you are torn between, answer the 12
+  most relevant questions, and get a weighted verdict with the strongest deciding answers and
+  the winner's sub-track paths.
 - A step-by-step guide and a set of short reading articles on choosing a high-school track.
+- Site-wide search over tracks, sub-tracks and articles (`/search`), plus a light/dark theme
+  toggle, and draft persistence for the personality test.
 
 ## Stack
 

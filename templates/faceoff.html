@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <h1>مسابقه‌ی دو رشته</h1>
+    <p>دو رشته‌ای که بینشان مرددی را انتخاب کن؛ ۱۲ سؤالِ هدفمند می‌پرسی و نتیجه می‌بینی کدام بیشتر با تو می‌نشیند. این ابزار سؤالاتی می‌سازد که بیشترین ربط را به همان دو رشته دارند.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="faceoff-pick" method="get" action="/faceoff">
+      <select name="a" id="fa">
+        <option value="">رشته‌ی اول را انتخاب کن...</option>
+        {% for o in options %}
+        <option value="{{ o.slug }}" {% if o.slug == a %}selected{% endif %}>{{ o.name }}</option>
+        {% endfor %}
+      </select>
+      <select name="b" id="fb">
+        <option value="">رشته‌ی دوم را انتخاب کن...</option>
+        {% for o in options %}
+        <option value="{{ o.slug }}" {% if o.slug == b %}selected{% endif %}>{{ o.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary">شروع مقایسه</button>
+      <a class="btn btn-outline btn-sm" href="/faceoff">پاک کردن</a>
+    </form>
+
+    {% if pair and result %}
+    <div class="faceoff-result reveal">
+      {% if result.tie %}
+      <span class="hero-badge">نتیجه برابر است</span>
+      <h2>میان دو رشته تعادل کامل برقرار است؛ حالا وقتِ عمق دارد.</h2>
+      <p>پاسخ‌هایت دقیقاً در میانه بود؛ یعنی هر دو با تو می‌نشینند. راهِ بیرون از این‌جا، شناختِ عمیق‌تر است: صفحه‌ی مقایسه را بخوان، زیررسته‌های هر دو را مرور کن و ببین با کدام مسیر، تصویرِ آینده‌ات روشن‌تر است.</p>
+      <div class="faceoff-bar">
+        <div class="faceoff-bar-name">{{ major_a.name }}</div>
+        <div class="faceoff-bar-track">
+          <div class="faceoff-bar-fill faceoff-fill-a" style="width: {{ result.pct_a }}%"></div>
+          <div class="faceoff-bar-fill faceoff-fill-b" style="width: {{ result.pct_b }}%"></div>
+        </div>
+        <div class="faceoff-bar-name">{{ major_b.name }}</div>
+      </div>
+      <div class="faceoff-actions">
+        <a class="btn btn-primary" href="/compare?a={{ a }}&b={{ b }}">مقایسه‌ی کامل دو رشته</a>
+      </div>
+      {% else %}
+      <span class="hero-badge">نتیجه‌ی مسابقه</span>
+      <h2>بین این دو، <span class="faceoff-winner">{{ winner.name }}</span> با تو سازگارتر است.</h2>
+      <p class="faceoff-sub">این یعنی پاسخ‌هایت بیشتر با سبکِ یادگیری و روزمره‌ی رشته‌ی {{ winner.name }} هم‌خوانی دارد؛ نه اینکه گزینه‌ی دیگر بد باشد. برای تصمیمِ نهایی، مقایسه‌ی کامل را هم ببین.</p>
+      <div class="faceoff-bar">
+        <div class="faceoff-bar-name">{{ major_a.name }}<strong>{{ fa_num(result.pct_a) }}٪</strong></div>
+        <div class="faceoff-bar-track">
+          <div class="faceoff-bar-fill faceoff-fill-a" style="width: {{ result.pct_a }}%"></div>
+          <div class="faceoff-bar-fill faceoff-fill-b" style="width: {{ result.pct_b }}%"></div>
+        </div>
+        <div class="faceoff-bar-name">{{ major_b.name }}<strong>{{ fa_num(result.pct_b) }}٪</strong></div>
+      </div>
+      {% if result.reasons %}
+      <div class="faceoff-reasons">
+        <h3 class="section-title-sm">پاسخ‌هایی که این نتیجه را ساخته‌اند</h3>
+        {% for r in result.reasons %}
+        <p class="faceoff-reason">«{{ r.question }}» → به نفعِ {{ cluster_name(r.winner) }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if winner_subs %}
+      <div class="faceoff-subs">
+        <h3 class="section-title-sm">اگر {{ winner.name }} را انتخاب کردی، این مسیرها منتظرِ تو هستند</h3>
+        <div class="sub-track-list">
+          {% for s in winner_subs[:8] %}
+          {% if s.slug %}
+          <a class="sub-chip" href="/articles/{{ s.slug }}">{{ s.name }}</a>
+          {% else %}
+          <span class="sub-chip">{{ s.name }}</span>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      <div class="faceoff-actions">
+        <a class="btn btn-primary" href="/compare?a={{ a }}&b={{ b }}">مقایسه‌ی کامل</a>
+        <a class="btn btn-outline" href="/majors/{{ winner_slug }}">صفحه‌ی رشته‌ی پیشنهادی</a>
+        <a class="btn btn-ghost" href="/faceoff?a={{ a }}&b={{ b }}">دوباره تلاش کن</a>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if pair and not result %}
+    <form class="test-form" method="post" action="/faceoff?a={{ a }}&b={{ b }}">
+      <input type="hidden" name="a" value="{{ a }}">
+      <input type="hidden" name="b" value="{{ b }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="form-error" hidden></div>
+      <h2 class="section-title">۱۲ سؤالی که بهت کمک می‌کند</h2>
+      <p class="section-sub">صادقانه جواب بده؛ جوابِ درست و نادرست وجود ندارد. این ۱۲ سؤال از ۳۰ سؤالیِ تستِ اصلی انتخاب شده‌اند که بیشترین ارتباط را با <strong>{{ major_a.name }}</strong> و <strong>{{ major_b.name }}</strong> دارند.</p>
+      <div class="container">
+        {% for q in questions %}
+        <article class="question-card reveal">
+          <h3><span class="q-num">{{ fa_num(loop.index) }}</span> {{ q.text }}</h3>
+          <div class="options">
+            {% for o in q.options %}
+            <label class="option">
+              <input type="radio" name="f{{ q.id }}" value="{{ o.id }}" required>
+              <span class="option-check"></span>
+              <span>{{ o.text }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </article>
+        {% endfor %}
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-lg">نشانم بده کدام مناسب‌تر است</button>
+        </div>
+      </div>
+    </form>
+    {% endif %}
+
+    {% if not pair %}
+    <div class="search-hint">
+      <p>دو رشته انتخاب کن تا ۱۲ سؤالِ هدفمند را ازت بپرسیم.</p>
+      <div class="sub-track-list">
+        <a class="sub-chip" href="/faceoff?a=riyazi&b=tajrobi">ریاضی vs تجربی</a>
+        <a class="sub-chip" href="/faceoff?a=riyazi&b=fanni">ریاضی vs فنی‌وحرفه‌ای</a>
+        <a class="sub-chip" href="/faceoff?a=tajrobi&b=ensani">تجربی vs انسانی</a>
+        <a class="sub-chip" href="/faceoff?a=ensani&b=fanni">انسانی vs فنی‌وحرفه‌ای</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
