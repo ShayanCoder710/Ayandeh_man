@@ -55,6 +55,46 @@
       return "۰۱۲۳۴۵۶۷۸۹".charAt(+d);
     });
   };
+  var DRAFT_KEY = "am-test-draft";
+  function saveDraft() {
+    var draft = {};
+    form.querySelectorAll("input:checked").forEach(function (input) {
+      draft[input.name] = input.value;
+    });
+    try {
+      sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+    } catch (e) {}
+  }
+  function restoreDraft() {
+    var raw = null;
+    try {
+      raw = sessionStorage.getItem(DRAFT_KEY);
+    } catch (e) {
+      return;
+    }
+    if (!raw) return;
+    var draft = {};
+    try {
+      draft = JSON.parse(raw);
+    } catch (e) {
+      return;
+    }
+    Object.keys(draft).forEach(function (name) {
+      var input = form.querySelector('input[name="' + name + '"][value="' + draft[name] + '"]');
+      if (input) {
+        input.checked = true;
+        var option = input.closest(".option");
+        var card = input.closest(".question-card");
+        if (option) option.classList.add("selected");
+        if (card) card.classList.add("answered");
+      }
+    });
+  }
+  function clearDraft() {
+    try {
+      sessionStorage.removeItem(DRAFT_KEY);
+    } catch (e) {}
+  }
   var errorBox = form.querySelector(".form-error");
   var progress = document.querySelector(".test-progress");
   var chipEl = document.getElementById("progress-chip");
@@ -90,9 +130,11 @@
       input.closest(".option").classList.add("selected");
       card.classList.add("answered");
       errorBox.hidden = true;
+      saveDraft();
       refreshProgress();
     });
   });
+  restoreDraft();
   refreshProgress();
   form.addEventListener("submit", function (e) {
     var missing = cards.filter(function (q) {
@@ -105,6 +147,7 @@
       missing[0].scrollIntoView({ behavior: "smooth", block: "center" });
     } else {
       errorBox.hidden = true;
+      clearDraft();
     }
   });
 })();

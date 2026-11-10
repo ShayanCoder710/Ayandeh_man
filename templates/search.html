@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div class="container">
+    <h1>جستجو در آینده من</h1>
+    <p>از میان رشته‌ها، زیررسته‌ها و مقالات جستجو می‌کنیم؛ همان چیزی که ذهنت را درگیر می‌کند را بنویس.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="search-form" method="get" action="/search">
+      <input type="search" name="q" value="{{ query }}" placeholder="مثلاً: برنامه‌نویسی، حقوق، زیست‌شناسی، گرافیک..." aria-label="جستجو" autofocus>
+      <button type="submit" class="btn btn-primary">جستجو</button>
+    </form>
+
+    {% if query %}
+    <p class="search-meta">
+      {% if total %}
+      {{ fa_num(total) }} نتیجه برای «{{ query }}» پیدا شد
+      {% else %}
+      نتیجه‌ای برای «{{ query }}» پیدا نشد؛ کوتاه‌تر یا با واژه‌ی دیگر امتحان کن.
+      {% endif %}
+    </p>
+
+    {% if results.majors %}
+    <div class="search-group">
+      <h2 class="search-group-title">رشته</h2>
+      {% for e in results.majors %}
+      <a class="search-major" href="/majors/{{ e.major.slug }}">
+        <span class="search-major-name">{{ e.major.name }}</span>
+        {% if e.match_subs %}
+        <span class="search-major-subs">زیررسته‌های مرتبط: {% for s in e.match_subs %}{{ s }}{% if not loop.last %}، {% endif %}{% endfor %}</span>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if results.subtracks %}
+    <div class="search-group">
+      <h2 class="search-group-title">زیررسته</h2>
+      <div class="search-subtrack-list">
+        {% for a in results.subtracks %}
+        <a class="search-subtrack" href="/articles/{{ a.slug }}">
+          <span>{{ a.title }}</span>
+          <span class="search-subtrack-parent">زیررشته‌ی {{ cluster_name(a.subtrack_parent) }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if results.articles %}
+    <div class="search-group">
+      <h2 class="search-group-title">مقاله</h2>
+      <div class="search-article-list">
+        {% for a in results.articles %}
+        <a class="search-article" href="/articles/{{ a.slug }}">
+          <span class="search-article-title">{{ a.title }}</span>
+          <span class="search-article-summary">{{ a.summary }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% else %}
+    <div class="search-hint">
+      <p>مثال‌هایی برای شروع:</p>
+      <div class="sub-track-list">
+        <a class="sub-chip" href="{{ url_for('search_page', q='برنامه') }}">برنامه‌نویسی</a>
+        <a class="sub-chip" href="{{ url_for('search_page', q='حقوق') }}">حقوق</a>
+        <a class="sub-chip" href="{{ url_for('search_page', q='زیست') }}">زیست‌شناسی</a>
+        <a class="sub-chip" href="{{ url_for('search_page', q='گرافیک') }}">گرافیک</a>
+        <a class="sub-chip" href="{{ url_for('search_page', q='پزشک') }}">پزشکی</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -41,6 +41,7 @@ from func import (
     recent_results,
     save_result,
     search_majors,
+    search_site,
     seed_data,
     stars_html,
     subtrack_links,
@@ -244,6 +245,21 @@ def compare_page():
         b=b,
         title="مقایسه رشته‌ها | آینده من",
         description="دو رشته تحصیلی را انتخاب کن و جنبه‌های کلیدی‌شان را کنار هم ببین.",
+    )
+
+
+@app.route("/search")
+def search_page():
+    query = request.args.get("q", "").strip()
+    results = search_site(query) if query else {"majors": [], "subtracks": [], "articles": []}
+    total = len(results["majors"]) + len(results["subtracks"]) + len(results["articles"])
+    return render_template(
+        "search.html",
+        query=query,
+        results=results,
+        total=total,
+        title="جستجو در آینده من",
+        description="جستجو در رشته‌ها، زیررشته‌ها و مقالات آینده من.",
     )
 
 

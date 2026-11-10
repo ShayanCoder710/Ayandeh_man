@@ -489,6 +489,48 @@ def get_article(slug):
     return None
 
 
+def normalize_fa(text):
+    return (text or "").replace("\u200c", "").lower()
+
+
+def search_site(query):
+    text = normalize_fa(query.strip())
+    result = {"majors": [], "subtracks": [], "articles": []}
+    if not text:
+        return result
+    slug_map = load_subtrack_slug_map()
+    try:
+        for major in load_majors():
+            hay = normalize_fa(major.name)
+            subs = [
+                {"name": name, "slug": slug_map.get(name)}
+                for name in sub_tracks_list(major)
+            ]
+            match = text in hay or any(text in normalize_fa(s["name"]) for s in subs)
+            if match:
+                entries = entries_for_majors([major])
+                if entries:
+                    e = entries[0]
+                    e["match_subs"] = [
+                        s["name"] for s in subs if text in normalize_fa(s["name"])
+                    ]
+                    result["majors"].append(e)
+    except Exception:
+        pass
+    seen = set()
+    for article in load_articles():
+        if article.get("slug") in seen:
+            continue
+        seen.add(article.get("slug"))
+        title = normalize_fa(article.get("title", ""))
+        summary = normalize_fa(article.get("summary", ""))
+        if article.get("subtrack_parent") and text in title:
+            result["subtracks"].append(article)
+        elif not article.get("subtrack_parent") and (text in title or text in summary):
+            result["articles"].append(article)
+    return result
+
+
 def seed_data():
     try:
         if Question.query.count() == 0:
