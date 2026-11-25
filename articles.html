@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.className += " js";</script>
+  <script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("am-theme"); } catch (e) {}
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.setAttribute("data-theme", "dark");
+  })();
+  </script>
+  <title>مقالات انتخاب رشته | آینده من</title>
+  <meta name="description" content="مقالات کوتاه درباره‌ی انتخاب رشته و زیررسته‌های چهار رشته‌ی دهم.">
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body data-page="articles">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+          <span>آینده من</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تغییر تم روشن/تاریک">
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#moon"></use></svg>
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#sun"></use></svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="nav-cta" data-key="test" href="test.html">شروع تست</a>
+        </nav>
+      </div>
+      <div class="nav-sheet" id="nav-sheet">
+        <nav class="sheet-nav" aria-label="منوی موبایل">
+          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#clipboard"></use></svg> تست شخصیت</a>
+          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> شروع تست</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="site-main">
+<section class="page-head">
+  <div class="container">
+    <h1>مقالات انتخاب رشته</h1>
+    <p>مقالات کوتاه و کاربردی که سؤال‌های اصلی انتخاب رشته را با زبان ساده جواب می‌دهند؛ همراه با تست، مقایسه و فهرست رشته‌ها.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card-grid" id="articles-grid"></div>
+    <div class="section-actions">
+      <a class="btn btn-primary" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> حالا تست را شروع کن</a>
+      <a class="btn btn-outline" href="majors.html">مشاهده رشته‌ها</a>
+    </div>
+  </div>
+</section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">
+            <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+            <span>آینده من</span>
+          </a>
+          <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
+        </div>
+        <nav class="footer-col" aria-label="پیوندهای سریع">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> پیوندها</span>
+          <a href="test.html">تست شخصیت و علاقه</a>
+          <a href="majors.html">رشته‌های تحصیلی</a>
+          <a href="compare.html">مقایسه رشته‌ها</a>
+          <a href="faceoff.html">مسابقه‌ی دو رشته</a>
+        </nav>
+        <nav class="footer-col" aria-label="محتوا">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> محتوا</span>
+          <a href="articles.html">مقالات</a>
+          <a href="guide.html">راهنمای انتخاب رشته</a>
+        </nav>
+        <div class="footer-col">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</span>
+          <a href="search.html?q=%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87">برنامه‌نویسی</a>
+          <a href="search.html?q=%D9%BE%D8%B2%D8%B4%DA%A9">پزشکی و سلامت</a>
+          <a href="search.html?q=%D8%AD%D9%82%D9%88%D9%82">حقوق و مدیریت</a>
+        </div>
+        <div class="footer-col footer-about">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> درباره</span>
+          <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footer-year">© ۱۴۰۵ آینده من</span>
+        <span>ساخته‌شده برای انتخابِ رشته‌ی نهم به دهم</span>
+      </div>
+    </div>
+  </footer>
+  <script src="static/js/core.js"></script>
+  <script src="static/js/layout.js"></script>
+<script>
+AM.allArticles().then(function (list) {
+  document.getElementById("articles-grid").innerHTML = list.map(AM.articleCardHtml).join("");
+  refreshReveal();
+}).catch(function () {
+  document.getElementById("articles-grid").innerHTML = '<div class="empty-state">هنوز مقاله‌ای منتشر نشده است.</div>';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.className += " js";</script>
+  <script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("am-theme"); } catch (e) {}
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.setAttribute("data-theme", "dark");
+  })();
+  </script>
+  <title>مسابقه‌ی دو رشته | آینده من</title>
+  <meta name="description" content="بین دو رشته مرددی؟ با ۱۲ سؤالِ هدفمند ببین کدام با تو می‌نشیند.">
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body data-page="compare">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+          <span>آینده من</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تغییر تم روشن/تاریک">
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#moon"></use></svg>
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#sun"></use></svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="nav-cta" data-key="test" href="test.html">شروع تست</a>
+        </nav>
+      </div>
+      <div class="nav-sheet" id="nav-sheet">
+        <nav class="sheet-nav" aria-label="منوی موبایل">
+          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#clipboard"></use></svg> تست شخصیت</a>
+          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> شروع تست</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="site-main">
+<section class="page-head">
+  <div class="container">
+    <h1>مسابقه‌ی دو رشته</h1>
+    <p>دو رشته‌ای که بینشان مرددی را انتخاب کن؛ ۱۲ سؤالِ هدفمند می‌پرسی و نتیجه می‌بینی کدام بیشتر با تو می‌نشیند. این ابزار سؤالاتی می‌سازد که بیشترین ربط را به همان دو رشته دارند.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="faceoff-pick" id="faceoff-pick">
+      <select id="fa"><option value="">رشته‌ی اول را انتخاب کن...</option></select>
+      <select id="fb"><option value="">رشته‌ی دوم را انتخاب کن...</option></select>
+      <button type="submit" class="btn btn-primary"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightning"></use></svg> شروع مقایسه</button>
+      <a class="btn btn-outline btn-sm" href="faceoff.html">پاک کردن</a>
+    </form>
+    <div id="faceoff-body"></div>
+  </div>
+</section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">
+            <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+            <span>آینده من</span>
+          </a>
+          <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
+        </div>
+        <nav class="footer-col" aria-label="پیوندهای سریع">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> پیوندها</span>
+          <a href="test.html">تست شخصیت و علاقه</a>
+          <a href="majors.html">رشته‌های تحصیلی</a>
+          <a href="compare.html">مقایسه رشته‌ها</a>
+          <a href="faceoff.html">مسابقه‌ی دو رشته</a>
+        </nav>
+        <nav class="footer-col" aria-label="محتوا">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> محتوا</span>
+          <a href="articles.html">مقالات</a>
+          <a href="guide.html">راهنمای انتخاب رشته</a>
+        </nav>
+        <div class="footer-col">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</span>
+          <a href="search.html?q=%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87">برنامه‌نویسی</a>
+          <a href="search.html?q=%D9%BE%D8%B2%D8%B4%DA%A9">پزشکی و سلامت</a>
+          <a href="search.html?q=%D8%AD%D9%82%D9%88%D9%82">حقوق و مدیریت</a>
+        </div>
+        <div class="footer-col footer-about">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> درباره</span>
+          <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footer-year">© ۱۴۰۵ آینده من</span>
+        <span>ساخته‌شده برای انتخابِ رشته‌ی نهم به دهم</span>
+      </div>
+    </div>
+  </footer>
+  <script src="static/js/core.js"></script>
+  <script src="static/js/layout.js"></script>
+<script>
+(function () {
+  var selA = document.getElementById("fa");
+  var selB = document.getElementById("fb");
+  var body = document.getElementById("faceoff-body");
+  var aSlug = AM.param("a");
+  var bSlug = AM.param("b");
+  var majors = null;
+
+  function majorsByName() {
+    var a = null;
+    var b = null;
+    if (!majors) return null;
+    majors.forEach(function (m) {
+      if (m.slug === aSlug) a = m;
+      if (m.slug === bSlug) b = m;
+    });
+    return { a: a, b: b };
+  }
+
+  function quickPairs() {
+    body.innerHTML =
+      '<div class="search-hint"><p>دو رشته انتخاب کن تا ۱۲ سؤالِ هدفمند را ازت بپرسیم.</p>' +
+      '<div class="sub-track-list">' +
+      '<a class="sub-chip" href="faceoff.html?a=riyazi&b=tajrobi">ریاضی vs تجربی</a>' +
+      '<a class="sub-chip" href="faceoff.html?a=riyazi&b=fanni">ریاضی vs فنی‌وحرفه‌ای</a>' +
+      '<a class="sub-chip" href="faceoff.html?a=tajrobi&b=ensani">تجربی vs انسانی</a>' +
+      '<a class="sub-chip" href="faceoff.html?a=ensani&b=fanni">انسانی vs فنی‌وحرفه‌ای</a>' +
+      "</div></div>";
+  }
+
+  function resultHtml(res, A, B) {
+    var winner = res.tie ? null : res.pctA > res.pctB ? A : B;
+    var bar =
+      '<div class="faceoff-bar"><div class="faceoff-bar-name">' + A.name +
+      (res.tie ? "" : "<strong>" + AM.faNum(res.pctA) + "٪</strong>") +
+      '</div><div class="faceoff-bar-track">' +
+      '<div class="faceoff-bar-fill faceoff-fill-a" style="width: ' + res.pctA + '%"></div>' +
+      '<div class="faceoff-bar-fill faceoff-fill-b" style="width: ' + res.pctB + '%"></div>' +
+      '</div><div class="faceoff-bar-name">' + B.name +
+      (res.tie ? "" : "<strong>" + AM.faNum(res.pctB) + "٪</strong>") + "</div></div>";
+    if (res.tie) {
+      return (
+        '<div class="faceoff-result reveal"><span class="hero-badge">نتیجه برابر است</span>' +
+        "<h2>میان دو رشته تعادل کامل برقرار است؛ حالا وقتِ عمق دارد.</h2>" +
+        "<p>پاسخ‌هایت دقیقاً در میانه بود؛ یعنی هر دو با تو می‌نشینند. راهِ بیرون از این‌جا، شناختِ عمیق‌تر است: صفحه‌ی مقایسه را بخوان، زیررسته‌های هر دو را مرور کن و ببین با کدام مسیر، تصویرِ آینده‌ات روشن‌تر است.</p>" +
+        bar +
+        '<div class="faceoff-actions"><a class="btn btn-primary" href="compare.html?a=' + A.slug + "&b=" + B.slug + '">مقایسه‌ی کامل دو رشته</a></div></div>'
+      );
+    }
+    var reasons = res.reasons.length
+      ? '<div class="faceoff-reasons"><h3 class="section-title-sm">پاسخ‌هایی که این نتیجه را ساخته‌اند</h3>' +
+        res.reasons
+          .map(function (r) {
+            return '<p class="faceoff-reason">«' + r.question + "» → به نفعِ " + AM.CLUSTERS[r.winner] + "</p>";
+          })
+          .join("") +
+        "</div>"
+      : "";
+    var subs = "";
+    return Promise.resolve()
+      .then(function () {
+        return AM.subsOf(winner);
+      })
+      .then(function (list) {
+        if (list.length) {
+          subs =
+            '<div class="faceoff-subs"><h3 class="section-title-sm">اگر ' + winner.name + " را انتخاب کردی، این مسیرها منتظرِ تو هستند</h3>" +
+            '<div class="sub-track-list">' +
+            list
+              .slice(0, 8)
+              .map(AM.subChipHtml)
+              .join("") +
+            "</div></div>";
+        }
+        return (
+          '<div class="faceoff-result reveal"><span class="hero-badge">نتیجه‌ی مسابقه</span>' +
+          '<h2>بین این دو، <span class="faceoff-winner">' + winner.name + "</span> با تو سازگارتر است.</h2>" +
+          '<p class="faceoff-sub">این یعنی پاسخ‌هایت بیشتر با سبکِ یادگیری و روزمره‌ی رشته‌ی ' + winner.name + " هم‌خوانی دارد؛ نه اینکه گزینه‌ی دیگر بد باشد. برای تصمیمِ نهایی، مقایسه‌ی کامل را هم ببین.</p>" +
+          bar +
+          reasons +
+          subs +
+          '<div class="faceoff-actions">' +
+          '<a class="btn btn-primary" href="compare.html?a=' + A.slug + "&b=" + B.slug + '">مقایسه‌ی کامل</a>' +
+          '<a class="btn btn-outline" href="major.html?slug=' + winner.slug + '">صفحه‌ی رشته‌ی پیشنهادی</a>' +
+          '<a class="btn btn-ghost" href="faceoff.html?a=' + A.slug + "&b=" + B.slug + '">دوباره تلاش کن</a>' +
+          "</div></div>"
+        );
+      });
+  }
+
+  function start() {
+    var pair = majorsByName();
+    if (!pair || !pair.a || !pair.b) {
+      quickPairs();
+      return;
+    }
+    if (pair.a.slug === pair.b.slug) {
+      body.innerHTML = '<div class="empty-state">دو رشته‌ی یکسان را انتخاب کرده‌ای؛ یکی را عوض کن تا مسابقه معنا داشته باشد.</div>';
+      return;
+    }
+    AM.questions().then(function (qs) {
+      var idxs = AM.faceoffQuestions(qs, aSlug, bSlug, 12);
+      body.innerHTML =
+        '<form class="test-form" id="faceoff-form"><div class="container">' +
+        '<div class="form-error" hidden></div>' +
+        '<h2 class="section-title">۱۲ سؤالی که بهت کمک می‌کند</h2>' +
+        '<p class="section-sub">صادقانه جواب بده؛ جوابِ درست و نادرست وجود ندارد. این ۱۲ سؤال از ۳۰ سؤالیِ تستِ اصلی انتخاب شده‌اند که بیشترین ارتباط را با <strong>' +
+        pair.a.name +
+        "</strong> و <strong>" +
+        pair.b.name +
+        "</strong> دارند.</p>" +
+        idxs
+          .map(function (qi, i) {
+            var q = qs[qi];
+            return (
+              '<article class="question-card reveal"><h3><span class="q-num">' +
+              AM.faNum(i + 1) +
+              "</span> " +
+              q.text +
+              '</h3><div class="options">' +
+              q.options
+                .map(function (o, j) {
+                  return '<label class="option"><input type="radio" name="f' + qi + '" value="' + j + '"><span class="option-check"></span><span>' + o.text + "</span></label>";
+                })
+                .join("") +
+              "</div></article>"
+            );
+          })
+          .join("") +
+        '<div class="form-actions"><button type="submit" class="btn btn-primary btn-lg">نشانم بده کدام مناسب‌تر است</button></div></div></form>';
+      var f = document.getElementById("faceoff-form");
+      var err = f.querySelector(".form-error");
+      f.querySelectorAll(".option input").forEach(function (input) {
+        input.addEventListener("change", function () {
+          var card = input.closest(".question-card");
+          card.querySelectorAll(".option").forEach(function (o) {
+            o.classList.remove("selected");
+          });
+          input.closest(".option").classList.add("selected");
+          card.classList.add("answered");
+          err.hidden = true;
+        });
+      });
+      refreshReveal();
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var answers = {};
+        var missing = 0;
+        idxs.forEach(function (qi) {
+          var sel = f.querySelector('input[name="f' + qi + '"]:checked');
+          if (sel) answers[qi] = +sel.value;
+          else missing++;
+        });
+        if (missing) {
+          err.textContent = "هنوز " + AM.faNum(missing) + " پاسخ باقی مانده است؛ همه‌ی سؤالات را جواب بده.";
+          err.hidden = false;
+          var first = f.querySelector(".question-card:not(.answered)");
+          if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+        var res = AM.faceoffScore(answers, qs, aSlug, bSlug);
+        resultHtml(res, pair.a, pair.b).then(function (html) {
+          body.innerHTML = html;
+          body.scrollIntoView({ behavior: "smooth", block: "start" });
+          refreshReveal();
+        });
+      });
+    });
+  }
+
+  document.getElementById("faceoff-pick").addEventListener("submit", function (e) {
+    e.preventDefault();
+    aSlug = selA.value;
+    bSlug = selB.value;
+    location.href = "faceoff.html?a=" + encodeURIComponent(aSlug) + "&b=" + encodeURIComponent(bSlug);
+  });
+
+  AM.majors().then(function (list) {
+    majors = list;
+    var opts = '<option value="">رشته‌ی اول را انتخاب کن...</option>' + list.map(function (m) {
+      return '<option value="' + m.slug + '">' + m.name + "</option>";
+    }).join("");
+    selA.innerHTML = opts;
+    selB.innerHTML = opts.replace("رشته‌ی اول را انتخاب کن...", "رشته‌ی دوم را انتخاب کن...");
+    selA.value = aSlug || "";
+    selB.value = bSlug || "";
+    start();
+  });
+})();
+</script>
+</body>
+</html>

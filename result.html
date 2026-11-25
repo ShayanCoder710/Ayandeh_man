@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.className += " js";</script>
+  <script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("am-theme"); } catch (e) {}
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.setAttribute("data-theme", "dark");
+  })();
+  </script>
+  <title>نتیجه‌ی تست شخصیت و علاقه | آینده من</title>
+  <meta name="description" content="رشته‌ای که بهت می‌آید و ویژگی‌های بارزِ ذهنت.">
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body data-page="test">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+          <span>آینده من</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تغییر تم روشن/تاریک">
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#moon"></use></svg>
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#sun"></use></svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="nav-cta" data-key="test" href="test.html">شروع تست</a>
+        </nav>
+      </div>
+      <div class="nav-sheet" id="nav-sheet">
+        <nav class="sheet-nav" aria-label="منوی موبایل">
+          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#clipboard"></use></svg> تست شخصیت</a>
+          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> شروع تست</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="site-main">
+<section class="section">
+  <div class="container">
+    <div id="result-box"></div>
+  </div>
+</section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">
+            <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+            <span>آینده من</span>
+          </a>
+          <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
+        </div>
+        <nav class="footer-col" aria-label="پیوندهای سریع">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> پیوندها</span>
+          <a href="test.html">تست شخصیت و علاقه</a>
+          <a href="majors.html">رشته‌های تحصیلی</a>
+          <a href="compare.html">مقایسه رشته‌ها</a>
+          <a href="faceoff.html">مسابقه‌ی دو رشته</a>
+        </nav>
+        <nav class="footer-col" aria-label="محتوا">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> محتوا</span>
+          <a href="articles.html">مقالات</a>
+          <a href="guide.html">راهنمای انتخاب رشته</a>
+        </nav>
+        <div class="footer-col">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</span>
+          <a href="search.html?q=%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87">برنامه‌نویسی</a>
+          <a href="search.html?q=%D9%BE%D8%B2%D8%B4%DA%A9">پزشکی و سلامت</a>
+          <a href="search.html?q=%D8%AD%D9%82%D9%88%D9%82">حقوق و مدیریت</a>
+        </div>
+        <div class="footer-col footer-about">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> درباره</span>
+          <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footer-year">© ۱۴۰۵ آینده من</span>
+        <span>ساخته‌شده برای انتخابِ رشته‌ی نهم به دهم</span>
+      </div>
+    </div>
+  </footer>
+  <script src="static/js/core.js"></script>
+  <script src="static/js/layout.js"></script>
+<script>
+(function () {
+  var box = document.getElementById("result-box");
+  var d = AM.param("d");
+
+  function bindShare() {
+    var input = document.getElementById("share-url");
+    var button = document.getElementById("copy-share");
+    if (!input || !button) return;
+    input.value = location.href;
+    button.addEventListener("click", function () {
+      var done = function () {
+        var old = button.textContent;
+        button.textContent = "کپی شد ✓";
+        setTimeout(function () {
+          button.textContent = old;
+        }, 2000);
+      };
+      var fail = function () {
+        input.select();
+        document.execCommand("copy");
+        done();
+      };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(input.value).then(done, fail);
+      else fail();
+    });
+  }
+
+  function empty() {
+    box.innerHTML =
+      '<div class="empty-state">' +
+      '<svg class="bi" aria-hidden="true"><use href="static/icons/am-sprite.svg#compass"></use></svg>' +
+      "نتیجه‌ای با این نشانی پیدا نشد. شاید تست را دوباره شروع کنی بهتر باشد." +
+      '</div><div class="section-actions"><a class="btn btn-outline" href="test.html">انجام دوباره‌ی تست</a></div>';
+  }
+
+  if (!d) {
+    empty();
+    return;
+  }
+  var answers = AM.decodeAnswers(d);
+  if (!answers || !Object.keys(answers).length) {
+    empty();
+    return;
+  }
+  AM.questions()
+    .then(function (qs) {
+      var res = AM.scoreAnswers(answers, qs);
+      return AM.majorBySlug(res.cluster).then(function (m) {
+        if (!m) {
+          empty();
+          return;
+        }
+        return AM.subsOf(m).then(function (subs) {
+          var subsHtml = subs.map(AM.subChipHtml).join("");
+          var preview = m.sub_tracks.slice(0, 3).join("، ");
+          if (m.sub_tracks.length > 3) preview += " و " + AM.faNum(m.sub_tracks.length - 3) + " زیررشته‌ی دیگر";
+          box.innerHTML =
+            '<div class="result-hero reveal"><span class="hero-badge">نتیجه‌ی تست شخصیت و علاقه</span>' +
+            '<h1>رشته‌ای که بهت می‌آید: <span class="cluster-name">' + AM.CLUSTERS[m.cluster] + "</span></h1>" +
+            "<p>" + AM.CBLURBS[m.cluster] + "</p>" +
+            (res.traits.length
+              ? '<div class="trait-row"><span class="trait-label">ویژگی‌های بارز:</span>' +
+                res.traits
+                  .map(function (t) {
+                    return '<span class="trait-chip">' + t + "</span>";
+                  })
+                  .join("") +
+                "</div>"
+              : "") +
+            '<div class="hero-actions center-flex"><a class="btn btn-primary" href="#recommended">رشته‌ی پیشنهادی‌ام</a>' +
+            '<a class="btn btn-outline" href="majors.html">همه‌ی رشته‌ها</a></div></div>' +
+            '<div class="section" id="recommended"><h2 class="section-title">رشته‌ی پیشنهادی برای تو</h2>' +
+            '<p class="section-sub">بر اساس پاسخ‌هات، این رشته‌ی دبیرستانی بیشترین سازگاری را با تو دارد؛ اگر بین دو رشته مردد هستی، آن‌ها را در صفحه‌ی مقایسه کنار هم بگذار.</p>' +
+            '<div class="recommended-grid">' + AM.majorCardHtml({ major: m, sub_preview: preview }) + "</div>" +
+            (subs.length
+              ? '<div class="info-card reveal sub-section"><h2 class="section-title">زیررسته‌های رشته‌ی پیشنهادی‌ات</h2>' +
+                '<p class="section-sub">بعد از انتخاب رشته، روزی به انتخاب زیررشته‌ات برمی‌شویی؛ همین الان این مسیرها را بشناس و ببین کدام‌شان ذهنت را درگیر می‌کند.</p>' +
+                '<div class="sub-track-list">' + subsHtml + "</div>" +
+                '<p class="section-sub sub-more"><a href="article.html?slug=choosing-subtrack">زیررشته را چگونه انتخاب کنیم؟</a> · ' +
+                '<a href="major.html?slug=' + m.slug + '">همه‌ی جزئیات رشته</a></p></div>'
+              : "") +
+            '<div class="section"><h2 class="section-title">اشتراک‌گذاری نتیجه</h2>' +
+            '<p class="section-sub">لینک اختصاصی نتیجه‌ات: هر کسی آن را باز کند، نتیجه‌ی همین تست را می‌بیند.</p>' +
+            '<div class="share-box"><input id="share-url" type="text" readonly><button id="copy-share" class="btn btn-ghost" type="button">کپی لینک</button></div></div></div>';
+          bindShare();
+          refreshReveal();
+        });
+      });
+    })
+    .catch(empty);
+})();
+</script>
+</body>
+</html>

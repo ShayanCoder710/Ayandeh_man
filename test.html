@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.className += " js";</script>
+  <script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("am-theme"); } catch (e) {}
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.setAttribute("data-theme", "dark");
+  })();
+  </script>
+  <title>تست شخصیت و علاقه | آینده من</title>
+  <meta name="description" content="با پاسخ به سؤالات کوتاه، رشته‌ی دهمِ مناسبِ خودت را پیدا کن.">
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body data-page="test">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+          <span>آینده من</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تغییر تم روشن/تاریک">
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#moon"></use></svg>
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#sun"></use></svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="nav-cta" data-key="test" href="test.html">شروع تست</a>
+        </nav>
+      </div>
+      <div class="nav-sheet" id="nav-sheet">
+        <nav class="sheet-nav" aria-label="منوی موبایل">
+          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#clipboard"></use></svg> تست شخصیت</a>
+          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> شروع تست</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="site-main">
+<section class="page-head">
+  <div class="container">
+    <h1>تست شخصیت و علاقه</h1>
+    <p>چند سؤال کوتاه ازت می‌پرسیم تا بفهمیم چه‌طور فکر می‌کنی و چه چیزهایی برایت لذت‌بخش است. جواب درست و نادرست وجود ندارد؛ فقط صادقانه جواب بده.</p>
+  </div>
+</section>
+
+<div class="test-progress">
+  <div class="progress-row">
+    <span class="progress-chip" id="progress-chip">پاسخ داده‌شده: <strong id="progress-count">۰</strong> از <strong id="progress-total">…</strong></span>
+    <span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span>
+    <span class="progress-percent" id="progress-percent">۰٪</span>
+  </div>
+</div>
+
+<form id="test-form" class="test-form" novalidate>
+  <div class="container">
+    <div class="form-error" hidden></div>
+    <div id="questions"></div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-lg">محاسبه‌ی نتیجه‌ام</button>
+    </div>
+  </div>
+</form>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">
+            <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+            <span>آینده من</span>
+          </a>
+          <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
+        </div>
+        <nav class="footer-col" aria-label="پیوندهای سریع">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> پیوندها</span>
+          <a href="test.html">تست شخصیت و علاقه</a>
+          <a href="majors.html">رشته‌های تحصیلی</a>
+          <a href="compare.html">مقایسه رشته‌ها</a>
+          <a href="faceoff.html">مسابقه‌ی دو رشته</a>
+        </nav>
+        <nav class="footer-col" aria-label="محتوا">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> محتوا</span>
+          <a href="articles.html">مقالات</a>
+          <a href="guide.html">راهنمای انتخاب رشته</a>
+        </nav>
+        <div class="footer-col">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</span>
+          <a href="search.html?q=%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87">برنامه‌نویسی</a>
+          <a href="search.html?q=%D9%BE%D8%B2%D8%B4%DA%A9">پزشکی و سلامت</a>
+          <a href="search.html?q=%D8%AD%D9%82%D9%88%D9%82">حقوق و مدیریت</a>
+        </div>
+        <div class="footer-col footer-about">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> درباره</span>
+          <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footer-year">© ۱۴۰۵ آینده من</span>
+        <span>ساخته‌شده برای انتخابِ رشته‌ی نهم به دهم</span>
+      </div>
+    </div>
+  </footer>
+  <script src="static/js/core.js"></script>
+  <script src="static/js/layout.js"></script>
+<script>
+(function () {
+  var form = document.getElementById("test-form");
+  var wrap = document.getElementById("questions");
+  var errorBox = form.querySelector(".form-error");
+  var chipEl = document.getElementById("progress-chip");
+  var percentEl = document.getElementById("progress-percent");
+  var fillEl = document.getElementById("progress-fill");
+  var countEl = document.getElementById("progress-count");
+  var totalEl = document.getElementById("progress-total");
+  var DRAFT = "am-test-draft";
+  var qs = null;
+
+  function saveDraft() {
+    var draft = {};
+    form.querySelectorAll("input:checked").forEach(function (input) {
+      draft[input.name] = input.value;
+    });
+    try {
+      sessionStorage.setItem(DRAFT, JSON.stringify(draft));
+    } catch (e) {}
+  }
+
+  function restoreDraft() {
+    var raw = null;
+    try {
+      raw = sessionStorage.getItem(DRAFT);
+    } catch (e) {
+      return;
+    }
+    if (!raw) return;
+    var draft = {};
+    try {
+      draft = JSON.parse(raw);
+    } catch (e) {
+      return;
+    }
+    Object.keys(draft).forEach(function (name) {
+      var input = form.querySelector('input[name="' + name + '"][value="' + draft[name] + '"]');
+      if (input) {
+        input.checked = true;
+        var option = input.closest(".option");
+        var card = input.closest(".question-card");
+        if (option) option.classList.add("selected");
+        if (card) card.classList.add("answered");
+      }
+    });
+  }
+
+  function clearDraft() {
+    try {
+      sessionStorage.removeItem(DRAFT);
+    } catch (e) {}
+  }
+
+  function refreshProgress() {
+    var cards = Array.prototype.slice.call(wrap.querySelectorAll(".question-card"));
+    var total = cards.length;
+    var answered = cards.filter(function (card) {
+      return card.querySelector("input:checked");
+    }).length;
+    var pct = total ? Math.round((answered / total) * 100) : 0;
+    fillEl.style.width = pct + "%";
+    form.classList.toggle("complete", answered === total && total > 0);
+    countEl.textContent = AM.faNum(answered);
+    totalEl.textContent = AM.faNum(total);
+    if (answered === total && total > 0) {
+      chipEl.textContent = "تمام شد؛ حالا نتیجه‌ات را بگیر ✓";
+      percentEl.style.display = "none";
+    } else {
+      chipEl.innerHTML = "پاسخ داده‌شده: <strong>" + AM.faNum(answered) + "</strong> از <strong>" + AM.faNum(total) + "</strong>";
+      percentEl.style.display = "";
+      percentEl.textContent = AM.faNum(pct) + "٪";
+    }
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!qs) return;
+    var answers = {};
+    var missing = 0;
+    qs.forEach(function (q, i) {
+      var sel = form.querySelector('input[name="q' + i + '"]:checked');
+      if (sel) answers[i] = +sel.value;
+      else missing++;
+    });
+    if (missing) {
+      errorBox.textContent = "هنوز " + AM.faNum(missing) + " پاسخ باقی مانده است؛ همه‌ی سؤالات را جواب بده.";
+      errorBox.hidden = false;
+      var first = wrap.querySelector(".question-card:not(.answered)");
+      if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    errorBox.hidden = true;
+    clearDraft();
+    location.href = "result.html?d=" + AM.encodeAnswers(answers);
+  });
+
+  AM.questions()
+    .then(function (list) {
+      qs = list;
+      wrap.innerHTML = qs.map(function (q, i) {
+        return (
+          '<article class="question-card reveal"><h3><span class="q-num">' +
+          AM.faNum(i + 1) +
+          "</span> " +
+          q.text +
+          '</h3><div class="options">' +
+          q.options.map(function (o, j) {
+            return (
+              '<label class="option"><input type="radio" name="q' +
+              i +
+              '" value="' +
+              j +
+              '"><span class="option-check"></span><span>' +
+              o.text +
+              "</span></label>"
+            );
+          }).join("") +
+          "</div></article>"
+        );
+      }).join("");
+      form.querySelectorAll(".option input").forEach(function (input) {
+        input.addEventListener("change", function () {
+          var card = input.closest(".question-card");
+          card.querySelectorAll(".option").forEach(function (o) {
+            o.classList.remove("selected");
+          });
+          input.closest(".option").classList.add("selected");
+          card.classList.add("answered");
+          errorBox.hidden = true;
+          saveDraft();
+          refreshProgress();
+        });
+      });
+      restoreDraft();
+      refreshProgress();
+      refreshReveal();
+    })
+    .catch(function () {
+      wrap.innerHTML =
+        '<div class="empty-state">' +
+        biCompass() +
+        "فهرستِ سؤالات بارگذاری نشد؛ دوباره صفحه را باز کن.</div>";
+    });
+  function biCompass() {
+    return '<svg class="bi" aria-hidden="true"><use href="static/icons/am-sprite.svg#compass"></use></svg>';
+  }
+})();
+</script>
+</body>
+</html>

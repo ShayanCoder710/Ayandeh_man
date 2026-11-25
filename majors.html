@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.className += " js";</script>
+  <script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("am-theme"); } catch (e) {}
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.setAttribute("data-theme", "dark");
+  })();
+  </script>
+  <title>رشته‌های دهم | آینده من</title>
+  <meta name="description" content="چهار رشته‌ی دبیرستانی (ریاضی، تجربی، انسانی و فنی‌وحرفه‌ای) را بشناس.">
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body data-page="majors">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+          <span>آینده من</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تغییر تم روشن/تاریک">
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#moon"></use></svg>
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#sun"></use></svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="nav-cta" data-key="test" href="test.html">شروع تست</a>
+        </nav>
+      </div>
+      <div class="nav-sheet" id="nav-sheet">
+        <nav class="sheet-nav" aria-label="منوی موبایل">
+          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#clipboard"></use></svg> تست شخصیت</a>
+          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> شروع تست</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="site-main">
+<section class="page-head">
+  <div class="container">
+    <h1>چهار رشته‌ی دهم</h1>
+    <p>ریاضی، تجربی، انسانی و فنی‌وحرفه‌ای را یکی‌یکی ببین: دروسشان، سختی‌شان و مسیرِ بعد از دیپلمشان؛ امتیازِ شخصیِ تو هم همین‌جا، در همین مرورگر ذخیره می‌شود.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="majors-filter" id="majors-filter">
+      <div class="search-bar">
+        <div class="search-wrap"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg>
+          <input type="search" id="f-q" placeholder="جستجوی رشته (مثلاً ریاضی)...">
+        </div>
+        <button type="submit" class="btn btn-primary">جستجو</button>
+      </div>
+      <div class="filter-row">
+        <select id="f-cluster">
+          <option value="">همه رشته‌ها</option>
+          <option value="riyazi">ریاضی</option>
+          <option value="tajrobi">تجربی</option>
+          <option value="ensani">انسانی</option>
+          <option value="fanni">فنی‌وحرفه‌ای</option>
+        </select>
+        <select id="f-difficulty">
+          <option value="">همه سختی‌ها</option>
+          <option value="1">سختی ۱</option>
+          <option value="2">سختی ۲</option>
+          <option value="3">سختی ۳</option>
+          <option value="4">سختی ۴</option>
+          <option value="5">سختی ۵</option>
+        </select>
+        <select id="f-sort">
+          <option value="name" selected>الفبا (نام)</option>
+          <option value="easy">سختی کم‌به‌زیاد</option>
+          <option value="hard">سختی زیاد‌به‌کم</option>
+        </select>
+        <button type="button" class="btn btn-outline btn-sm" id="f-clear">پاک کردن فیلترها</button>
+      </div>
+    </form>
+    <p class="result-info" id="result-info"></p>
+    <div class="card-grid" id="majors-grid"></div>
+  </div>
+</section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">
+            <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+            <span>آینده من</span>
+          </a>
+          <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
+        </div>
+        <nav class="footer-col" aria-label="پیوندهای سریع">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> پیوندها</span>
+          <a href="test.html">تست شخصیت و علاقه</a>
+          <a href="majors.html">رشته‌های تحصیلی</a>
+          <a href="compare.html">مقایسه رشته‌ها</a>
+          <a href="faceoff.html">مسابقه‌ی دو رشته</a>
+        </nav>
+        <nav class="footer-col" aria-label="محتوا">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> محتوا</span>
+          <a href="articles.html">مقالات</a>
+          <a href="guide.html">راهنمای انتخاب رشته</a>
+        </nav>
+        <div class="footer-col">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</span>
+          <a href="search.html?q=%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87">برنامه‌نویسی</a>
+          <a href="search.html?q=%D9%BE%D8%B2%D8%B4%DA%A9">پزشکی و سلامت</a>
+          <a href="search.html?q=%D8%AD%D9%82%D9%88%D9%82">حقوق و مدیریت</a>
+        </div>
+        <div class="footer-col footer-about">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> درباره</span>
+          <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footer-year">© ۱۴۰۵ آینده من</span>
+        <span>ساخته‌شده برای انتخابِ رشته‌ی نهم به دهم</span>
+      </div>
+    </div>
+  </footer>
+  <script src="static/js/core.js"></script>
+  <script src="static/js/layout.js"></script>
+<script>
+(function () {
+  var form = document.getElementById("majors-filter");
+  var fq = document.getElementById("f-q");
+  var fc = document.getElementById("f-cluster");
+  var fd = document.getElementById("f-difficulty");
+  var fs = document.getElementById("f-sort");
+  var grid = document.getElementById("majors-grid");
+  var info = document.getElementById("result-info");
+  var majors = null;
+
+  function preview(m) {
+    var subs = m.sub_tracks || [];
+    var p = subs.slice(0, 3).join("، ");
+    if (subs.length > 3) p += " و " + AM.faNum(subs.length - 3) + " زیررشته‌ی دیگر";
+    return p;
+  }
+
+  function render() {
+    if (!majors) return;
+    var q = AM.norm(fq.value.trim());
+    var list = majors.filter(function (m) {
+      var subs = m.sub_tracks || [];
+      var hay = [m.name].concat(subs).map(AM.norm);
+      if (q && hay.every(function (h) {
+        return h.indexOf(q) === -1;
+      })) return false;
+      if (fc.value && m.cluster !== fc.value) return false;
+      if (fd.value && String(m.difficulty) !== fd.value) return false;
+      return true;
+    });
+    if (fs.value === "name") list.sort(function (a, b) { return AM.cmpFa(a.name, b.name); });
+    else if (fs.value === "easy") list.sort(function (a, b) { return (+a.difficulty || 3) - (+b.difficulty || 3) || AM.cmpFa(a.name, b.name); });
+    else if (fs.value === "hard") list.sort(function (a, b) { return (+b.difficulty || 3) - (+a.difficulty || 3) || AM.cmpFa(a.name, b.name); });
+    info.textContent = AM.faNum(list.length) + " رشته یافت شد.";
+    grid.innerHTML = list.length
+      ? list.map(function (m) {
+          return AM.majorCardHtml({ major: m, sub_preview: preview(m) });
+        }).join("")
+      : '<div class="empty-state">رشته‌ای با این مشخصات پیدا نشد؛ فیلترها را تغییر بده.</div>';
+    refreshReveal();
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    render();
+  });
+  [fc, fd, fs].forEach(function (s) {
+    s.addEventListener("change", render);
+  });
+  fq.addEventListener("input", render);
+  document.getElementById("f-clear").addEventListener("click", function () {
+    fq.value = "";
+    fc.value = "";
+    fd.value = "";
+    fs.value = "name";
+    render();
+  });
+  AM.majors().then(function (list) {
+    majors = list;
+    render();
+  });
+})();
+</script>
+</body>
+</html>

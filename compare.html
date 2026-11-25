@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.className += " js";</script>
+  <script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("am-theme"); } catch (e) {}
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.setAttribute("data-theme", "dark");
+  })();
+  </script>
+  <title>مقایسه دو رشته | آینده من</title>
+  <meta name="description" content="دو رشته را کنار هم بگذار و بخش‌های کلیدی‌شان را مقایسه کن.">
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body data-page="compare">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+          <span>آینده من</span>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تغییر تم روشن/تاریک">
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#moon"></use></svg>
+          <svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#sun"></use></svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-sheet">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="nav-cta" data-key="test" href="test.html">شروع تست</a>
+        </nav>
+      </div>
+      <div class="nav-sheet" id="nav-sheet">
+        <nav class="sheet-nav" aria-label="منوی موبایل">
+          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#clipboard"></use></svg> تست شخصیت</a>
+          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
+          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
+          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
+          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
+          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> شروع تست</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="site-main">
+<section class="page-head">
+  <div class="container">
+    <h1>مقایسه دو رشته</h1>
+    <p>دو رشته‌ی موردنظرت را کنار هم بگذار؛ بخش‌های کلیدی‌شان را در یک نگاه مقایسه کن و تردیدت را حل کن.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="compare-pick" id="compare-pick">
+      <select id="pick-a"><option value="">رشته‌ی اول را انتخاب کن...</option></select>
+      <select id="pick-b"><option value="">رشته‌ی دوم را انتخاب کن...</option></select>
+      <button type="submit" class="btn btn-primary"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه کن</button>
+      <a class="btn btn-outline btn-sm" href="compare.html">پاک کردن</a>
+    </form>
+    <div id="compare-body"></div>
+  </div>
+</section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">
+            <img class="brand-icon" src="static/images/icon.png" alt="آینده من">
+            <span>آینده من</span>
+          </a>
+          <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
+        </div>
+        <nav class="footer-col" aria-label="پیوندهای سریع">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> پیوندها</span>
+          <a href="test.html">تست شخصیت و علاقه</a>
+          <a href="majors.html">رشته‌های تحصیلی</a>
+          <a href="compare.html">مقایسه رشته‌ها</a>
+          <a href="faceoff.html">مسابقه‌ی دو رشته</a>
+        </nav>
+        <nav class="footer-col" aria-label="محتوا">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> محتوا</span>
+          <a href="articles.html">مقالات</a>
+          <a href="guide.html">راهنمای انتخاب رشته</a>
+        </nav>
+        <div class="footer-col">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</span>
+          <a href="search.html?q=%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87">برنامه‌نویسی</a>
+          <a href="search.html?q=%D9%BE%D8%B2%D8%B4%DA%A9">پزشکی و سلامت</a>
+          <a href="search.html?q=%D8%AD%D9%82%D9%88%D9%82">حقوق و مدیریت</a>
+        </div>
+        <div class="footer-col footer-about">
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> درباره</span>
+          <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footer-year">© ۱۴۰۵ آینده من</span>
+        <span>ساخته‌شده برای انتخابِ رشته‌ی نهم به دهم</span>
+      </div>
+    </div>
+  </footer>
+  <script src="static/js/core.js"></script>
+  <script src="static/js/layout.js"></script>
+<script>
+(function () {
+  var pickA = document.getElementById("pick-a");
+  var pickB = document.getElementById("pick-b");
+  var body = document.getElementById("compare-body");
+  var majors = null;
+  var aSlug = AM.param("a");
+  var bSlug = AM.param("b");
+
+  function headMeta(m) {
+    var r = AM.getRating(m.slug);
+    var rating = r ? AM.starsHtml(r) + " <span>" + AM.faNum(r) + " از " + AM.faNum(5) + " (امتیاز تو)</span>" : "<span>هنوز امتیازی نداده‌ای</span>";
+    return (
+      '<span class="badge">رشته‌ی دبیرستانی</span>' +
+      '<a class="head-name" href="major.html?slug=' + m.slug + '">' + m.name + "</a>" +
+      '<div class="head-meta">' + rating + " <span>·</span> " + AM.dotsHtml(+m.difficulty || 3) + "</div>"
+    );
+  }
+
+  function empty(msg) {
+    body.innerHTML = '<div class="empty-state">' + msg + "</div>";
+  }
+
+  function render() {
+    if (!majors) return;
+    var a = null;
+    var b = null;
+    majors.forEach(function (m) {
+      if (m.slug === aSlug) a = m;
+      if (m.slug === bSlug) b = m;
+    });
+    pickA.value = a ? a.slug : "";
+    pickB.value = b ? b.slug : "";
+    if (!a && !b) {
+      empty("دو رشته انتخاب کن تا مقایسه شروع شود.");
+      return;
+    }
+    if (!a || !b) {
+      empty("یکی از رشته‌های انتخابی پیدا نشد؛ فهرست را دوباره بررسی کن.");
+      return;
+    }
+    if (a.slug === b.slug) {
+      empty("دو رشته‌ی یکسان را انتخاب کرده‌ای؛ یکی را عوض کن تا مقایسه معنا داشته باشد.");
+      return;
+    }
+    Promise.all([AM.subsOf(a), AM.subsOf(b)]).then(function (xs) {
+      var subsA = xs[0].map(AM.subChipHtml).join("") || "—";
+      var subsB = xs[1].map(AM.subChipHtml).join("") || "—";
+      var rows = [
+        { label: "توضیح", a: a.description, b: b.description },
+        { label: "دروسِ رشته", a: a.courses, b: b.courses },
+        { label: "مسیر بعد از دیپلم", a: a.job_market, b: b.job_market },
+        { label: "زیررسته‌ها", a: '<div class="sub-track-list">' + subsA + "</div>", b: '<div class="sub-track-list">' + subsB + "</div>" },
+        { label: "مزایا", a: a.pros, b: b.pros },
+        { label: "معایب", a: a.cons, b: b.cons },
+        { label: "امتیاز تو", a: AM.ratingCell(a.slug), b: AM.ratingCell(b.slug) },
+      ];
+      body.innerHTML =
+        '<div class="compare-table reveal">' +
+        '<div class="compare-row compare-row-head"><div class="row-label"></div>' +
+        '<div class="row-value">' + headMeta(a) + "</div>" +
+        '<div class="row-value">' + headMeta(b) + "</div></div>" +
+        rows
+          .map(function (row) {
+            return (
+              '<div class="compare-row"><div class="row-label">' + row.label + "</div>" +
+              '<div class="row-value"><span class="row-major-name">' + a.name + "</span> " + row.a + "</div>" +
+              '<div class="row-value"><span class="row-major-name">' + b.name + "</span> " + row.b + "</div></div>"
+            );
+          })
+          .join("") +
+        "</div>" +
+        '<div class="faceoff-cta"><p>میان این دو رشته مرددی؟ <a href="faceoff.html?a=' + a.slug + "&b=" + b.slug + '">مسابقه‌ی دو رشته</a> را امتحان کن تا با ۱۲ سؤال ببینی کدام بیشتر با تو می‌نشیند.</p></div>';
+      refreshReveal();
+    });
+  }
+
+  document.getElementById("compare-pick").addEventListener("submit", function (e) {
+    e.preventDefault();
+    aSlug = pickA.value;
+    bSlug = pickB.value;
+    location.href = "compare.html?a=" + encodeURIComponent(aSlug) + "&b=" + encodeURIComponent(bSlug);
+  });
+
+  AM.majors().then(function (list) {
+    majors = list;
+    var opts = '<option value="">رشته را انتخاب کن...</option>' + list.map(function (m) {
+      return '<option value="' + m.slug + '">' + m.name + "</option>";
+    }).join("");
+    pickA.innerHTML = opts;
+    pickB.innerHTML = opts.replace("رشته را انتخاب کن...", "رشته‌ی دوم را انتخاب کن...");
+    pickA.value = aSlug || "";
+    pickB.value = bSlug || "";
+    render();
+  });
+})();
+</script>
+</body>
+</html>
