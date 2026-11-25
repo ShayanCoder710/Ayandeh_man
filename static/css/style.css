@@ -71,41 +71,62 @@ html[data-theme="dark"] a.sub-chip:hover {
 }
 
 .theme-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  justify-content: space-between;
+  width: 58px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 999px;
   border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink);
+  background: var(--surface-soft);
   cursor: pointer;
   flex-shrink: 0;
-  transition: border-color 0.2s ease, transform 0.15s ease;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
 }
 
 .theme-toggle:hover {
   border-color: var(--primary);
-  transform: scale(1.06);
+}
+
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 31px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 2px 6px rgba(30, 111, 217, 0.4);
+  transition: right 0.25s ease;
+}
+
+html[data-theme="dark"] .theme-toggle::before {
+  right: 3px;
 }
 
 .theme-toggle svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
+  position: relative;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  transition: color 0.2s ease;
 }
 
 .theme-toggle .icon-sun {
-  display: none;
-}
-
-html[data-theme="dark"] .theme-toggle .icon-moon {
-  display: none;
+  color: #fff;
 }
 
 html[data-theme="dark"] .theme-toggle .icon-sun {
-  display: block;
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .theme-toggle .icon-moon {
+  color: #fff;
 }
 
 * {
@@ -1399,6 +1420,10 @@ a.sub-chip:hover {
   color: #fff;
   font-weight: 700;
   font-size: 1.15rem;
+}
+
+.footer-logo:hover {
+  color: #fff;
 }
 
 .footer-logo .brand-icon {
