@@ -1188,7 +1188,6 @@ a.sub-chip:hover {
 .guide-list {
   display: grid;
   gap: 14px;
-  counter-reset: tip;
 }
 
 .guide-item {
@@ -1202,8 +1201,6 @@ a.sub-chip:hover {
 }
 
 .guide-item .tip-num {
-  counter-increment: tip;
-  content: counter(tip, persian);
   background: var(--primary);
   color: #fff;
   min-width: 34px;
