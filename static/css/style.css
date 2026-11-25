@@ -403,12 +403,21 @@ body.menu-open .menu-toggle span:nth-child(3) {
 
 .article-minutes {
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: var(--primary-soft);
   color: var(--primary-dark);
   font-size: 0.78rem;
   font-weight: 700;
   padding: 4px 12px;
   border-radius: 999px;
+}
+
+.article-minutes .bi {
+  width: 1em;
+  height: 1em;
+  flex: none;
 }
 
 .article-subtrack {
