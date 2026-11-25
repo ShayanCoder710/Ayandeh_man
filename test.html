@@ -4,20 +4,50 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.className += " js";</script>
-  <script>
-  (function () {
-    var saved = null;
-    try { saved = localStorage.getItem("am-theme"); } catch (e) {}
-    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (dark) document.documentElement.setAttribute("data-theme", "dark");
-  })();
-  </script>
   <title>تست شخصیت و علاقه | آینده من</title>
   <meta name="description" content="با پاسخ به سؤالات کوتاه، رشته‌ی دهمِ مناسبِ خودت را پیدا کن.">
   <link rel="icon" type="image/png" href="static/images/icon.png">
   <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body data-page="test">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></symbol>
+<symbol id="sun" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></symbol>
+<symbol id="moon" viewBox="0 0 16 16"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/></symbol>
+<symbol id="list" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></symbol>
+<symbol id="journal" viewBox="0 0 16 16"><path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+  <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/></symbol>
+<symbol id="share" viewBox="0 0 16 16"><path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/></symbol>
+<symbol id="lightning" viewBox="0 0 16 16"><path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1z"/></symbol>
+<symbol id="check" viewBox="0 0 16 16"><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></symbol>
+<symbol id="x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/></symbol>
+<symbol id="star" viewBox="0 0 16 16"><path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/></symbol>
+<symbol id="clipboard" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/></symbol>
+<symbol id="bar-chart" viewBox="0 0 16 16"><path d="M4 11H2v3h2zm5-4H7v7h2zm5-5v12h-2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="columns" viewBox="0 0 16 16"><path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm8.5 0v8H15V2zm0 9v3H15v-3zm-1-9H1v3h6.5zM1 14h6.5V6H1z"/></symbol>
+<symbol id="trophy" viewBox="0 0 16 16"><path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935M3.504 1q.01.775.056 1.469c.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.5.5 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667q.045-.694.056-1.469z"/></symbol>
+<symbol id="arrow-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></symbol>
+<symbol id="graph-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/></symbol>
+<symbol id="grid" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/></symbol>
+<symbol id="play" viewBox="0 0 16 16"><path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/></symbol>
+<symbol id="clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></symbol>
+<symbol id="lightbulb" viewBox="0 0 16 16"><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/></symbol>
+<symbol id="people" viewBox="0 0 16 16"><path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/></symbol>
+<symbol id="compass" viewBox="0 0 16 16"><path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+  <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/></symbol>
+<symbol id="book" viewBox="0 0 16 16"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/></symbol>
+<symbol id="rocket" viewBox="0 0 16 16"><path d="M8 8c.828 0 1.5-.895 1.5-2S8.828 4 8 4s-1.5.895-1.5 2S7.172 8 8 8"/>
+  <path d="M11.953 8.81c-.195-3.388-.968-5.507-1.777-6.819C9.707 1.233 9.23.751 8.857.454a3.5 3.5 0 0 0-.463-.315A2 2 0 0 0 8.25.064.55.55 0 0 0 8 0a.55.55 0 0 0-.266.073 2 2 0 0 0-.142.08 4 4 0 0 0-.459.33c-.37.308-.844.803-1.31 1.57-.805 1.322-1.577 3.433-1.774 6.756l-1.497 1.826-.004.005A2.5 2.5 0 0 0 2 12.202V15.5a.5.5 0 0 0 .9.3l1.125-1.5c.166-.222.42-.4.752-.57.214-.108.414-.192.625-.281l.198-.084c.7.428 1.55.635 2.4.635s1.7-.207 2.4-.635q.1.044.196.083c.213.09.413.174.627.282.332.17.586.348.752.57l1.125 1.5a.5.5 0 0 0 .9-.3v-3.298a2.5 2.5 0 0 0-.548-1.562zM12 10.445v.055c0 .866-.284 1.585-.75 2.14.146.064.292.13.425.199.39.197.8.46 1.1.86L13 14v-1.798a1.5 1.5 0 0 0-.327-.935zM4.75 12.64C4.284 12.085 4 11.366 4 10.5v-.054l-.673.82a1.5 1.5 0 0 0-.327.936V14l.225-.3c.3-.4.71-.664 1.1-.861.133-.068.279-.135.425-.199M8.009 1.073q.096.06.226.163c.284.226.683.621 1.09 1.28C10.137 3.836 11 6.237 11 10.5c0 .858-.374 1.48-.943 1.893C9.517 12.786 8.781 13 8 13s-1.517-.214-2.057-.607C5.373 11.979 5 11.358 5 10.5c0-4.182.86-6.586 1.677-7.928.409-.67.81-1.082 1.096-1.32q.136-.113.236-.18Z"/>
+  <path d="M9.479 14.361c-.48.093-.98.139-1.479.139s-.999-.046-1.479-.139L7.6 15.8a.5.5 0 0 0 .8 0z"/></symbol>
+<symbol id="pin-map" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8z"/>
+  <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/></symbol>
+<symbol id="award" viewBox="0 0 16 16"><path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/>
+  <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/></symbol>
+<symbol id="heart" viewBox="0 0 16 16"><path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/></symbol>
+<symbol id="envelope" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></symbol>
+</svg>
   <header class="site-header">
     <div class="container">
       <div class="header-inner">
@@ -30,27 +60,23 @@
           <span></span><span></span><span></span>
         </button>
         <nav class="main-nav" aria-label="ناوبری اصلی">
-          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
-          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
-          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
-          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
-          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
+          <a class="nav-link" data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="#grid"></use></svg> رشته‌ها</a>
+          <a class="nav-link" data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="#columns"></use></svg> مقایسه</a>
+          <a class="nav-link" data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="#book"></use></svg> مقالات</a>
+          <a class="nav-link" data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="#lightbulb"></use></svg> راهنما</a>
+          <a class="nav-link" data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="#search"></use></svg> جستجو</a>
           <a class="nav-cta" data-key="test" href="test.html">شروع تست</a>
         </nav>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تغییر تم روشن/تاریک">
-          <svg class="bi icon-moon" aria-hidden="true"><use href="static/icons/am-sprite.svg#moon"></use></svg>
-          <svg class="bi icon-sun" aria-hidden="true"><use href="static/icons/am-sprite.svg#sun"></use></svg>
-        </button>
       </div>
       <div class="nav-sheet" id="nav-sheet">
         <nav class="sheet-nav" aria-label="منوی موبایل">
-          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#clipboard"></use></svg> تست شخصیت</a>
-          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> رشته‌ها</a>
-          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#columns"></use></svg> مقایسه</a>
-          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> مقالات</a>
-          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> راهنما</a>
-          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</a>
-          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#play"></use></svg> شروع تست</a>
+          <a data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="#clipboard"></use></svg> تست شخصیت</a>
+          <a data-key="majors" href="majors.html"><svg class="bi " aria-hidden="true"><use href="#grid"></use></svg> رشته‌ها</a>
+          <a data-key="compare" href="compare.html"><svg class="bi " aria-hidden="true"><use href="#columns"></use></svg> مقایسه</a>
+          <a data-key="articles" href="articles.html"><svg class="bi " aria-hidden="true"><use href="#book"></use></svg> مقالات</a>
+          <a data-key="guide" href="guide.html"><svg class="bi " aria-hidden="true"><use href="#lightbulb"></use></svg> راهنما</a>
+          <a data-key="search" href="search.html"><svg class="bi " aria-hidden="true"><use href="#search"></use></svg> جستجو</a>
+          <a class="sheet-cta" data-key="test" href="test.html"><svg class="bi " aria-hidden="true"><use href="#play"></use></svg> شروع تست</a>
         </nav>
       </div>
     </div>
@@ -92,25 +118,25 @@
           <p class="footer-tagline">همراهِ انتخاب رشته؛ با شناختِ بهترِ خودت، انتخابی آگاهانه‌تر بکن.</p>
         </div>
         <nav class="footer-col" aria-label="پیوندهای سریع">
-          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#grid"></use></svg> پیوندها</span>
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="#grid"></use></svg> پیوندها</span>
           <a href="test.html">تست شخصیت و علاقه</a>
           <a href="majors.html">رشته‌های تحصیلی</a>
           <a href="compare.html">مقایسه رشته‌ها</a>
           <a href="faceoff.html">مسابقه‌ی دو رشته</a>
         </nav>
         <nav class="footer-col" aria-label="محتوا">
-          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#book"></use></svg> محتوا</span>
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="#book"></use></svg> محتوا</span>
           <a href="articles.html">مقالات</a>
           <a href="guide.html">راهنمای انتخاب رشته</a>
         </nav>
         <div class="footer-col">
-          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#search"></use></svg> جستجو</span>
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="#search"></use></svg> جستجو</span>
           <a href="search.html?q=%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87">برنامه‌نویسی</a>
           <a href="search.html?q=%D9%BE%D8%B2%D8%B4%DA%A9">پزشکی و سلامت</a>
           <a href="search.html?q=%D8%AD%D9%82%D9%88%D9%82">حقوق و مدیریت</a>
         </div>
         <div class="footer-col footer-about">
-          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="static/icons/am-sprite.svg#lightbulb"></use></svg> درباره</span>
+          <span class="footer-col-title"><svg class="bi " aria-hidden="true"><use href="#lightbulb"></use></svg> درباره</span>
           <p>«آینده من» به دانش‌آموزانِ نهم کمک می‌کند رشته‌ی دبیرستانِ خود را (ریاضی، تجربی، انسانی یا فنی‌وحرفه‌ای) با شناختِ بهترِ خود، انتخاب کنند.</p>
         </div>
       </div>
@@ -268,7 +294,7 @@
         "فهرستِ سؤالات بارگذاری نشد؛ دوباره صفحه را باز کن.</div>";
     });
   function biCompass() {
-    return '<svg class="bi" aria-hidden="true"><use href="static/icons/am-sprite.svg#compass"></use></svg>';
+    return '<svg class="bi" aria-hidden="true"><use href="#compass"></use></svg>';
   }
 })();
 </script>

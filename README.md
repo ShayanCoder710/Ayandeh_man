@@ -21,14 +21,16 @@ shareable as a single URL with the answers encoded in the query string.
   12 most relevant questions, and get a weighted verdict with the strongest deciding answers and
   the winner's sub-track paths.
 - A step-by-step guide and a set of short reading articles on choosing a high-school track.
-- Site-wide client-side search over tracks, sub-tracks and articles (`search.html`), plus a
-  light/dark theme toggle, and draft persistence for the personality test.
+- Site-wide client-side search over tracks, sub-tracks and articles (`search.html`), plus
+  draft persistence for the personality test.
 
 ## Stack
 
 - HTML, CSS, vanilla JavaScript — no build step, no framework, no external JS libraries
-- Bootstrap Icons v1.13.2 (vendored in `static/bootstrap-icons/`; the site loads only a small
-  sprite, `static/icons/am-sprite.svg`, built from the icons it actually uses)
+- All content data is embedded in `static/js/core.js` (the JSON files in `data/` are the source
+  used to generate it), so the site also works opened directly from disk (`file://`)
+- Bootstrap Icons v1.13.2 (vendored in `static/bootstrap-icons/`; each page inlines a small
+  sprite of only the icons it uses, built from `static/icons/am-sprite.svg`)
 - Vazirmatn web font
 
 ## Project layout
@@ -46,10 +48,10 @@ articles.html         all articles (guide articles + 122 sub-track articles)
 article.html?slug=…   a single article
 search.html?q=…       client-side site search
 404.html              not-found page
-static/css/style.css  all styles (light + dark themes)
-static/js/core.js     data loading, scoring, face-off, ratings, helpers
-static/js/layout.js   theme, mobile menu, scroll reveal, active nav, footer year
-static/icons/        am-sprite.svg — Bootstrap Icons sprite used by the site
+static/css/style.css  all styles
+static/js/core.js     embedded content data + scoring, face-off, ratings, helpers
+static/js/layout.js   mobile menu, scroll reveal, active nav, footer year
+static/icons/        am-sprite.svg — Bootstrap Icons sprite inlined into each page
 static/bootstrap-icons/  vendored Bootstrap Icons v1.13.2
 static/fonts/         Vazirmatn
 static/images/        site icon
@@ -58,7 +60,8 @@ data/                 content JSON (tracks, questions, articles, sub-track slug 
 
 ## Run it
 
-Any static file server works; the pages fetch the JSON in `data/` same-origin:
+Nothing to install: open `index.html` directly, or serve the directory with any static
+server:
 
 ```sh
 python3 -m http.server 5000
@@ -80,5 +83,6 @@ sums the weights for the two clusters only.
 - Short lowercase commit messages, one logical change per commit.
 - Persian content is proofread carefully (wrong letter endings like -گ / -ی / -ن are common typos).
 - No code comments in source files; documentation lives in this README.
-- Icons come from the vendored Bootstrap Icons sprite (`static/icons/am-sprite.svg`), rendered as
-  `<svg class="bi"><use href="static/icons/am-sprite.svg#name"></use></svg>`.
+- Icons are the vendored Bootstrap Icons: each page inlines the small sprite
+  (`static/icons/am-sprite.svg` as a `display:none` SVG at the top of `<body>`), rendered as
+  `<svg class="bi"><use href="#name"></use></svg>` so they work even from `file://`.

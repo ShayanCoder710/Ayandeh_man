@@ -1,16 +1,4 @@
 (function () {
-  var themeButton = document.getElementById("theme-toggle");
-  if (themeButton) {
-    themeButton.addEventListener("click", function () {
-      var root = document.documentElement;
-      var isDark = root.getAttribute("data-theme") === "dark";
-      if (isDark) root.removeAttribute("data-theme");
-      else root.setAttribute("data-theme", "dark");
-      try {
-        localStorage.setItem("am-theme", isDark ? "light" : "dark");
-      } catch (e) {}
-    });
-  }
   var toggle = document.getElementById("menu-toggle");
   var sheet = document.getElementById("nav-sheet");
   if (toggle && sheet) {
