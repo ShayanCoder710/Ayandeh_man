@@ -92,8 +92,8 @@
 <section class="section">
   <div class="container">
     <form class="compare-pick" id="compare-pick">
-      <select id="pick-a"><option value="">رشته‌ی اول را انتخاب کن...</option></select>
-      <select id="pick-b"><option value="">رشته‌ی دوم را انتخاب کن...</option></select>
+      <select id="pick-a"><option value="">رشته‌ی اول را انتخاب کن…</option></select>
+      <select id="pick-b"><option value="">رشته‌ی دوم را انتخاب کن…</option></select>
       <button type="submit" class="btn btn-primary"><svg class="bi " aria-hidden="true"><use href="#columns"></use></svg> مقایسه کن</button>
       <a class="btn btn-outline btn-sm" href="compare.html">پاک کردن</a>
     </form>
@@ -228,11 +228,11 @@
 
   AM.majors().then(function (list) {
     majors = list;
-    var opts = '<option value="">رشته را انتخاب کن...</option>' + list.map(function (m) {
+    var opts = '<option value="">رشته را انتخاب کن…</option>' + list.map(function (m) {
       return '<option value="' + m.slug + '">' + m.name + "</option>";
     }).join("");
     pickA.innerHTML = opts;
-    pickB.innerHTML = opts.replace("رشته را انتخاب کن...", "رشته‌ی دوم را انتخاب کن...");
+    pickB.innerHTML = opts.replace("رشته را انتخاب کن…", "رشته‌ی دوم را انتخاب کن…");
     pickA.value = aSlug || "";
     pickB.value = bSlug || "";
     render();
